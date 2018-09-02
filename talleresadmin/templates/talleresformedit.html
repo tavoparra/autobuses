@@ -1,0 +1,160 @@
+<table class="toptable"><tr><th>
+<a href="javascript:history.back();"><img src="../imagenes/arrow_btn.png" border="0" style="margin-right:3px;" /></a></th>
+  <td style="vertical-align:middle; text-align:center;">En Esta Secci&oacute;n Podr&aacute;s Editar el Taller o CDI Seleccionado</td>
+</tr></table>
+
+<table class="userinfo">
+<tr>
+  <td>
+	Viendo Detalle del Taller o CDI
+	<a target="_blank" href="imprimir.php?tallerid={TALLERID}"><img align="right" class="printIcon" alt="Imprimir" src="../imagenes/print.png"></a>
+  </td>
+</tr>
+</table>
+<form name="Form1" id="Form1" method="post" enctype="multipart/form-data" action="functions/worktalleres.php?mode=edit">
+<table width="700" align="center" cellpadding="0" cellspacing="0">
+<tr class="oddn">
+  <th style="width:150px;">N&uacute;mero del Taller o CDI:</th>
+  <td align="left" bgcolor="#bbbbbb">
+	<label>
+		<input name="numeroshow" type="text" id="numeroshow" value="{TALLERID}" size="10" readonly style="text-align:right; font-weight:bolder"/>
+	</label>
+    <input name="tallerid" type="hidden" id="tallerid" value="{TALLERID}" />
+	<input type="submit" id="submitBtn" style="display: none;" />
+ </td>
+</tr>
+<tr class="commonn">
+  <th style="width:150px;">C&oacute;digo de taller*:</th>
+  <td align="left" bgcolor="#bbbbbb">
+  <input name="taller_cod" type="text" id="taller_cod" value="{CODIGO}" size="50" maxlength="256" onchange="toUpper(this); checar_codigo(this.value);" class="validate['required','~validCode']" />
+  <input name="codigo_validado" id="codigo_validado" type="hidden" value="1" />
+<div id="codigo_validate" style="display:inline"></div></td>
+</tr>
+<tr class="oddn">
+<th style="width:150px;">Nombre*: 
+  <input type="hidden" name="redirect" /></th>
+<td align="left" bgcolor="#bbbbbb">
+<input name="nombre" type="text" id="nombre" value="{NOMBRE}" size="50" maxlength="256" onchange="toUpper(this);" class="validate['required']" /></td>
+</tr>
+<tr class="commonn">
+  <th style="width:150px;">Direcci&oacute;n:</th>
+  <td align="left" bgcolor="#bbbbbb">
+    <table width="100%" border="0">
+      <tr>
+        <td colspan="2"><div align="center">Calle principal:
+          <input name="calle" type="text" id="calle" value="{CALLE}" size="50" maxlength="70" onchange="toUpper(this);"/>
+          <br/>
+        </div></td>
+      </tr>
+      <tr>
+        <td colspan="2"><div align="center">N&uacute;m. Ext.:
+          <input name="num_ext" type="text" id="num_ext" value="{NUM_EXT}" size="10" maxlength="8" />
+          N&uacute;m. Int.:
+          <input name="num_int" type="text" id="num_int" value="{NUM_INT}" size="10" maxlength="8" />
+<br/>Colonia: 
+<label>
+<input name="colonia" type="text" id="colonia" value="{COLONIA}" maxlength="54" onchange="toUpper(this);"/>
+</label>
+        </div>          </td>
+      </tr>
+      <tr>
+        <td colspan="2"><div align="center">C.P.
+            <input name="cod_postal" type="text" id="cod_postal" value="{COD_POSTAL}" size="10" maxlength="5" />
+Delegaci&oacute;n o municipio: 
+          <input name="municipio" type="text" id="municipio" value="{MUNICIPIO}" onchange="toUpper(this);"/>
+        </div></td>
+      </tr>
+      <tr>
+        <td><div align="center">Estado: 
+          <label>
+          <select name="estadoid" id="estadoid" onChange='javascript:cargarciudades(this.value);'>
+            
+            	{ESTADOS}
+          
+          </select>
+          </label>
+        </div></td>
+        <td><div id="ciudad_combo" align="center">Ciudad: 
+          <select name="ciudadid" id="ciudadid">
+          	{CIUDADES}
+          </select>
+        </div></td>
+      </tr>
+    </table>    </td>
+</tr>
+<tr class="oddn">
+  <th style="width:150px;">Tel&eacute;fono:</th>
+  <td align="left" bgcolor="#bbbbbb">
+  <input name="telefono" type="text" id="telefono" value="{TELEFONO}" size="50" maxlength="64" class="validate['phone']" /></td>
+</tr>
+<tr class="commonn">
+  <th style="width:150px;">Cliente:</th>
+  <td align="left" bgcolor="#bbbbbb">
+  <input name="local" type="checkbox" id="local" {MARKED} onchange="mostrar_ocultar_cliente(this.checked);" class="validate['%validCliente']"/> 
+    Taller Refriservicio
+    <br/>
+    <div id="cliente_div" style="display:{MARK};">
+  <input name="cliente_name" type="text" readonly id="cliente_name" value="{CLIENTENOMBRE}" size="25"/>
+    <input name="clienteid" type="hidden" id="clienteid" value="{CLIENTEID}" />
+    <a href="search.php?search=cliente" target="_blank"  onclick="window.open(this.href, this.target, 'width=600,height=400'); return false;">Buscar cliente</a></td>
+    </div>
+</tr>
+<tr class="oddn">
+  <th style="width:150px;">Contactos:</th>
+  <td align="left" bgcolor="#bbbbbb"><table width="100%" border="0">
+    <tr>
+      <td colspan="2">Nombre: 
+        <label>
+        <input name="nombre_contacto" type="text" id="nombre_contacto" size="35" onchange="toUpper(this);"/>
+        </label></td>
+      <td>E-mail:
+        <label>
+        <input type="text" name="contacto_email" id="contacto_email"/>
+        </label></td>
+    </tr>
+    <tr>
+      <td>Tel&eacute;fono: 
+        <label>
+        <input type="text" name="contacto_tel" id="contacto_tel" />
+        </label></td>
+      <td>Ext: 
+        <label>
+        <input name="extension" type="text" id="extension" size="5" maxlength="5" />
+        </label></td>
+      <td><div align="center">
+        <label>
+        <input type="button" onclick="Mostrar();" name="addcontact" id="addcontact" value="A&ntilde;adir contacto" />
+        </label>
+      </div></td>
+    </tr>
+  </table>
+  <div id="contactos_table">
+    <table width="100%" border="1">
+      <tr>
+        <td><div align="center"><strong>Nombre</strong></div></td>
+        <td><div align="center"><strong>Tel&eacute;fono</strong></div></td>
+        <td><div align="center"><strong>E-mail</strong></div></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        {CONTACTOS_CONTENT}
+      </tr>
+    </table>
+  </div>  </td>
+</tr>
+<tr class="commonn">
+  <th style="width:150px;">Log:</th>
+  <td align="left" bgcolor="#bbbbbb">{HISTORIAL}</td>
+</tr>
+</table>
+
+<table style="width:100%;" cellpadding="0" cellspacing="0" align="center">
+	  <tr>
+		  <td class="leftbtn">{LINK_DELETE}</td>
+	    <td class="btnspacer" style="width:416px;"></td>
+		  <td class="rightbtn">{LINK_UPDATE}</td>
+	  </tr>
+</table>
+
+
+</form>

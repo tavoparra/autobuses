@@ -1,0 +1,282 @@
+/* emultimedia Document */
+
+
+.footerText {
+    font-size: 8pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #3e3e3e;
+		text-decoration:none;
+}
+
+.footerText a:link{
+    font-size: 8pt;
+    font-family: Arial, Helvetica, sans-serif;
+      color: #3e3e3e;
+	text-decoration:none;
+}
+.footerText a:hover{
+    font-size: 8pt;
+    font-family: Arial, Helvetica, sans-serif;
+     color: #3e3e3e;
+	text-decoration:none;
+}
+
+.footerText a:visited{
+    font-size: 8pt;
+    font-family: Arial, Helvetica, sans-serif;
+      color: #3e3e3e;
+		text-decoration:none;
+	
+}
+
+.galleryLink {
+    font-size: 8pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+		text-decoration:none;
+}
+
+.galleryLink a:link{
+    font-size: 8pt;
+    font-family: Arial, Helvetica, sans-serif;
+      color: #ffffff;
+	text-decoration:none;
+}
+.galleryLink a:hover{
+    font-size: 8pt;
+    font-family: Arial, Helvetica, sans-serif;
+      color: #ffffff;
+	text-decoration:none;
+}
+.galleryLink a:visited{
+    font-size: 8pt;
+    font-family: Arial, Helvetica, sans-serif;
+       color: #ffffff;
+		text-decoration:none;
+	
+}
+
+.blackText {
+font-size: 9pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #3a3a3a;
+	font-weight:bold;
+		text-decoration:none; 
+		}
+
+.darkGreyTxt {
+    font-size: 10pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #5c5c5c;
+		text-decoration:none;
+}
+
+.greyTxt {
+    font-size: 9pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #cdc9c4;
+		text-decoration:none;
+}
+
+.whiteTxt {
+    font-size: 10pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+		text-decoration:none;
+}
+.whiteTxt2 {
+    font-size: 8pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+	text-decoration:none;
+}
+
+.whiteTxtBold {
+    font-size: 10pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+	font-weight:bold;
+	text-decoration:none;
+}
+
+.whiteTxtBold2 {
+    font-size: 9pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+	font-weight:bold;
+	text-decoration:none;
+}
+
+.greyTxtBold {
+    font-size: 10pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #cdc9c4;
+	font-weight:bold;
+		text-decoration:none;
+}
+
+.smallGreyTxtBold {
+    font-size: 8pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #444444;	
+	text-decoration:none;
+}
+
+.smallWhiteTxtBold {
+    font-size: 8pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;	
+	text-decoration:none;
+}
+
+.topbar {
+    
+	font-size: 9pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #3a3a3a;
+	font-weight:bold;
+	text-decoration:none; 
+    border: 1px solid #959393;
+    background-color:#e3e2e2;
+
+}
+
+.boxImg {
+  border: 1px solid #5d5b5a;
+   
+}
+
+.newsList {
+    font-size: 9pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #cdc9c4;
+	text-decoration:none;
+	font-weight:normal;
+}
+
+.newsList a:visited{
+    font-size: 9pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #cdc9c4;
+	text-decoration:none;
+}
+
+.newsList a:link{
+    font-size: 9pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #cdc9c4;
+	text-decoration:none;
+}
+
+.newsList a:hover{
+    font-size: 9pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+	text-decoration:none;
+	font-weight:normal;
+}
+
+.linesListGray
+{
+    font-size: 9pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #cdc9c4;
+	text-decoration:none;
+	font-weight:normal;
+}
+
+.linesListDarkGray
+{
+    font-size: 9pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #404040;
+	text-decoration:none;
+	font-weight:normal;
+}
+
+.linesListDarkGrayBold
+{
+    font-size: 9pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #404040;
+	text-decoration:none;
+	font-weight:bold;
+}
+
+.linesListWhite{
+    font-size: 9pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+	text-decoration:none;
+	font-weight:normal;
+}
+
+.linesListWhiteBold{
+    font-size: 10pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+	text-decoration:none;
+	font-weight:bold;
+}
+
+.prodDetailWhite{
+    font-size: 12pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+	text-decoration:none;
+	font-weight:normal;
+}
+
+.prodDetailWhiteBold{
+    font-size: 12pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+	text-decoration:none;
+	font-weight:bold;
+}
+
+.prodDetailGray{
+    font-size: 12pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #cdc9c4;
+	text-decoration:none;
+	font-weight:normal;
+}
+
+.prodDetailGrayBold{
+    font-size: 12pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #cdc9c4;
+	text-decoration:none;
+	font-weight:bold;
+}
+
+.newsListWhite {
+    font-size: 9pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+	text-decoration:none;
+	font-weight:normal;
+}
+
+.newsListWhite a:visited{
+    font-size: 9pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+	text-decoration:none;
+}
+
+.newsListWhite a:link{
+    font-size: 9pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+	text-decoration:none;
+}
+
+.newsListWhite a:hover{
+    font-size: 9pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+	text-decoration:none;
+	font-weight:bold;
+}

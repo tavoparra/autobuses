@@ -1,0 +1,137 @@
+<form name="Form1" id="Form1" method="post" enctype="multipart/form-data" action="functions/workarticles.php?mode={MODE}">
+<table class="toptable">
+	<tr>
+		<th>
+			<a href="articlesadmin.php"><img src="../imagenes/arrow_btn.png" border="0" style="margin-right:3px;" /></a>
+		</th>
+		<td style="vertical-align:middle; text-align:center;">
+			En Esta Secci&oacute;n Podr&aacute;s Dar De Alta Un Nuevo Art&iacute;culo
+		</td>
+	</tr>
+</table>
+
+<table class="userinfo">
+	<tr>
+		<td>
+				Agregando Nuevo Art&iacute;culo
+		</td>
+	</tr>
+</table>
+
+<table width="700" align="center" cellpadding="0" cellspacing="0">
+
+        <!--<tr class="commonn">
+                  <th style="width:150px;">
+                  		N&uacute;mero de Art&iacute;culo en Sistema:
+                  </th>
+                  <td align="left" bgcolor="#bbbbbb">
+                          <label>
+                                <input name="numeroshow" type="text" id="numeroshow" value="{NEWID}" size="10" disabled="DISABLED" style="text-align:right; font-weight:bolder"/>
+                                <input name="numero" type="hidden" id="numero" value="{NEWID}" />
+                          </label>
+                  </td>
+        </tr>-->
+
+	<tr class="oddn">
+		<th style="width:168px;">C&oacute;digo de Art&iacute;culo*:</th>
+		<td align="left" bgcolor="#bbbbbb">
+			<input name="code" type="text" size="50" maxlength="256" id="code" onchange="toUpper(this); checar_codigo(this.value);" class="validate['required','~validCode']" />
+			<input name="numeroshow" type="hidden" id="numeroshow" value="0" />
+			<input type="submit" id="submitBtn" style="display: none;" />
+			<input name="codigo_validado" id="codigo_validado" type="hidden" value="0" />
+			<div id="codigo_validate" style="display:inline">
+			</div>			
+			<input type="hidden" name="redirect" id="redirect" />
+		</td>
+	</tr>
+    <tr class="commonn">
+		<th style="width:168px;">Nombre de Art&iacute;culo*:</th>
+		<td align="left" bgcolor="#bbbbbb">
+			<input name="name" type="text" size="50" maxlength="256" id="name" onchange="toUpper(this);" class="validate['required']">
+		</td>
+    </tr>
+        
+		<tr class="oddn">
+                    <th style="width:168px;">Descripci&oacute;n:                    </th>
+<td align="left" bgcolor="#bbbbbb">
+                    		<input name="desc" type="text" size="50" maxlength="256" id="desc" onchange="toUpper(this);">
+                    </td>
+        </tr>
+        <tr class="commonn">
+                    <th style="width:168px;">Unidad de Medida*:</th>
+<td align="left" bgcolor="#bbbbbb">
+               		<label for="medida_id"></label>
+                    		<select name="medida_id" id="medida_id" class="validate['required']">
+                    		  <option value="0">- Seleccionar -</option>
+                              {CONTENIDO_MEDIDAS}
+   		            </select></td>
+        </tr>
+        <tr class="oddn">
+                    <th style="width:168px;">Peso en Kg:</th>
+<td align="left" bgcolor="#bbbbbb">
+                    		<input name="weight" type="text" size="50" maxlength="256" id="weight">
+                    </td>
+        </tr>
+        
+        <tr class="commonn">
+                    <th style="width:168px;">PRECIOS:</th>
+					<td align="left" bgcolor="#bbbbbb">
+                    <table width="100%" border="0">
+                    		<tr>
+                                             <td colspan="2">
+                                                    <div align="center">
+                                                    Precio 1:
+                                                    <input name="price" type="text" size="12" maxlength="70" id="price" />
+                                                    Precio 2:
+                                                    <input name="price2" type="text" size="12" maxlength="70" id="price2" />
+                                                    <br /><br />Precio 3:
+                                                    <input name="price3" type="text" size="12" maxlength="70" id="price3" />
+                                                    Precio 4:
+                                                    <input name="price4" type="text" size="15" maxlength="70" id="price4" />
+                                                    <br /><br />Precio 5:
+                                                    <input name="price5" type="text" size="15" maxlength="70" id="price5" />
+                                                            
+                                                    </div>
+                                              </td>
+                            </tr>
+                    </table>
+                    </td>
+        </tr>
+        <tr class="oddn">
+                    <th style="width:168px;">Costo*:</th>
+							<td align="left" bgcolor="#bbbbbb">
+                    		<input name="costo" type="text" size="50" maxlength="256" id="costo" class="validate['required']" />
+                    </td>
+        </tr>
+        <tr class="commonn">
+          <th style="width:168px;">Mano de obra</th>
+          <td align="left" bgcolor="#bbbbbb"><input type="checkbox" name="mano_obra" id="mano_obra" />
+            Marcar como mano de obra</td>
+        </tr>
+        <tr class="oddn">
+          <th style="width:168px;">Moneda:</th>
+          <td align="left" bgcolor="#bbbbbb"><label for="moneda"></label>
+            <select name="moneda" id="moneda">
+              <option value="0">Pesos</option>
+              <option value="1">D&oacute;lares</option>
+          </select></td>
+        </tr>
+        <tr class="commonn">
+          <th style="width:168px;">Sustituye en lista LAO a:</th>
+          <td align="left" bgcolor="#bbbbbb"><input name="equivale" type="text" size="50" maxlength="256" id="equivale" onchange="toUpper(this);" /></td>
+        </tr>
+
+</table>
+
+<table class="bottmspacer">
+<tr><td></td></tr>
+</table>
+
+<table style="width:100%;" cellpadding="0" cellspacing="0" align="center">
+	  <tr>	  
+		  <td class="btnspacer" style="width:558px;"></td>
+		  <td class="rightbtn"><a href="javascript:validate(0);">Agregar </a></td>
+	  </tr>
+</table>
+
+</form>

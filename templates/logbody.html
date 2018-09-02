@@ -1,0 +1,43 @@
+<!-- Esta tabla contiene el menu y su linea roja inferior -->
+<table width="957" border="0" cellpadding="0" cellspacing="0">
+<tr><td width="150" style=" line-height:36px; color:#E1E1E1; font-size:14px; font-weight:bold; font-family:Verdana, Arial, Helvetica, sans-serif;" bgcolor="#444444">&nbsp;</td>
+<td bgcolor="#444444" width="600">
+</td>
+<td width="150" style="color:#E1E1E1; font-size:14px; font-weight:bold; font-family:Verdana, Arial, Helvetica, sans-serif;" bgcolor="#444444">&nbsp;</td>
+</tr><tr><td bgcolor="{LIGHTCOLOR}" height="6" colspan="3"></td></tr></table>
+
+<table width="957" height="550" align="center" class="blurbackg">
+<tr height="140"><td></td></tr><tr height="135"><td> <!-- Aqui debe ir el contenido principal -->
+
+
+<form name="ChecaUsr" method="post" action="functions/checkusr.php">
+<input type="hidden" name="redirect">
+
+<table id="logtab" align="center" style="width:459px; height:135px;"  cellpadding="0" cellspacing="0" ><tr><td>
+
+   <table height="80" style="margin-top:20px;" align="center"><tr>
+	<td align="right" >Usuario:</td>
+	<td align="left" ><input name="usrname" style="position:relative;" type="text" maxlength="25" size="24" onKeyPress="checkEnter(event,'ChecaUsr')"></td></tr>
+  <tr><td align="right" >Contrase&ntilde;a:</td>
+	<td align="left" colspan="2" ><input name="pass" style="position:relative;" type="password" maxlength="25" size="24" onKeyPress="checkEnter(event, 'ChecaUsr')"></td></tr>
+   </table></td>
+   <td><table align="left" height="80" style="margin-top:20px;" cellpadding="0" cellspacing="0"><tr>
+   <td><a href="javascript:sendForm(0);"><img src="imagenes/loginenter.png" style="position:relative;" height="55" width="45" border="0"></a></td>  
+     </tr></table>
+   </td></tr>
+</td></tr>
+</td></tr></table>
+<table cellspacing="0" cellpadding="0" align="center" height="45">
+  <tr>
+    <td>{ERROR}</td>
+  </tr>
+</table>
+
+</form>
+</td></tr>
+<tr><td>
+	<table align="center" style="margin-bottom:30px;">
+	<tr><td><img src="imagenes/loginshadow.png" width="443" height="40" /></td></tr></table>
+</td></tr>
+<tr><td>
+<br /><br /><br /></td></tr></table><br /> <!-- Aqui se termina el contenido principal -->

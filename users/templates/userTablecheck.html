@@ -1,0 +1,79 @@
+<script language="javascript">
+function MsgOkCanceldrop( msg, redirect )
+{
+	if ( confirm( msg ) )
+	{
+		document.forms.forma.redirect.value = redirect;
+		document.forms.forma.submit();
+	}
+}
+</script>
+<form name="forma" method="post" action="functions/workuser.php">
+<input type="hidden" name="redirect" />
+<input type="hidden" name="userid" value="{USERID}" />
+<table width="450" height="28" align="center" cellpadding="0" cellspacing="0" >
+	<tr>
+		<td>
+			<table class="toptable" >
+				<tr>
+					<th>
+						<a href="{BACKPAGE}"><img src="../imagenes/arrow_btn.png" border="0" style="margin-right:3px;" /></a>
+					</th>
+					<td style="vertical-align:middle; text-align:center;">
+						En Esta Secci&oacute;n Podr&aacute;s Consultar los Usuarios que Pueden Administrar el Panel de Control
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="userinfo">
+				<tr>
+					<td>Detalle de Usuario</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table style="width:100%;" cellspacing="0">
+				<tr class="odd">
+					<th>Clave:</th>
+					<td>{JOB}</td>
+				</tr>
+				<tr class="common">
+					<th style="width:150px;">Nombre:</th>
+					<td>{USERNAME}</td>
+				</tr>
+				<tr class="odd">
+					<th>Apellido:</th>
+					<td>{LASTNAME}</td>
+				</tr>
+				<tr class="common">
+					<th>Login:</th>
+					<td>{LOGIN}</td>
+				</tr>
+				<tr class="odd">
+					<th>Perfil de Usuario:</th>
+					<td>{PROFILE}</td>
+				</tr>
+			</table>
+			<table class="bottmspacer">
+				<tr>
+					<td></td>
+				</tr>
+			</table>
+			<table width="450" cellpadding="0" cellspacing="0" align="center">
+				<tr>
+					<td class="leftbtn">
+						<a href="javascript:MsgOkCanceldrop('&iquest;Est&aacute; Seguro que Desea Eliminar a Este Usuario?', 2 )">Eliminar</a>
+					</td>
+					<td class="btnspacer" style="width:166px;"></td>
+					<td class="rightbtn"><a href="{EDITUSER}">Editar </a></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</form>

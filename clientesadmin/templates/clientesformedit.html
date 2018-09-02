@@ -1,0 +1,192 @@
+<table class="toptable"><tr><th>
+<a href="javascript:history.back();"><img src="../imagenes/arrow_btn.png" border="0" style="margin-right:3px;" /></a></th>
+  <td style="vertical-align:middle; text-align:center;">En Esta Secci&oacute;n Podr&aacute;s Editar el Cliente Seleccionado</td>
+</tr></table>
+
+<table class="userinfo">
+<tr>
+  <td>Viendo Detalle del Cliente
+	<a href="imprimir.php?clienteid={CLIENTEID}" target="_blank"><img src="../imagenes/print.png" align="right" alt="Imprimir" class="printIcon"/></a>
+  </td>
+</tr>
+</table>
+<form name="Form1" id="Form1" method="post" enctype="multipart/form-data" action="functions/workclientes.php?mode=edit">
+<table width="700" align="center" cellpadding="0" cellspacing="0">
+<tr class="oddn">
+  <th style="width:150px;">N&uacute;mero de cliente:</th>
+  <td align="left" bgcolor="#bbbbbb"><input name="numeroshow" type="text" id="numeroshow" value="{CLIENTEID}" size="10" readonly style="text-align:right; font-weight:bolder"/>
+    <input name="clienteid" type="hidden" id="clienteid" value="{CLIENTEID}" />
+    <input name="numeroshow" type="hidden" id="numeroshow" value="{CLIENTEID}" />
+<input name="codigo_validado" id="codigo_validado" type="hidden" value="1" />
+
+    </td>
+</tr>
+<tr class="commonn">
+  <th style="width:150px;">C&oacute;digo de cliente*:</th>
+  <td align="left" bgcolor="#bbbbbb"><label>
+    <input name="cliente_cod" type="text" id="cliente_cod" value="{CLIENTE_COD}" size="50" maxlength="64" onchange="toUpper(this); checar_codigo(this.value);" class="validate['required','%validCode']"/>
+    <div id="codigo_validate" style="display:inline">
+	
+</div>
+  </label>
+  <input name="codigo_validado" id="codigo_validado" type="hidden" value="1" />
+<div id="codigo_validate" style="display:inline">
+	
+</div></td>
+</tr>
+<tr class="oddn">
+<th style="width:150px;">
+	Nombre*: 
+  <input type="hidden" name="redirect" />
+  <input type="submit" id="submitBtn" style="display: none;" />
+</th>
+<td align="left" bgcolor="#bbbbbb">
+<input name="nombre" type="text" id="nombre" value="{NOMBRE}" size="50" maxlength="256" onchange="toUpper(this);" class="validate['required']"></td>
+</tr>
+<tr class="commonn">
+  <th style="width:150px;">Direcci&oacute;n:</th>
+  <td align="left" bgcolor="#bbbbbb">
+    <table width="100%" border="0">
+      <tr>
+        <td colspan="2"><div align="center">Calle principal*:
+          <input name="calle" type="text" id="calle" value="{CALLE}" size="50" maxlength="70" onchange="toUpper(this);" class="validate['required']" />
+          <br/>
+        </div></td>
+      </tr>
+      <tr>
+        <td colspan="2"><div align="center">N&uacute;m. Ext.*:
+          <input name="num_ext" type="text" id="num_ext" value="{NUM_EXT}" size="10" maxlength="8" class="validate['required']" />
+          N&uacute;m. Int.:
+          <input name="num_int" type="text" id="num_int" value="{NUM_INT}" size="10" maxlength="8" />
+<br /><br />Colonia*: 
+<label>
+<input name="colonia" type="text" id="colonia" value="{COLONIA}" maxlength="54" onchange="toUpper(this);" class="validate['required']"/>
+</label>
+        </div>          </td>
+      </tr>
+      <tr>
+        <td colspan="2"><div align="center">C.P.*
+            <input name="cod_postal" type="text" id="cod_postal" value="{COD_POSTAL}" size="10" maxlength="5"  class="validate['required']"/>
+Delegaci&oacute;n o municipio*: 
+          <input name="municipio" type="text" id="municipio" value="{MUNICIPIO}" onchange="toUpper(this);" class="validate['required']"/>
+        </div></td>
+      </tr>
+      <tr>
+        <td><div align="center">Estado*: 
+          <label>
+          <select name="estadoid" id="estadoid" onChange='javascript:cargarciudades(this.value);' class="validate['required']">
+            
+            	{ESTADOS}
+          
+          </select>
+          </label>
+        </div></td>
+        <td><div id="ciudad_combo" align="center">Ciudad*: 
+          <select name="ciudadid" id="ciudadid" class="validate['required']">
+          	{CIUDADES}
+          </select>
+        </div></td>
+      </tr>
+    </table>    </td>
+</tr>
+<tr class="oddn">
+  <th style="width:150px;">RFC*: </th>
+  <td align="left" bgcolor="#bbbbbb"><label>
+    <input name="rfc" type="text" id="rfc" value="{RFC}" maxlength="13" onchange="toUpper(this); checar_rfc(this.value);" class="validate['required','%validRFC']"/>
+  </label>
+  <input name="rfc_validado" id="rfc_validado" type="hidden" value="1" />
+  <div id="rfc_validate" style="display:inline">
+	
+</div>
+  </td>
+</tr>
+<tr class="commonn">
+  <th style="width:150px;">Tel&eacute;fono:</th>
+  <td align="left" bgcolor="#bbbbbb"><input name="telefono" type="text" id="telefono" value="{TELEFONO}" size="50" maxlength="64" /></td>
+</tr>
+<tr class="oddn">
+  <th style="width:150px;">Sitio web:</th>
+  <td align="left" bgcolor="#bbbbbb"><input name="url" type="text" id="url" value="{URL}" size="50" maxlength="128" /></td>
+</tr>
+<tr class="commonn">
+  <th style="width:150px;">N&uacute;mero de contrato:</th>
+  <td align="left" bgcolor="#bbbbbb"><input name="contrato" type="text" id="contrato" value="{CONTRATO}" size="50" maxlength="54" /></td>
+</tr>
+<tr class="oddn">
+  <th style="width:150px;">Logotipo:</th>
+  <td align="left" bgcolor="#bbbbbb"><label>
+    <input type="file" name="logotipo" id="logotipo" />
+  {VER_IMAGEN}</label></td>
+</tr>
+<tr class="commonn">
+  <th style="width:150px;">Descuento:</th>
+  <td align="left" bgcolor="#bbbbbb"><label for="descuento"></label>
+    <input name="descuento" type="text" id="descuento" value="{DESCUENTO}" size="2" maxlength="3" style="text-align:right;"/>
+    %</td>
+</tr>
+<tr class="oddn">
+  <th style="width:150px;">Lista de precios:</th>
+  <td align="left" bgcolor="#bbbbbb"><label for="lista_precios"></label>
+    <select name="lista_precios" id="lista_precios">
+      {LISTA_PRECIOS}
+    </select></td>
+</tr>
+<tr class="commonn">
+  <th style="width:150px;">Contactos:</th>
+  <td align="left" bgcolor="#bbbbbb"><table width="100%" border="0">
+    <tr>
+      <td colspan="2">Nombre: 
+        <label>
+        <input name="nombre_contacto" type="text" id="nombre_contacto" size="35" onchange="toUpper(this);"/>
+        </label></td>
+      <td>E-mail:
+        <label>
+        <input type="text" name="contacto_email" id="contacto_email"/>
+        </label></td>
+    </tr>
+    <tr>
+      <td>Tel&eacute;fono: 
+        <label>
+        <input type="text" name="contacto_tel" id="contacto_tel"/>
+        </label></td>
+      <td>Ext: 
+        <label>
+        <input name="extension" type="text" id="extension" size="5" maxlength="5" />
+        </label></td>
+      <td><div align="center">
+        <label>
+        <input type="button" onclick="Mostrar();" name="addcontact" id="addcontact" value="A&ntilde;adir contacto" />
+        </label>
+      </div></td>
+    </tr>
+  </table>
+  <div id="contactos_table">
+    <table width="100%" border="1">
+      <tr>
+        <td><div align="center"><strong>Nombre</strong></div></td>
+        <td><div align="center"><strong>Tel&eacute;fono</strong></div></td>
+        <td><div align="center"><strong>E-mail</strong></div></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        {CONTACTOS_CONTENT}
+      </tr>
+    </table>
+  </div>  </td>
+</tr>
+<tr class="oddn">
+  <th style="width:150px;">Log:</th>
+  <td align="left" bgcolor="#bbbbbb">{HISTORIAL}</td>
+</tr>
+</table>
+
+<table style="width:100%;" cellpadding="0" cellspacing="0" align="center">
+	  <tr>
+		  <td class="leftbtn">{LINK_DELETE}</td>
+		  <td class="btnspacer" style="width:416px;"></td>
+		  <td class="rightbtn">{LINK_UPDATE}</td>
+	  </tr>
+</table>
+
+
+</form>

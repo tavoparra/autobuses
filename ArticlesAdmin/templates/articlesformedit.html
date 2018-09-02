@@ -1,0 +1,144 @@
+<form name="Form1" id="Form1" method="post" enctype="multipart/form-data" action="functions/workarticles.php?mode={MODE}">
+<table class="toptable">
+        	<tr>
+                        <th>
+                            <a href="articlesadmin.php"><img src="../imagenes/arrow_btn.png" border="0" style="margin-right:3px;" />
+                            </a>
+                        </th>
+                     	<td style="vertical-align:middle; text-align:center;">
+                        	En Esta Secci&oacute;n Podr&aacute;s Dar De Baja o Cambiar Los Datos De Un Art&iacute;culo
+                      	</td>
+        	</tr>
+</table>
+
+<table class="userinfo">
+	<tr>
+		<td>
+			Detalle De Art&iacute;culo
+			<a href="imprimir.php?articleid={ARTICLEID}" target="_blank"><img align="right" src="../imagenes/print.png" alt="Imprimir" class="printIcon"></a>
+		</td>
+	</tr>
+</table>
+
+<table width="700" align="center" cellpadding="0" cellspacing="0">
+
+	<tr class="commonn">
+	  <th style="width:150px;">
+			N&uacute;mero de Art&iacute;culo en Sistema:
+	  </th>
+	  <td align="left" bgcolor="#bbbbbb">
+		  <label>
+			<input name="numeroshow" type="text" id="numeroshow" value="{ARTICLEID}" size="10" disabled="DISABLED" style="text-align:right; font-weight:bolder"/>
+			<input name="numero" type="hidden" id="numero" value="{ARTICLEID}" />
+			<input type="submit" id="submitBtn" style="display: none;" />
+		  </label>
+	  </td>
+	</tr>
+        <tr class="oddn">
+			<th style="width:168px;">
+					C&oacute;digo de Art&iacute;culo*:                    
+			</th>
+			<td align="left" bgcolor="#bbbbbb">
+				<input name="code" type="text" size="50" maxlength="256" id="code" value="{CODE}" onchange="toUpper(this); checar_codigo(this.value);" class="validate['required','~validCode']" />
+				<span style="width:150px;">
+					<input name="codigo_validado" id="codigo_validado" type="hidden" value="1" />
+					<div id="codigo_validate" style="display:inline">
+					</div>
+					<input type="hidden" name="redirect" id="redirect" />
+				</span>
+			</td>
+        </tr>
+
+        <tr class="commonn">
+			<th>Nombre de Art&iacute;culo*:</th>
+			<td align="left" bgcolor="#bbbbbb">
+				<input name="name" type="text" size="50" maxlength="256" id="name" value="{NAME}" onchange="toUpper(this);" class="validate['required']" />
+			</td>
+        </tr>
+        
+		<tr class="oddn">
+            <th>Descripci&oacute;n:</th>
+			<td align="left" bgcolor="#bbbbbb">
+				<input name="desc" type="text" size="50" maxlength="256" id="desc" value="{DESC}" onchange="toUpper(this);">
+			</td>
+        </tr>
+        <tr class="commonn">
+			<th>Unidad de Medida:</th>
+			<td align="left" bgcolor="#bbbbbb">
+				<select name="medida_id" id="medida_id" class="validate['required']">
+					<option value="0">- Seleccionar -</option>
+					{CONTENIDO_MEDIDAS}
+				</select>
+			</td>
+        </tr>
+        <tr class="oddn">
+                    <th>Peso en Kg:</th>
+					<td align="left" bgcolor="#bbbbbb">
+                    		<input name="weight" type="text" size="50" maxlength="256" id="weight" value="{WEIGHT}" onchange="toUpper(this);">
+                    </td>
+        </tr>
+
+        <tr class="commonn">
+			<th>PRECIOS:</th>
+			<td align="left" bgcolor="#bbbbbb">
+			<table width="100%" border="0">
+					<tr>
+						 <td colspan="2">
+								<div align="center">
+								Precio 1:
+								<input name="price" type="text" size="12" maxlength="70" id="price" value="{PRICE1}" />
+								Precio 2:
+								<input name="price2" type="text" size="12" maxlength="70" id="price2" value="{PRICE2}" />
+								<br /><br />Precio 3:
+								<input name="price3" type="text" size="12" maxlength="70" id="price3" value="{PRICE3}" />
+								Precio 4:
+								<input name="price4" type="text" size="15" maxlength="70" id="price4" value="{PRICE4}" />
+								<br /><br />Precio 5:
+								<input name="price5" type="text" size="15" maxlength="70" id="price5" value="{PRICE5}" />
+										
+								</div>
+						  </td>
+					</tr>
+			</table>
+			</td>
+        </tr>
+        
+        <tr class="oddn">
+                    <th>Costo:</th>
+							<td align="left" bgcolor="#bbbbbb">
+                    		<input name="costo" type="text" size="25" maxlength="70" id="costo"  value="{COSTO}" >
+                    </td>
+        </tr>
+        <tr class="commonn">
+          <th>Mano de obra</th>
+          <td align="left" bgcolor="#bbbbbb"><input name="mano_obra" type="checkbox" id="mano_obra" {CHECKED}/>
+            Marcar como mano de obra</td>
+        </tr>
+        <tr class="oddn">
+          <th>Moneda:</th>
+          <td align="left" bgcolor="#bbbbbb"><label for="moneda"></label>
+            <select name="moneda" id="moneda" disabled="disabled">
+              <option value="0">Pesos</option>
+              <option value="1" {SELECTED}>D&oacute;lares</option>
+          </select></td>
+        </tr>
+        <tr class="commonn">
+          <th>Sustituye en lista LAO a:</th>
+          <td align="left" bgcolor="#bbbbbb"><input name="equivale" type="text" id="equivale" onchange="toUpper(this);" value="{EQUIVALE}" size="50" maxlength="256" /></td>
+        </tr>
+        <tr class="oddn">
+          <th style="width:150px;">Log:</th>
+          <td align="left" bgcolor="#bbbbbb">{HISTORIAL}</td>
+        </tr>
+        </table>
+
+<table style="width:100%;" cellpadding="0" cellspacing="0" align="center">
+	  <tr>
+		  <td class="leftbtn">{LINK_DELETE}</td>
+	    <td class="btnspacer" style="width:416px;"></td>
+		  <td class="rightbtn">{LINK_UPDATE}</td>
+    </tr>
+</table>
+
+
+</form>

@@ -1,0 +1,141 @@
+<script>
+function submitbusqueda(nombre, campo, estadoid, pagina){
+	var contenedor2;
+	contenedor2 = document.getElementById('filtrado');
+	ajax2 = nuevoAjax();
+	ajax2.open( "GET", "verconsulta.php?nombre=" + nombre + "&campo=" + campo + "&estadoid=" + estadoid + "&pag=" + pagina, true );
+	ajax2.onreadystatechange = function() 
+	{	
+		if ( ajax2.readyState == 4 ) 
+		{
+			contenedor2.innerHTML = ajax2.responseText;
+		}
+		else
+		{
+			contenedor2.innerHTML = "<img src = 'cargando.gif'/><br/><br/><span class='linesListDarkGray'>... Buscando ...<span>";
+		}
+	}
+	ajax2.send( null); 
+}
+</script>
+<!-- Esta tabla contiene el menu y su linea roja inferior -->
+<table width="959" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td class="panelControl">Panel de Control</td>
+		<td class="menuTd">{MENU} </td>
+		<td class="sectionName">Secci&oacute;n Unidades</td>
+	</tr>
+	<tr>
+		<td bgcolor="{LIGHTCOLOR}" height="6" colspan="3"></td>
+	</tr>
+</table>
+
+<!-- Aqui se termina el menu y la linea -->
+<table width="957" height="600" align="center" class="blurbackg">
+	<tr height="90">
+		<td></td>
+	</tr>
+	<tr>
+		<td>
+			<table class="userinfo" style="width:450px;" align="center">
+			  <tr>
+				<td>Buscar Unidad:</td>
+			  </tr>
+			</table>
+			<table style="width:450px;" cellpadding="0" cellspacing="0" align="center">
+				<tr style="background-color:#B1B1B1; margin-bottom:5px;">
+					<td style="text-align:left; padding-left:15px;">
+						Buscar:<br/>
+						<input type="text" name="texto" id="texto" />
+					</td>
+					<td style="text-align:left; width:140px; padding-left:15px; padding-right:20px;">
+						Por:<br/>
+						<select name="campo" id="campo">
+						  <option value="numEconomico">N&uacute;mero Econ&oacute;mico</option>
+						  <option value="numSerie">N&uacute;mero de serie</option>
+						  <option value="placas">Placas</option>
+						  <option value="serieCondensador"># Serie del condensador</option>
+						</select>
+						<input name="estadoidbusq" type="hidden" id="estadoidbusq" value="-1" />
+					</td>
+					<td align="left" style="width:30px;" ></td>
+					<td rowspan="2">
+						<a href="javascript:submitbusqueda(document.getElementById('texto').value, document.getElementById('campo').value, document.getElementById('estadoidbusq').value, 1);"><img src="../imagenes/buscarbtn.jpg" align="right" /></a>
+					</td>
+				</tr>
+				<tr style="background-color:#B1B1B1;">
+					<td style="text-align:left; padding-left:5px; padding-bottom:15px;  padding-top:15px" colspan="3"><!--<div align="center">  Estado:
+					  <select name="estadoidbusq" id="estadoidbusq">
+						<option value="-1">- TODOS -</option>
+						
+												{ESTADOSLIST}
+												  
+					  </select>
+					</div>-->
+					</td>
+				</tr>
+			</table> 
+			
+        <p></p><br/><br/>
+          
+          <!-- Aqui debe ir el contenido principal -->
+        <div id="filtrado">
+        <table width="450" align="center" cellpadding="0" cellspacing="0" >
+			<tr>
+				<td valign="top">
+					<table class="toptable">
+						<tr>
+							<th>
+								<a href="../index.php"><img src="{DIR}imagenes/arrow_btn.png" border="0" style="margin-right:3px;" /></a>
+							</th>  
+							<td style="vertical-align:middle; text-align:center;">  En Esta Secci&oacute;n Podr&aacute;s Consultar Las Unidades Registradas</td>
+						</tr>
+					</table>
+					<table class="userinfo">	
+						<tr>
+						  <td>Viendo Listado De Unidades</td>
+						</tr>
+					</table>
+					
+					<table style="width:100%;" cellpadding="0" cellspacing="0" align="center">		  
+						<tr>	   		  
+							<td class="btnspacer" width="508"></td>		  
+							<td class="rightbtn">{ADD_DIS1}<a href="unitsform.php?mode=add">Agregar </a>{ADD_DIS2}</td>		  
+					  </tr>	
+					</table>
+					
+					<table style="width:100%;" cellspacing="0" cellpadding="0" align="center">	
+						<tr>		
+							<td class="smalltitle" style="width:164px;">Unidad ID</td>		
+							<td style="width:1px;"></td>		
+							<td class="smalltitle" style="width:220px;">N&uacute;mero Economico</td>		
+							<td style="width:1px;"></td>		
+							<td class="smalltitle" style="width:164px;">Placas</td>	
+					  </tr>
+					</table>
+					<table width="650" align="center" cellpadding="0" cellspacing="0">
+						{CONTENT}
+					</table>
+					<table class="bottmspacer">		
+						<tr><td>{PAGING}</td>
+						</tr>	
+					</table>	
+					<table style="width:100%;" cellpadding="0" cellspacing="0" align="center">		  
+						<tr>	   		  
+							<td class="btnspacer" width="508"></td>		  
+							<td class="rightbtn">{ADD_DIS1}<a href="unitsform.php?mode=add">Agregar </a>{ADD_DIS2}</td>		  
+						</tr>	
+					</table>
+					<br /><br /><br />
+				</td>
+			</tr>
+				<tr height="40">
+					<td>&nbsp;</td>
+				</tr>
+		</table> 
+        </div>
+		</td>
+	</tr>
+</table>
+	
+			<!-- Aqui se termina el contenido principal -->

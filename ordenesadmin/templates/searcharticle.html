@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Seleccionar art&iacute;culo</title>
+<script language="javascript">
+	function nuevoAjax(){
+		var xmlhttp=false;
+		try {
+			xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+			try {
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch (E) {
+				xmlhttp = false;
+			}
+		}
+	
+		if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+			xmlhttp = new XMLHttpRequest();
+		}
+		return xmlhttp;
+	}
+	
+	function buscar_articulos(){
+	    var contenedor;
+		contenedor = document.getElementById('resultados_div');
+		
+		valor = document.getElementById('valor').value;
+		campo = document.getElementById('campo').value;
+		clienteid = opener.document.getElementById("clienteid").value;
+		
+		ajax = nuevoAjax();
+		ajax.open( "GET", "resultado_articulos.php?valor=" + valor + "&campo=" + campo + "&clienteid=" + clienteid, true );
+		ajax.onreadystatechange = function() 
+		{	
+			if ( ajax.readyState == 4 ) 
+			{
+				contenedor.innerHTML = ajax.responseText
+			}
+			else
+			{
+				contenedor.innerHTML = '<br/><br/> &nbsp;... Cargando ... <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="cargando.gif" />';
+			}
+		}
+		ajax.send( null); 
+	}
+	
+	function returnvalue(){
+		radios = document.result_form.id;
+		
+		for(i=0;i<radios.length;i++)
+		{
+	        if(radios[i].checked) idarticulo = radios[i].value;
+		}
+		articulo = document.getElementById("article" + idarticulo).value;
+		opener.document.getElementById("articulo_name").value = articulo;
+		precio = document.getElementById("price" + idarticulo).value;
+		opener.document.getElementById("precio").value = precio;
+		close();
+	}
+</script>
+
+</head>
+
+<body bgcolor="#A4A4A4">
+<table width="200" border="0">
+    <tr>
+      <td>Buscar:</td>
+      <td>Por:</td>
+      <td rowspan="2"><label>
+        <input type="button" name="boton" id="boton" value="Buscar" onclick="buscar_articulos();"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td><label>
+        <input type="text" name="valor" id="valor" />
+      </label></td>
+      <td><label>
+        <select name="campo" id="campo">
+          <option value="code">C&oacute;digo</option>
+          <option value="name">Nombre</option>
+          <option value="desc">Descripci&oacute;n</option>
+      </select>
+      </label></td>
+    </tr>
+</table>
+  <form id="result_form" name="result_form" method="post" action="">
+  <div id="resultados_div">
+    
+  </div>
+  </form>
+</body>
+</html>

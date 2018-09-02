@@ -1,0 +1,153 @@
+<!-- Se carga esta tabla solo para el Administrador, -->
+<table width="600" height="28" align="center" cellpadding="0" cellspacing="0" >
+	<tr>
+		<td>
+			<table class="toptable" >
+				<tr>
+					<th><a href="{BACKPAGE}"><img src="../imagenes/arrow_btn.png" border="0" style="margin-right:3px;" /></a></th>
+					<td style="vertical-align:middle; text-align:center;">
+						En Esta Secci&oacute;n Podr&aacute;s Agregar a los Usuarios que Podr&aacute;n Administrar el Panel de Control
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="userinfo">
+			<tr><td>Agregar Usuario</td></tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<form method="post" name="Form1" id="Form1" action="functions/workuser.php">
+			<table style="width:100%;" cellspacing="0">
+				<tr class="common">
+					<th style="padding-left:10px;">Clave:</th>
+					<td align="center" colspan="2" style="padding-left:10px;">
+						<input type="text" size="35" name="clave" id="clave" class="validate['alphanum']" />
+					</td>
+				</tr>
+				<tr class="odd">
+					<th style="width:150px; padding-left:10px;">Nombre*:</th>
+					<td align="center" colspan="2" style="padding-left:10px;">
+						<input type="text" size="35" name="firstname" id="firstname" class="validate['required']" />
+					</td>
+				</tr>
+				<tr class="common">
+					<th style="padding-left:10px;">Apellido(s):</th>
+					<td align="center" colspan="2" style="padding-left:10px;">
+						<input type="text" size="35" name="lastname">
+					</td>
+				</tr>
+				<tr class="odd">
+					<th style="padding-left:10px;">Login*:</th>
+					<td align="center" colspan="2" style="padding-left:10px;">
+						<input type="text" size="35" name="login" class="validate['required']" />
+					</td>
+				</tr>
+				<tr class="common">
+					<th style="padding-left:10px;">Password*:</th>
+					<td align="center" colspan="2" style="padding-left:10px;">
+						<input type="text" size="35" name="password" class="validate['required']"/ ><input type="hidden" name="redirect" />
+						<input type="submit" id="submitBtn" style="display: none;">
+						<input type="hidden" name="type" value="{TYPE}" />
+						<input type="hidden" name="level" value="{LEVEL}" />
+					</td>
+				</tr>
+				<tr class="odd">
+					<th style="padding-left:10px;">Perfil de Usuario:</th>
+					<td align="center" colspan="2" style="padding-left:10px;">{PROFILE}</td>
+				</tr>
+				<tr class="common">
+					<th style="padding-left:10px;">Permisos:</th>
+						<td align="center" colspan="2" style="padding-left:10px;">
+							<!--<strong>Usuarios:</strong><br/>
+							<input name="usuarios[]" type="checkbox" id="usuarios[]" value="1" />
+							Altas
+							  <input name="usuarios[]" type="checkbox" id="usuarios[]" value="2" />
+							Modificaciones
+							<input name="usuarios[]" type="checkbox" id="usuarios[]" value="3" />
+							Bajas
+							<input name="usuarios[]" type="checkbox" id="usuarios[]" value="4" />
+							Consultas
+							<br/>-->
+							<strong>Clientes:</strong>
+							<br/>
+							<input name="clientes[]" type="checkbox" id="clientes[]" value="1" />Altas
+							<input name="clientes[]" type="checkbox" id="clientes[]" value="2" />Modificaciones
+							<input name="clientes[]" type="checkbox" id="clientes[]" value="3" />Bajas
+							<input name="clientes[]" type="checkbox" id="clientes[]" value="4" />Consultas
+							<br/>
+							<strong>Talleres:</strong>
+							<br/>
+							<input name="talleres[]" type="checkbox" id="talleres[]" value="1" />Altas
+							<input name="talleres[]" type="checkbox" id="talleres[]" value="2" />Modificaciones
+							<input name="talleres[]" type="checkbox" id="talleres[]" value="3" />Bajas 
+							<input name="talleres[]" type="checkbox" id="talleres[]" value="4" />Consultas 
+							<br/>
+							<strong>Unidades:</strong>
+							<br/>
+							<input name="unidades[]" type="checkbox" id="unidades[]" value="1" />Altas
+							<input name="unidades[]" type="checkbox" id="unidades[]" value="2" />Modificaciones
+							<input name="unidades[]" type="checkbox" id="unidades[]" value="3" />Bajas
+							<input name="unidades[]" type="checkbox" id="unidades[]" value="4" />Consultas
+							<br/>
+							<strong>Articulos:</strong>
+							<br/>
+							<input name="articulos[]" type="checkbox" id="articulos[]" value="1" />Altas
+							<input name="articulos[]" type="checkbox" id="articulos[]" value="2" />Modificaciones
+							<input name="articulos[]" type="checkbox" id="articulos[]" value="3" />Bajas
+							<input name="articulos[]" type="checkbox" id="articulos[]" value="4" />Consultas
+							<br/>
+							<strong>Ordenes:</strong>
+							<br/>
+							<input name="ordenes[]" type="checkbox" id="ordenes[]" value="1" />Altas
+							<input name="ordenes[]" type="checkbox" id="ordenes[]" value="2" />Modificaciones
+							<input name="ordenes[]" type="checkbox" id="ordenes[]" value="3" />Bajas
+							<input name="ordenes[]" type="checkbox" id="ordenes[]" value="4" />Consultas
+							<br/>
+							<strong>T&eacute;cnicos:</strong>
+							<br/>
+							<input name="tecnicos[]" type="checkbox" id="tecnicos[]" value="1" />Altas
+							<input name="tecnicos[]" type="checkbox" id="tecnicos[]" value="2" />Modificaciones
+							<input name="tecnicos[]" type="checkbox" id="tecnicos[]" value="3" />Bajas
+							<input name="tecnicos[]" type="checkbox" id="tecnicos[]" value="4" />Consultas
+							<br/><br/>
+							<strong>Reportes:</strong><br/>
+							<input name="reportes[]" type="checkbox" id="mantenimientos[]" value="1" />
+							Servicios por cliente por # econ&oacute;nomico<br/>
+							<input name="reportes[]" type="checkbox" id="mantenimientos[]" value="2" />
+							Acomulado de mantenimientos<br/>
+							<input name="reportes[]" type="checkbox" id="mantenimientos[]" value="3" />
+							Recepci&oacute;n de unidad<br/>
+							<input name="reportes[]" type="checkbox" id="mantenimientos[]" value="4" /> 
+							Consumo de refacciones<br/>
+							<input name="reportes[]" type="checkbox" id="mantenimientos[]" value="5" /> 
+							Pr&oacute;ximos mantenimientos preventivos<br/>
+							<br/>
+							<strong>Configuraci&oacute;n:</strong>
+							<br/>
+							<input name="configuracion[]" type="checkbox" id="configuracion[]" value="1" />
+							Valor del IVA <br/>
+							<input name="configuracion[]" type="checkbox" id="configuracion[]" value="2" />
+							Unidades de medida <br/>
+						</td>
+					</tr>
+				</table>
+				</form>
+			<table class="bottmspacer">
+				<tr><td></td></tr>
+			</table>
+			<table cellpadding="0" cellspacing="0" align="center">
+				  <tr>	  
+				  <td class="btnspacer" width="268"></td>
+				  <td class="centerbtn"><a href="javascript:validate(3);">Agregar y Agregar Otro</a></td>
+				  <td class="rightbtn">	  	  
+				  <a href="javascript:validate(0);">Agregar </a></td>
+				  </tr>
+			</table>
+		</td>
+	</tr>
+</table>

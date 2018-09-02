@@ -1,0 +1,141 @@
+<script>
+function submitbusqueda(nombre, campo, estadoid, pagina){
+	var contenedor2;
+	contenedor2 = document.getElementById('filtrado');
+	ajax2 = nuevoAjax();
+	ajax2.open( "GET", "verconsulta.php?nombre=" + nombre + "&campo=" + campo + "&estadoid=" + estadoid + "&pag=" + pagina, true );
+	ajax2.onreadystatechange = function() 
+	{	
+		if ( ajax2.readyState == 4 ) 
+		{
+			contenedor2.innerHTML = ajax2.responseText;
+		}
+		else
+		{
+			contenedor2.innerHTML = "<img src = 'cargando.gif'/><br/><br/><span class='linesListDarkGray'>... Buscando ...<span>";
+		}
+	}
+	ajax2.send( null); 
+}
+</script>
+
+<!-- Esta tabla contiene el menu y su linea roja inferior -->
+<table width="959" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td width="150" style="color:#E1E1E1; font-size:14px; font-weight:bold; font-family:Verdana, Arial, Helvetica, sans-serif; padding-left:10px;" bgcolor="#444444">Panel de Control</td>
+		<td bgcolor="#444444" width="600" >{MENU} </td>
+		<td width="150" style="color:#E1E1E1; font-size:14px; font-weight:bold; font-family:Verdana, Arial, Helvetica, sans-serif;" bgcolor="#444444">Secci&oacute;n T&eacute;cnicos</td>
+	</tr>
+	<tr>
+		<td bgcolor="{LIGHTCOLOR}" height="6" colspan="3"></td>
+	</tr>
+</table>
+
+<!-- Aqui se termina el menu y la linea -->
+<table width="957" height="650px" align="center" class="blurbackg">
+	<tr height="80">
+		<td></td>
+	</tr>
+	<tr>
+		<td>
+			<table style="width:650px;" align="center">
+				<tr>
+					<td>
+						<table class="userinfo" style="width:450px;" align="center">
+							<tr>  <td>Buscar t&eacute;cnico:</td>
+						  </tr>
+						</table>
+							
+						<table style="width:450px;" cellpadding="0" cellspacing="0" align="center">
+							<tr style="background-color:#B1B1B1; margin-bottom:5px;">
+                                <td style="text-align:left; padding-left:15px;">
+									Buscar:<br/>
+                                  <input type="text" name="texto" id="texto" />
+                                </td>
+								<td style="text-align:left; width:140px; padding-left:15px; padding-right:20px;">
+									Por:<br/>
+									<select name="campo" id="campo">
+										<option value="nombre">Nombre</option>
+										<option value="codigo">C&oacute;digo</option>
+										<option value="rfc">RFC</option>
+									</select>
+									<input type="hidden" name="estadoidbusq" id="estadoidbusq" value="-1"/>
+								</td>
+								<td align="left" style="width:30px;" ></td>
+								<td rowspan="2"><a href="javascript:submitbusqueda(document.getElementById('texto').value, document.getElementById('campo').value, document.getElementById('estadoidbusq').value, 1);"><img src="../imagenes/buscarbtn.jpg" align="right" /></a></td>
+							</tr>
+							<tr style="background-color:#B1B1B1;">
+								<td style="text-align:left; padding-left:5px; padding-bottom:15px;  padding-top:15px" colspan="3">							
+								</td>
+							</tr>
+						</table>
+						<p>&nbsp;</p></td>
+				</tr>
+				<tr>
+					<td> 
+						<!-- Aqui debe ir el contenido principal -->
+						<div id="filtrado">
+						<table width="450" align="center" cellpadding="0" cellspacing="0" >
+							<tr>
+								<td valign="top">
+									<table class="toptable">
+										<tr>
+											<th>
+												<a href="../index.php">
+													<img src="{DIR}imagenes/arrow_btn.png" border="0" style="margin-right:3px;" /></a>
+											</th>  
+											<td style="vertical-align:middle; text-align:center;">  En Esta Secci&oacute;n Podr&aacute;s Consultar los T&eacute;cnicos Registrados</td>
+										</tr>
+									</table>
+									<table class="userinfo">	
+										<tr>
+										  <td>Viendo Listado de T&eacute;cnicos</td>
+										</tr>
+									</table>
+									
+									<table style="width:100%;" cellpadding="0" cellspacing="0" align="center">		  
+										<tr>	   		  
+											<td class="btnspacer" width="508"></td>		  
+											<td class="rightbtn">
+												{ADD_DIS1}<a href="tecnicosform.php?mode=add">Agregar </a>{ADD_DIS2}</td>		  
+									  </tr>	
+									</table>
+									
+									<table style="width:100%;" cellspacing="0" cellpadding="0" align="center">	
+										<tr>		
+											<td class="smalltitle" style="width:43px;">N&uacute;mero</td>		
+											<td style="width:1px;"></td>
+											<td class="smalltitle" style="width:120px;">C&oacute;digo</td>		
+											<td style="width:1px;"></td>		
+											<td class="smalltitle" style="width:220px;">Nombre</td>		
+											<td style="width:1px;"></td>		
+											<td class="smalltitle" style="width:164px;">Puesto</td>	
+										</tr>
+									</table>
+									<table width="650" align="center" cellpadding="0" cellspacing="0">
+										{CONTENT}
+									</table>
+									<table class="bottmspacer">		
+										<tr><td>{PAGING}</td>
+										</tr>	
+									</table>	
+									<table style="width:100%;" cellpadding="0" cellspacing="0" align="center">		  
+										<tr>	   		  
+											<td class="btnspacer" width="508"></td>		  
+											<td class="rightbtn">
+												{ADD_DIS1}<a href="tecnicosform.php?mode=add">Agregar </a>{ADD_DIS2}</td>		  
+										</tr>	
+									</table>
+									<br /><br /><br /></td>
+							</tr>
+							<tr height="40"><td>&nbsp;</td>
+							</tr>
+						</table> 
+						</div>
+						<!-- Aqui se termina el contenido principal -->
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>

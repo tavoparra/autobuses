@@ -1,0 +1,260 @@
+<script language="javascript">
+
+function MsgOkCanceldrop( msg, redirect )
+{
+	if ( confirm( msg ) )
+	{
+		document.forms.FormUnidad.redirect.value = redirect;
+		document.forms.FormUnidad.submit();
+	}
+}
+
+var clBackgNormal = 'White';
+var clForegNormal = 'Black';
+var clBackgHigh   = '#FFF1A8';
+var clForegHigh   = 'Black';
+
+function Trim( str ) 
+{
+	var resultStr = str;
+	resultStr = resultStr.replace( /^\s*|\s*$/g, "" ); 	
+	return resultStr;
+}
+
+function validate(val)
+{
+	document.forms.FormUnidad.numEconomico.style.background = clBackgNormal;
+	document.forms.FormUnidad.numEconomico.style.color = clForegNormal;   
+	   	   
+	if( Trim( document.forms.FormUnidad.numEconomico.value ) == "" )
+	{
+		document.forms.FormUnidad.numEconomico.style.background = clBackgHigh;
+		document.forms.FormUnidad.numEconomico.style.color = clForegHigh;   
+		alert('Debes Agregar el Número Económico para esta unidad');
+	}
+	else 
+	{
+		document.forms.FormUnidad.redirect.value = val;
+		document.forms.FormUnidad.submit( val ); 
+	}
+}	
+
+function cargartalleres(clienteid){
+	    var contenedor;
+		contenedor = document.getElementById('talleres_div');
+		ajax = nuevoAjax();
+		ajax.open( "GET", "cargartalleres.php?clienteid=" + clienteid, true );
+		ajax.onreadystatechange = function() 
+		{	
+			if ( ajax.readyState == 4 ) 
+			{
+				contenedor.innerHTML = ajax.responseText
+			}
+			else
+			{
+				contenedor.innerHTML = "... Cargando ...";
+			}
+		}
+		ajax.send( null); 
+	}
+</script>
+<form name="FormUnidad" method="post" enctype="multipart/form-data" action="functions/workunits.php?mode={MODE}">
+<table class="toptable">
+        	<tr>
+                        <th>
+                            <a href="unitsadmin.php"><img src="../imagenes/arrow_btn.png" border="0" style="margin-right:3px;" />
+                            </a>
+                        </th>
+                     	<td style="vertical-align:middle; text-align:center;">
+                        	En Esta Secci&oacute;n Podr&aacute;s Dar De Baja o Cambiar Los Datos De Una Unidad
+                      	</td>
+        	</tr>
+</table>
+
+<table class="userinfo">
+        <tr>
+          		<td>
+          				Detalle De Unidad
+          		</td>
+        </tr>
+</table>
+
+<table width="700" align="center" cellpadding="0" cellspacing="0">
+
+        <tr class="commonn">
+                  <th style="width:150px;">
+                  		N&uacute;mero de Unidad en Sistema:
+                  </th>
+                  <td align="left" bgcolor="#bbbbbb">
+                          <label>
+                                <input name="unidadID" type="text" id="unidadID" value="{UNIDADID}" size="10" disabled="DISABLED" style="text-align:right; font-weight:bolder"/>
+                                <input name="unidadID" type="hidden" id="unidadID" value="{UNIDADID}" />
+                          </label>
+                  </td>
+        </tr>
+        
+        <tr class="oddn">
+                    <th style="width:150px;">Cliente:</th>
+					<td align="left" bgcolor="#bbbbbb"><select name="clienteid" id="clienteid" onchange="cargartalleres(this.value);">
+					  <option value="0">- SELECCIONAR -</option>
+					  
+					  
+  {CLIENTESBOX}
+  
+				    
+				    </select></td>
+        </tr>
+        
+		<tr class="commonn">
+                    <th style="width:150px;">Taller:</th>
+					<td align="left" bgcolor="#bbbbbb">
+                    <div id="talleres_div">
+                    <select name="tallerid" id="tallerid"  onchange="cargarunidades(this.value);">
+					  <option value="0">- SELECCIONAR -</option>
+                      {TALLERESBOX}
+				    </select>
+                    </div>
+                    </td>
+        </tr>
+
+        <tr class="oddn">
+                    <th style="width:150px;">
+                    		N&uacute;mero Econ&oacute;mico:
+                    </th>
+					<td align="left" bgcolor="#bbbbbb">
+                    		<input name="numEconomico" type="text" size="50" maxlength="256" id="numEconomico"  value="{NUMECONOMICO}">
+                            <span style="width:150px;">
+                    		<input type="hidden" name="redirect" id="redirect" />
+               				</span>
+                    </td>
+        </tr>
+
+        <tr class="commonn">
+                    <th style="width:150px;">Tipo:</th>
+					<td align="left" bgcolor="#bbbbbb">
+                    		<input name="tipo" type="text" size="50" maxlength="256" id="tipo" value="{TIPO}">
+                    </td>
+        </tr>
+        
+		<tr class="oddn">
+                    <th style="width:150px;">Marca:                    </th>
+					<td align="left" bgcolor="#bbbbbb">
+                    		<input name="marca" type="text" size="50" maxlength="256" id="marca"  value="{MARCA}">
+                    </td>
+        </tr>
+        <tr class="commonn">
+                    <th style="width:150px;">Modelo:                    </th>
+					<td align="left" bgcolor="#bbbbbb">
+                    		<input name="modelo" type="text" size="8" maxlength="256" id="modelo"  value="{MODELO}">
+                    </td>
+        </tr>
+        <tr class="oddn">
+                    <th style="width:150px;">Placas:                    </th>
+					<td align="left" bgcolor="#bbbbbb">
+                    		<input name="placas" type="text" size="50" maxlength="256" id="placas"  value="{PLACAS}">
+                    </td>
+        </tr>
+        <tr class="commonn">
+                    <th style="width:150px;">N&uacute;mero de Serie:                    </th>
+					<td align="left" bgcolor="#bbbbbb">
+                    		<input name="numSerie" type="text" size="50" maxlength="256" id="numSerie"  value="{NUMSERIE}">
+                    </td>
+        </tr>
+        
+        
+        
+        <tr class="oddn">
+                    <th style="width:150px;">CAJA:                    </th>
+					<td align="left" bgcolor="#bbbbbb">
+                    <table width="100%" border="0">
+                    		<tr>
+                                             <td colspan="2">
+                                                    <div align="center">
+                                                Marca:
+                                                <input name="marcaCaja" type="text" size="15" maxlength="70" id="marcaCaja" value="{MARCACAJA}" />
+                                                Modelo:
+                                                <input name="modeloCaja" type="text" size="15" maxlength="70" id="modeloCaja" value="{MODELOCAJA}"/>
+                                                <br />Serie:
+                                                <input name="serieCaja" type="text" size="15" maxlength="70" id="serieCaja" value="{SERIECAJA}"/>
+                                                            
+                                                    </div>
+                                              </td>
+                            </tr>
+                    </table>
+                    </td>
+        </tr>
+        <tr class="commonn">
+                    <th style="width:150px;">CONDENSADOR:                    </th>
+					<td align="left" bgcolor="#bbbbbb">
+                    <table width="100%" border="0">
+                    		<tr>
+                                             <td colspan="2">
+                                                    <div align="center">
+                                    Marca:
+                                    <input name="marcaCondensador" type="text" size="15" maxlength="70" id="marcaCondensador" value="{MARCACONDENSADOR}"/>
+                                    Modelo:
+                                    <input name="modeloCondensador" type="text" size="15" maxlength="70" id="modeloCondensador" value="{MODELOCONDENSADOR}"/>
+                                    <br />Serie:
+                                    <input name="serieCondensador" type="text" size="15" maxlength="70" id="serieCondensador" value="{SERIECONDENSADOR}"/>
+                                                            
+                                                    </div>
+                                              </td>
+                            </tr>
+                    </table>
+                    </td>
+        </tr>
+        <tr class="oddn">
+                    <th style="width:150px;">EVAPORADOR:                    </th>
+					<td align="left" bgcolor="#bbbbbb">
+                    <table width="100%" border="0">
+                    		<tr>
+                                             <td colspan="2">
+                                                    <div align="center">
+                                                        Marca:
+                                                        <input name="marcaEvaporador" type="text" size="15" maxlength="70" id="marcaEvaporador" value="{MARCAEVAPORADOR}"/>
+                                                        Modelo:
+                                                        <input name="modeloEvaporador" type="text" size="15" maxlength="70" id="modeloEvaporador" value="{MODELOEVAPORADOR}"/>
+                                                        <br />Serie:
+                                                        <input name="serieEvaporador" type="text" size="15" maxlength="70" id="serieEvaporador" value="{SERIEVAPORADOR}"/>
+                                                            
+                                                    </div>
+                                              </td>
+                            </tr>
+                    </table>
+                    </td>
+        </tr>
+        <tr class="commonn">
+                    <th style="width:150px;">COMPRESOR:                    </th>
+					<td align="left" bgcolor="#bbbbbb">
+                    <table width="100%" border="0">
+                    		<tr>
+                                             <td colspan="2">
+                                                    <div align="center">
+                                                        Marca:
+                                                        <input name="marcaCompresor" type="text" size="15" maxlength="70" id="marcaCompresor" value="{MARCACOMPRESOR}"/>
+                                                        Modelo:
+                                                        <input name="modeloCompresor" type="text" size="15" maxlength="70" id="modeloCompresor" value="{MODELOCOMPRESOR}"/>
+                                                        <br />Serie:
+                                                        <input name="serieCompresor" type="text" size="15" maxlength="70" id="serieCompresor" value="{SERIECOMPRESOR}"/>
+                                                            
+                                                    </div>
+                                              </td>
+                            </tr>
+                    </table>
+                    </td>
+        </tr>
+
+</table>
+
+
+
+<table style="width:100%;" cellpadding="0" cellspacing="0" align="center">
+	  <tr>
+		  <td class="leftbtn"><a href="javascript:MsgOkCanceldrop('&iquest;Est&aacute; Seguro de que Desea Eliminar Esta Unidad?  ', 2 );">Eliminar </a></td>
+	    <td class="btnspacer" style="width:416px;"></td>
+		  <td class="rightbtn"><a href="javascript:validate(1);">Actualizar</a></td>
+	  </tr>
+</table>
+
+
+</form>

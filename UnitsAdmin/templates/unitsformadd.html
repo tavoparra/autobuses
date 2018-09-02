@@ -1,0 +1,255 @@
+<form name="Form2" id="Form2" method="post" enctype="multipart/form-data" action="functions/workunits.php?mode={MODE}">
+<table class="toptable">
+        	<tr>
+                        <th>
+                            <a href="unitsadmin.php"><img src="../imagenes/arrow_btn.png" border="0" style="margin-right:3px;" />
+                            </a>
+                        </th>
+                     	<td style="vertical-align:middle; text-align:center;">
+                        	En Esta Secci&oacute;n Podr&aacute;s Dar De Alta Una Nueva Unidad
+                      	</td>
+        	</tr>
+</table>
+
+<table class="userinfo">
+        <tr>
+          		<td>
+          				Agregando Nueva Unidad
+          		</td>
+        </tr>
+</table>
+
+<table width="700" align="center" cellpadding="0" cellspacing="0">
+        <!--<tr class="commonn">
+                  <th style="width:150px;">
+                  		N&uacute;mero de Unidad en Sistema:
+                  </th>
+                  <td align="left" bgcolor="#bbbbbb">
+                          <label>
+                                <input name="unidadID" type="text" id="unidadID" value="{NEWID}" size="10" disabled="DISABLED" style="text-align:right; font-weight:bolder"/>
+                                <input name="unidadID" type="hidden" id="unidadID" value="{NEWID}" />
+                          </label>
+                  </td>
+        </tr>-->
+        <tr class="oddn">
+				<th style="width:152px;">Cliente*:</th>
+				<td align="left" bgcolor="#bbbbbb">
+						<input name="cliente_name" type="text" id="cliente_name" size="25" readonly class="validate['required']"/>
+						<input type="hidden" name="clienteid" id="clienteid" />
+                    <a href="search.php?search=cliente" target="_blank" onclick="window.open(this.href, this.target, 'width=600,height=400'); return false;">
+						Buscar cliente
+					</a>
+				</td>
+        </tr>      
+		<tr class="commonn">
+            <th style="width:152px;">Taller*:</th>
+			<td align="left" bgcolor="#bbbbbb">
+                <input name="taller_name" type="text" id="taller_name" size="25" readonly class="validate['required']"/>
+                <input type="hidden" name="tallerid" id="tallerid" />
+				<a href="search.php?search=taller" target="_blank"  onclick="window.open(this.href + '&clienteid=' + document.getElementById('clienteid').value, this.target, 'width=600,height=400'); return false;">
+					Buscar taller
+				</a>
+			</td>
+        </tr>
+        <tr class="oddn">
+            <th style="width:152px;">N&uacute;mero Econ&oacute;mico*:</th>
+			<td align="left" bgcolor="#bbbbbb">
+        		<input name="numEconomico" type="text" size="50" maxlength="50" id="numEconomico" onchange="toUpper(this); checar_codigo(this.value);" class="validate['required','~validCode']" />
+                <input name="numeroshow" type="hidden" id="numeroshow" value="0" />
+                <input type="hidden" name="redirect" id="redirect" />
+                <input name="codigo_validado" id="codigo_validado" type="hidden" value="0" />
+				<input type="submit" id="submitBtn" style="display: none;" />
+				<div id="codigo_validate" style="display:inline"></div>
+            </td>
+        </tr>
+        <tr class="commonn">
+                    <th style="width:150px;">Tipo*:</th>
+					<td align="left" bgcolor="#bbbbbb">
+                    		<input name="tipo" type="text" size="50" maxlength="256" id="tipo" onchange="toUpper(this);" class="validate['required']">
+                    </td>
+        </tr>
+		<tr class="oddn">
+			<th style="width:152px;">Marca*:</th>
+			<td align="left" bgcolor="#bbbbbb">
+					<input name="marca" type="text" size="50" maxlength="256" id="marca" onchange="toUpper(this);" class="validate['required']" />
+			</td>
+        </tr>
+        <tr class="commonn">
+			<th style="width:152px;">Modelo*:</th>
+			<td align="left" bgcolor="#bbbbbb">
+					<input name="modelo" type="text" size="8" maxlength="256" id="modelo" onchange="toUpper(this);" class="validate['required']"/ >
+			</td>
+        </tr>
+        <tr class="oddn">
+			<th style="width:152px;">Placas*:</th>
+			<td align="left" bgcolor="#bbbbbb">
+					<input name="placas" type="text" size="50" maxlength="256" id="placas" onchange="toUpper(this);" class="validate['required']" />
+			</td>
+        </tr>
+        <tr class="commonn">
+			<th style="width:152px;"># de Serie de Chasis*:</th>
+			<td align="left" bgcolor="#bbbbbb">
+					<input name="numSerie" type="text" size="50" maxlength="256" id="numSerie" onchange="toUpper(this);" class="validate['required']" />
+			</td>
+        </tr>
+		<tr class="oddn">
+			<th style="width:152px;">ID de garant&iacute;a:</th>
+			<td align="left" bgcolor="#bbbbbb">
+					<input name="garantiaID" type="text" size="50" maxlength="256" id="garantiaID" onchange="toUpper(this);" />
+			</td>
+        </tr>
+        <tr class="commonn">
+                    <th style="width:152px;">Equipo:</th>
+					<td align="left" bgcolor="#bbbbbb">
+                    <table width="100%" border="0">
+						<tr>
+							 <td colspan="2">
+								<div align="center">
+									Marca*:
+									<input name="marcaEquipo" type="text" size="15" maxlength="70" id="marcaEquipo" onchange="toUpper(this);" class="validate['required']" />
+									Modelo*:
+									<input name="modeloEquipo" type="text" size="15" maxlength="70" id="modeloEquipo" onchange="toUpper(this);" class="validate['required']" />
+									<br />
+									Serie*:
+									<input name="serieEquipo" type="text" size="15" maxlength="70" id="serieEquipo" onchange="toUpper(this);" class="validate['required']" />
+							   </div>
+							</td>
+						</tr>
+                    </table>
+                    </td>
+        </tr> 
+        <tr class="oddn">
+                    <th style="width:152px;">Caja:</th>
+					<td align="left" bgcolor="#bbbbbb">
+                    <table width="100%" border="0">
+                    		<tr>
+								 <td colspan="2">
+										<div align="center">
+										Marca:
+										<input name="marcaCaja" type="text" size="15" maxlength="70" id="marcaCaja" onchange="toUpper(this);" />
+										Modelo:
+										<input name="modeloCaja" type="text" size="15" maxlength="70" id="modeloCaja" onchange="toUpper(this);" />
+										<br />Serie:
+										<input name="serieCaja" type="text" size="15" maxlength="70" id="serieCaja" onchange="toUpper(this);" />
+												
+										</div>
+								  </td>
+                            </tr>
+                    </table>
+                    </td>
+        </tr>
+        <tr class="commonn">
+			<th style="width:152px;">Condensador:</th>
+			<td align="left" bgcolor="#bbbbbb">
+				<table width="100%" border="0">
+						<tr>
+							 <td colspan="2">
+									<div align="center">
+									Marca:
+									<input name="marcaCondensador" type="text" size="15" maxlength="70" id="marcaCondensador" onchange="toUpper(this);" />
+									Modelo:
+									<input name="modeloCondensador" type="text" size="15" maxlength="70" id="modeloCondensador" onchange="toUpper(this);" />
+									<br />Serie:
+									<input name="serieCondensador" type="text" size="15" maxlength="70" id="serieCondensador" onchange="toUpper(this);" />
+											
+									</div>
+							  </td>
+						</tr>
+				</table>
+			</td>
+        </tr>
+        <tr class="oddn">
+                    <th style="width:152px;">Evaporador:                    </th>
+					<td align="left" bgcolor="#bbbbbb">
+                    <table width="100%" border="0">
+                    		<tr>
+								 <td colspan="2">
+										<div align="center">
+										Marca:
+										<input name="marcaEvaporador" type="text" size="15" maxlength="70" id="marcaEvaporador" onchange="toUpper(this);" />
+										Modelo:
+										<input name="modeloEvaporador" type="text" size="15" maxlength="70" id="modeloEvaporador" onchange="toUpper(this);" />
+										<br />Serie:
+										<input name="serieEvaporador" type="text" size="15" maxlength="70" id="serieEvaporador" onchange="toUpper(this);" />
+												
+										</div>
+								  </td>
+                            </tr>
+                    </table>
+                    </td>
+        </tr>
+        <tr class="commonn">
+                    <th style="width:152px;">Compresor:                    </th>
+					<td align="left" bgcolor="#bbbbbb">
+                    <table width="100%" border="0">
+                    		<tr>
+								 <td colspan="2">
+										<div align="center">
+											Marca:
+											<input name="marcaCompresor" type="text" size="15" maxlength="70" id="marcaCompresor" onchange="toUpper(this);" />
+											Modelo:
+											<input name="modeloCompresor" type="text" size="15" maxlength="70" id="modeloCompresor" onchange="toUpper(this);" />
+											<br />Serie:
+											<input name="serieCompresor" type="text" size="15" maxlength="70" id="serieCompresor" onchange="toUpper(this);" />
+												
+										</div>
+								  </td>
+                            </tr>
+                    </table>
+                    </td>
+        </tr>
+        <tr class="oddn">
+                    <th style="width:152px;">Motor:</th>
+					<td align="left" bgcolor="#bbbbbb">
+                    <table width="100%" border="0">
+                    		<tr>
+								 <td colspan="2">
+										<div align="center">
+											Marca:
+											<input name="marcaMotor" type="text" size="15" maxlength="70" id="marcaMotor" onchange="toUpper(this);" />
+											Modelo:
+											<input name="modeloMotor" type="text" size="15" maxlength="70" id="modeloMotor" onchange="toUpper(this);" />
+											<br />Serie:
+											<input name="serieMotor" type="text" size="15" maxlength="70" id="serieMotor" onchange="toUpper(this);" />
+												
+										</div>
+								  </td>
+                            </tr>
+                    </table>
+                    </td>
+        </tr>
+        <tr class="commonn">
+                    <th style="width:152px;">Microprocesador:                    </th>
+					<td align="left" bgcolor="#bbbbbb">
+                    <table width="100%" border="0">
+                    		<tr>
+								 <td colspan="2">
+										<div align="center">
+											Marca:
+											<input name="marcaMicro" type="text" size="15" maxlength="70" id="marcaMicro" onchange="toUpper(this);" />
+											Modelo:
+											<input name="modeloMicro" type="text" size="15" maxlength="70" id="modeloMicro" onchange="toUpper(this);" />
+											<br />Serie:
+											<input name="serieMicro" type="text" size="15" maxlength="70" id="serieMicro" onchange="toUpper(this);" />
+												
+										</div>
+								  </td>
+                            </tr>
+                    </table>
+                    </td>
+        </tr>
+
+</table>
+
+<table class="bottmspacer">
+<tr><td></td></tr>
+</table>
+
+<table style="width:100%;" cellpadding="0" cellspacing="0" align="center">
+	  <tr>	  
+		  <td class="btnspacer" style="width:558px;"></td>
+		  <td class="rightbtn"><a href="javascript:validate(0);">Agregar </a></td>
+	  </tr>
+</table>
+
+</form>

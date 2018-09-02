@@ -1,0 +1,368 @@
+<link rel="stylesheet" href="{DIR}config/chosen/chosen.css">
+<script src="{DIR}config/chosen/chosen.jquery.js" type="text/javascript"></script>
+<script language="javascript">
+var nav4 = window.Event ? true : false;
+function IsNumber(evt){
+// Backspace = 8, Enter = 13, '0' = 48, '9' = 57, '.' = 46
+var key = nav4 ? evt.which : evt.keyCode;
+return (key <= 13 || (key >= 48 && key <= 57));
+}
+</script>
+<!-- Esta tabla contiene el menu y su linea roja inferior -->
+<table width="959" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td class="panelControl">Panel de Control</td>
+		<td class="menuTd" >{MENU} </td>
+		<td class="sectionName">Secci&oacute;n Reportes</td>
+	</tr>
+	<tr>
+		<td bgcolor="{LIGHTCOLOR}" height="6" colspan="3"></td>
+	</tr>
+</table>
+
+<!-- Aqui se termina el menu y la linea -->
+
+<table width="957" height="600" align="center" class="blurbackg">
+	<tr height="90">
+		<td></td>
+	</tr>
+	<tr>
+		<td> 
+			<!-- Aqui debe ir el contenido principal -->
+			<form name="parametros" id="parametros" method="post" action="reporte.php" target="_blank">
+			<table width="600" align="center" cellpadding="0" cellspacing="0" >
+				<tr>
+					<td valign="top">
+						<table class="toptable">
+							<tr>
+								<th>
+									<a href="../index.php"><img src="{DIR}imagenes/arrow_btn.png" border="0" style="margin-right:3px;" /></a>
+								</th>  
+								<td style="vertical-align:middle; text-align:center;">  En Esta Secci&oacute;n Podr&aacute;s Acceder a Diferentes Reportes</td>
+							</tr>
+						</table>
+						{ADD_DIS1}
+						<table class="userinfo">	
+							<tr>
+							  <td>Relaci&oacute;n de Servicios por Cliente y N&uacute;mero Econ&oacute;mico</td>
+							</tr>
+						</table>
+						<table style="width:100%;" cellspacing="0" cellpadding="0" align="center">	
+							<tr>		
+                                <td class="smalltitle" style="width:220px;">Fecha Inicial</td>		
+                                <td style="width:1px;"></td>		
+                                <td class="smalltitle" style="width:220px;">Fecha Final</td>	
+						  </tr>
+						  <tr bgcolor="#999999">
+							  <td style="width:220px; padding-top:10px; padding-bottom:10px;">
+							    Del: 
+							    <input name="date1" id="date1" type="text" onKeyPress="checkEnter(event,'parametros')"/><a href="#" name="anchor1" title="Abrir calendario" id="anchor1" onclick="return showCalendar('date1', '%d-%m-%Y');"><img src="../imagenes/calendario.gif" width="19" height="16" border="0"/></a>
+								<br/>Formato: DD-MM-AAAA
+							  </td>
+							  <td style="width:1px;"></td>
+							  <td style="width:220px;">
+							    Al: 
+							    <input name="date2" id="date2" type="text" onKeyPress="checkEnter(event,'parametros')"/><a href="#" name="anchor2" title="Abrir calendario" id="anchor2" onclick="return showCalendar('date2', '%d-%m-%Y');"><img src="../imagenes/calendario.gif" width="19" height="16" border="0"/></a>
+								<br/>Formato: DD-MM-AAAA
+							  </td>
+						  <tr>		
+                                <td class="smalltitle" style="width:220px;">Cliente</td>		
+                                <td style="width:1px;"></td>		
+                                <td class="smalltitle" style="width:220px;">Talleres de servicio</td>	
+						  </tr>
+							<tr bgcolor="#999999">
+							  <td style="width:220px; padding-top:10px; padding-bottom:10px;">
+								<a href="search.php?search=cliente&instance=1" target="_blank"  onclick="window.open(this.href, this.target, 'width=600,height=400'); return false;" >
+								<input name="cliente_name1" type="text" id="cliente_name1" size="25" readonly="readonly"/><img src="../imagenes/lupa.png" />
+								</a>
+								<input name="clienteid1" type="hidden" id="clienteid1" />
+                              </td>
+							  <td style="width:1px;"></td>
+							  <td style="width:220px;"><span style="padding-top:10px; padding-bottom:10px;"><br/>
+                                <div id="lista_talleres4">
+                                	TODOS LOS TALLERES
+                                </div>                              
+                                <a href="searchtalleres.php?instance=4" style="color:#FFF;" target="_blank"  onclick="window.open(this.href + '&amp;clienteid=' + document.getElementById('clienteid1').value, this.target, 'width=600,height=400'); return false;">
+							    BUSCAR
+                                <input name="tallerid4" type="hidden" id="tallerid4" value="-1" />
+                                <img src="../imagenes/lupa.png" /></a></span><br/><br/>
+                                <!--
+							    <input name="taller_name1" type="text" id="taller_name1" size="25" readonly="readonly"/>
+                                <input name="tallerid1" type="hidden" id="tallerid1" value="-1" />
+                              <a href="search.php?search=taller&instance=1" target="_blank"  onclick="window.open(this.href + '&amp;clienteid=' + document.getElementById('clienteid').value, this.target, 'width=600,height=400'); return false;" /><img src="../imagenes/lupa.png" />--></td>
+						  </tr>
+                          <tr>		
+                                <td class="smalltitle" style="width:220px;">Unidad Inicial</td>		
+                                <td style="width:1px;"></td>		
+                                <td class="smalltitle" style="width:220px;">Unidad Final</td>	
+						  </tr>
+						  <tr bgcolor="#999999">
+							  <td style="width:220px; padding-top:10px; padding-bottom:10px;">
+							    <div align="center">
+									<input type="text" name="unidad_inicial" id="unidad_inicial" onKeyPress="checkEnter(event,'parametros')" />
+								</div>
+							  </td>
+							  <td style="width:1px;"><div align="center"></div></td>
+							  <td style="width:220px;"><div align="center">
+							    <input name="unidad_final" type="text" id="unidad_final" onKeyPress="checkEnter(event,'parametros')" />
+							  </div></td>
+						  </tr>
+                          <tr>		
+                                <!--<td class="smalltitle" style="width:220px;">Taller de servicio</td>		
+                                <td style="width:1px;"></td>		-->
+                                <td class="smalltitle" colspan="3">Para el rango considerar:</td>	
+						  </tr>
+							<tr bgcolor="#999999">
+                            <!--<td style="padding-top:10px; padding-bottom:10px;">&nbsp;</td>
+                            	<td></td>-->
+							  <td style="padding-top:10px; padding-bottom:10px;" colspan="3"><div align="center">
+							    <select name="criteria" id="criteria">
+							      <option value="numEconomico">N&uacute;mero econ&oacute;mico</option>
+							      <option value="unidadID">ID de la unidad</option>
+						        </select>
+							  </div></td>
+						  </tr>
+                          <tr>		
+                                <td colspan="3" class="smalltitle" style="width:220px;"><div align="center">
+                                  <input type="checkbox" name="costeado" id="costeado" />
+                                  <label for="costeado">Costeado</label>
+                                </div></td>		
+                          </tr>
+						</table>
+						<table style="width:100%;" cellpadding="0" cellspacing="0" align="center">		  
+							<tr>	   		  
+								<td class="btnspacer" width="508"></td>		  
+								<td class="rightbtn">
+									<a href="#" onclick="document.getElementById('parametros').submit(); return false;">Generar Informe </a></td>		  
+							</tr>	
+						</table>{ADD_DIS2}
+			</table></form>
+		<p>&nbsp;</p>
+        <form name="parametros2" id="parametros2" method="post" action="reporte2.php" target="_blank">
+			{ADD_DIS3}
+		<table width="600" align="center" cellpadding="0" cellspacing="0" >
+			  <tr>
+			    <td valign="top">
+			      <table class="userinfo">
+			        <tr>
+			          <td>Reporte de Acumulado de Mantenimientos</td>
+		            </tr>
+		          </table>
+			      <table style="width:100%;" cellspacing="0" cellpadding="0" align="center">
+					<tr>
+			          <td class="smalltitle" style="width:220px;">Cliente</td>
+			          <td style="width:1px;"></td>
+			          <td class="smalltitle" style="width:220px;">Taller de servicio</td>
+		            </tr>
+			        <tr bgcolor="#999999">
+			          <td style="width:220px; padding-top:10px; padding-bottom:10px;">
+						<a href="search.php?search=cliente&instance=2" target="_blank" onclick="window.open(this.href, this.target, 'width=600,height=400'); return false;">
+							<input name="cliente_name2" type="text" id="cliente_name2" size="25" readonly="readonly"/><input name="clienteid2" type="hidden" id="clienteid2" /><img src="../imagenes/lupa.png" />
+						</a>
+					</td>
+			          <td style="width:1px;"></td>
+			          <td style="width:220px;"><a href="search.php?search=taller&instance=2" target="_blank"  onclick="window.open(this.href + '&amp;clienteid=' + document.getElementById('clienteid2').value, this.target, 'width=600,height=400'); return false;">
+						<input name="taller_name2" type="text" id="taller_name2" size="25" readonly="readonly"/><input name="tallerid2" type="hidden" id="tallerid2" value="-1" /><img src="../imagenes/lupa.png" /></a></td>
+		            </tr>
+                    <tr>
+			          <td class="smalltitle">A&ntilde;o a reportar</td>
+                      <td></td>
+                      <td class="smalltitle">Meses</td>
+		            </tr>
+			        <tr bgcolor="#999999">
+					<td>
+						<select name="year" id="year">
+						{YEARSCODE}
+						</select>
+					  </td>
+					  <td></td>
+			          <td style="padding-top:10px; padding-bottom:10px;">
+                        De 
+                        <select name="mes" id="mes">
+                          <option value="1" selected="selected">Enero</option>
+                          <option value="2">Febrero</option>
+                          <option value="3">Marzo</option>
+                          <option value="4">Abril</option>
+                          <option value="5">Mayo</option>
+                          <option value="6">Junio</option>
+                          <option value="7">Julio</option>
+                          <option value="8">Agosto</option>
+                          <option value="9">Septiembre</option>
+                          <option value="10">Octubre</option>
+                          <option value="11">Noviembre</option>
+                          <option value="12">Diciembre</option>
+                      </select> 
+                        a 
+                        <select name="mes2" id="mes2">
+                        <option value="1">Enero</option>
+                        <option value="2">Febrero</option>
+                        <option value="3">Marzo</option>
+                        <option value="4">Abril</option>
+                        <option value="5">Mayo</option>
+                        <option value="6">Junio</option>
+                        <option value="7">Julio</option>
+                        <option value="8">Agosto</option>
+                        <option value="9">Septiembre</option>
+                        <option value="10">Octubre</option>
+                        <option value="11">Noviembre</option>
+                        <option value="12" selected="selected">Diciembre</option>
+                      </select>
+					  </td>
+		            </tr>
+                    <tr>
+						<td class="smalltitle" colspan="3">
+						Tipo de mantenimiento: 
+						</td>
+                    </tr>
+                    <tr bgcolor="#999999">
+					<td style="padding-top:10px; padding-bottom:10px;" colspan="3">
+						<select name="tipo_mantenimiento[]" id="tipo_mantenimiento" MULTIPLE class="chosen-select" >
+                          		{MANTENIMIENTOS}
+						</select>
+					 </td>
+                    </tr>
+		          </table>
+			      <table style="width:100%;" cellpadding="0" cellspacing="0" align="center">
+			        <tr>
+			          <td class="btnspacer" width="508"></td>
+			          <td class="rightbtn"><a href="#" onclick="document.getElementById('parametros2').submit()">Generar Informe </a></td>
+		            </tr>
+		          </table></td>
+		      </tr>
+	    </table>{ADD_DIS4}
+        </form>
+			<br />
+        <p>&nbsp;</p>
+        <form name="parametros3" id="parametros3" method="post" action="reporte3.php" target="_blank">
+			{ADD_DIS5}
+		<table width="600" align="center" cellpadding="0" cellspacing="0" >
+			  <tr>
+			    <td valign="top">
+			      <table class="userinfo">
+			        <tr>
+			          <td>Reporte de recepci&oacute;n de unidad</td>
+		            </tr>
+		          </table>
+			      <table style="width:100%;" cellspacing="0" cellpadding="0" align="center">
+					<tr>
+			            <td class="smalltitle">&nbsp;</td>
+		            </tr>
+			        <tr bgcolor="#999999">
+			          <td style="padding-top:10px; padding-bottom:10px; text-align:center;">
+                      <input name="order_number" type="text" id="order_number" size="25" onKeyPress="checkEnter(event,'parametros3')"/> 
+                      buscar por: 
+                      <label for="number_type"></label>
+                      <select name="number_type" id="number_type">
+                        <option value="folio">Folio</option>
+                        <option value="ordenid">N&uacute;mero de orden</option>
+                        <option value="factura_num">Factura</option>
+                      </select></td>
+		            </tr>
+		          </table>
+			      <table style="width:100%;" cellpadding="0" cellspacing="0" align="center">
+			        <tr>
+			          <td class="btnspacer" width="508"></td>
+			          <td class="rightbtn"><a href="#" onclick="document.getElementById('parametros3').submit()">Generar Informe </a></td>
+		            </tr>
+		          </table></td>
+		      </tr>
+	    </table>{ADD_DIS6}
+                    </form>
+                
+                <br />
+        <p>&nbsp;</p>
+                  
+         <form name="parametros4" id="parametros4" method="post" action="reporte4.php" target="_blank">
+			{ADD_DIS7}
+			  <table width="600" align="center" cellpadding="0" cellspacing="0" >
+			  <tr>
+			    <td valign="top">
+			      <table class="userinfo">
+			        <tr>
+			          <td>Reporte de Consumo de Refacciones</td>
+		            </tr>
+		          </table>
+			      <table style="width:100%;" cellspacing="0" cellpadding="0" align="center">
+					<tr>
+			          <td class="smalltitle" style="width:220px;">Cliente</td>
+			          <td style="width:1px;"></td>
+			          <td class="smalltitle" style="width:220px;">Taller de servicio</td>
+		            </tr>
+			        <tr bgcolor="#999999">
+			          <td style="width:220px; padding-top:10px; padding-bottom:10px;">
+						<a href="search.php?search=cliente&instance=3" target="_blank"  onclick="window.open(this.href, this.target, 'width=600,height=400'); return false;">
+							<input name="cliente_name3" type="text" id="cliente_name3" size="25" readonly="readonly"/><input name="clienteid3" type="hidden" id="clienteid3" /><img src="../imagenes/lupa.png" />
+						</a>
+					  </td>
+			          <td style="width:1px;"></td>
+			          <td style="width:220px;">
+						<a href="search.php?search=taller&instance=3" target="_blank"  onclick="window.open(this.href + '&amp;clienteid=' + document.getElementById('clienteid3').value, this.target, 'width=600,height=400'); return false;">
+							<input name="taller_name3" type="text" id="taller_name3" size="25" readonly="readonly"/><input name="tallerid3" type="hidden" id="tallerid3" value="-1" /><img src="../imagenes/lupa.png" />
+						</a>
+					  </td>
+		            </tr>
+                    <tr>
+			          <td class="smalltitle">A&ntilde;o a reportar</td>
+                      <td></td>
+                      <td class="smalltitle">Meses</td>
+		            </tr>
+			        <tr bgcolor="#999999">
+			          <td style="padding-top:10px; padding-bottom:10px;"><select name="year1" id="year1">
+                      {YEARSCODE}
+		              </select></td>
+                      <td></td>
+                      <td><label for="meses1"></label>
+                        De
+                        <select name="meses1" id="meses1">
+                          <option value="1" selected="selected">Enero</option>
+                          <option value="2">Febrero</option>
+                          <option value="3">Marzo</option>
+                          <option value="4">Abril</option>
+                          <option value="5">Mayo</option>
+                          <option value="6">Junio</option>
+                          <option value="7">Julio</option>
+                          <option value="8">Agosto</option>
+                          <option value="9">Septiembre</option>
+                          <option value="10">Octubre</option>
+                          <option value="11">Noviembre</option>
+                          <option value="12">Diciembre</option>
+                        </select>
+						a
+						<select name="meses2" id="mes4">
+						  <option value="1">Enero</option>
+						  <option value="2">Febrero</option>
+						  <option value="3">Marzo</option>
+						  <option value="4">Abril</option>
+						  <option value="5">Mayo</option>
+						  <option value="6">Junio</option>
+						  <option value="7">Julio</option>
+						  <option value="8">Agosto</option>
+						  <option value="9">Septiembre</option>
+						  <option value="10">Octubre</option>
+						  <option value="11">Noviembre</option>
+						  <option value="12" selected="selected">Diciembre</option>
+						</select></td>
+		            </tr>
+		          </table>
+			      <table style="width:100%;" cellpadding="0" cellspacing="0" align="center">
+			        <tr>
+			          <td class="btnspacer" width="508"></td>
+			          <td class="rightbtn"><a href="#" onclick="document.getElementById('parametros4').submit()">Generar Informe </a></td>
+		            </tr>
+		          </table></td>
+		      </tr>
+	    </table>
+			  {ADD_DIS8}
+                    </form>  
+       
+        </td>
+				</tr>
+				<tr height="40"><td>&nbsp;</td>
+				</tr>
+	</table>
+	
+<script language="javascript">
+jQuery("#tipo_mantenimiento").chosen({width:"95%"});
+</script>
+
+			<!-- Aqui se termina el contenido principal -->

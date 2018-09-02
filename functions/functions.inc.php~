@@ -1,0 +1,103 @@
+<?php
+ //Esta libreria es la mas importante, ya que contiene todas las funciones de la base de datos
+ class DBFunciones{
+ 
+        //Funcion utilizada para conectar la base de datos
+      	function DBFunciones ($dist)
+		{		
+			include($dist.'config/adodb/adodb.inc.php');
+			require($dist.'config/dbconfig.php');		
+			$db = &ADONewConnection(CONTROLER); # eg 'mysql' o 'postgres'
+			//$db->debug = true;
+			if(CONTROLER=='mysql')
+			{
+			  $db->Connect(SERVERNAME, USERNAME, PASSWORD, DBNAME);
+			}
+			elseif(CONTROLER=='access')
+			{
+			  $db->PConnect(DBNAME);
+			}		
+			$this->dbc= $db;
+	    }
+		
+		function selectqry($str,$campos='*',$where='1',$mode=0,$tamano=0,$pag=0)
+		{
+			$str1=str_replace(" ","",$str);
+			$str2=DBPREFIX.$str1;
+			$tabla=str_replace(",",",".DBPREFIX,$str2);		  
+			$strSQL="Select ".$campos." from ".$tabla." where ".$where;
+			if($tamano!=0 && $pag!=0)
+			{
+				$reg1=($pag-1)*$tamano;
+				$rs=$this->dbc->SelectLimit($strSQL,$tamano,$reg1);
+			}
+			else
+			{
+				$rs=$this->dbc->Execute($strSQL);		
+			}
+			if($mode==0)
+			{
+				return $rs;
+			}
+			else
+			{
+				$fld=$rs->Fetchfield(0);
+				return $rs->fields[$fld->name];
+			}		
+		}
+		
+		function Close()
+		{
+		  $this->dbc->Close();
+		}
+		
+		//Funcion utilizada para verificar si el usuario puede accesar al panel de control
+	    function verificarUsuario($usuario,$clave)
+		{
+			$strSQL = "SELECT * FROM ".DBPREFIX."usuarios,".DBPREFIX."niveles where ".DBPREFIX."usuarios.nivel=".DBPREFIX."niveles.nivel and username='".$usuario."' AND password='".$clave."'";	
+			$rs = $this->dbc->Execute($strSQL);
+
+			if(!$rs->EOF)
+			{ // si existe el usuario	
+	            if( $rs->fields[7] == 4 )
+				{
+				  $type=$this->selectqry("clientes,descuentos","discount","userid=".$rs->fields[4]." and ".DBPREFIX."clientes.tipo=".DBPREFIX."descuentos.iddisc");
+				  session_register("tipo");
+				  if(!$type->EOF){
+				    $_SESSION["tipo"]=$type->fields[0];				
+				  }else{
+				    $_SESSION["tipo"]=0;				
+				  }
+				}
+				$this->grupo=$rs->fields[3];
+				$this->idUsuario=$rs->fields[4];
+				$this->level=$rs->fields[7];
+				$this->rolusuario=$rs->fields['rolid'];
+	            session_register("Logged");
+	            session_register("idUsuario");
+				session_register("level");
+				session_register("grupo");
+				session_register("seguimiento");
+				session_register("rolusuario");
+	            $_SESSION["Logged"]= "TRUE";
+	            $_SESSION["idUsuario"]= $this->idUsuario;
+				$_SESSION["level"]= $this->level;
+				$_SESSION["grupo"]= $this->grupo;
+				$_SESSION["rolusuario"]= $this->rolusuario;
+				
+					echo '<script language="Javascript">location.href="../index.php";</script>'; //lo redirecciona aqui.
+			}
+			else
+			{ // Si no existe entonces envia una alerta y redirecciona al login
+				echo '<script language="Javascript">location.href="../login.php?er=1";</script>'; 
+			}		   
+		}		
+		
+		function dropshoplogout(){
+		  $sid=session_id();
+		  $strSQL="Delete from ".DBPREFIX."carttemp where session_id='".$sid."'";
+		  $rs=$this->dbc->Execute($strSQL);
+		}
+		
+}
+?>

@@ -1,0 +1,86 @@
+<script language="javascript">
+
+function MsgOkCanceldrop( msg, redirect )
+{
+	if ( confirm( msg ) )
+	{
+		document.forms.Form1.redirect.value = redirect;
+		document.forms.Form1.submit();
+	}
+}
+
+</script>
+
+<form method="post" name="Form1" action="functions/workuser.php">
+<input type="hidden" name="redirect">
+<input type="hidden" name="userid" value="{USERID}">
+
+<table width="450" align="center" cellpadding="0" cellspacing="0">
+
+<tr>
+	<td>
+		<table class="toptable" >
+			<tr>				
+				<th><a href="{BACKPAGE}"><img src="../imagenes/arrow_btn.png" border="0" style="margin-right:3px;" /></a>
+				</th>
+
+				<td style="vertical-align:middle; text-align:center;">
+				En Esta Secci&oacute;n Podr&aacute;s Consultar a los Clientes<br>que Pueden Acceder al Panel de Control
+				</td>				
+			</tr>
+		</table>
+
+	</td>
+</tr>
+
+<tr><td>
+<table class="userinfo">
+<tr><td>Detalle de Cliente</td></tr>
+</table>
+</td></tr>
+
+<tr><td>
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr class="odd">
+<th width="150">Nombre:</th>
+<td>{USERNAME}</td>
+</tr>
+<tr class="common">
+<th>Email:</th>
+<td>{EMAIL}</td>
+</tr>
+<tr class="odd">
+<th>Login:</th>
+<td>{LOGIN}</td>
+</tr>
+<tr class="common">
+<th>Password:</th>
+<td>{PASSWORD}</td>
+</tr>
+<tr class="odd">
+<th>Administrador<br>Asignado:</th>
+<td>{SUPPADMIN}</td>
+</tr>
+<tr class="common">
+<th>Tipo de Cliente:</th>
+<td>{TYPENAME}</td>
+</tr>
+<tr class="odd">
+<th>Descuento:</th>
+<td>{DISCOUNT} %</td>
+</tr>
+</table>
+
+<table class="bottmspacer">
+<tr><td></td></tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" align="center">
+	  <tr>
+		  <td class="leftbtn"><a href="javascript:MsgOkCanceldrop('Está Seguro que Desea Eliminar Este Cliente? \nSe Eliminarán Todos los Datos de Facturación, Consignación y Contactos    ', 6 )">Eliminar </a></td>	  
+		  <td class="btnspacer" style="width:236px;"></td>
+		  <td class="rightbtn"><a href="{EDITUSER}">Editar </a></td>
+	  </tr>
+</table>
+
+</form><br><br>

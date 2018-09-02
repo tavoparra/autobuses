@@ -1,0 +1,49 @@
+<script type="text/javascript">
+function cargarciudades(estadoid){
+	    var contenedor;
+		contenedor = document.getElementById('ciudad_combo');
+		ajax = nuevoAjax();
+		ajax.open( "GET", "cargarciudades.php?estadoid=" + estadoid, true );
+		ajax.onreadystatechange = function() 
+		{	
+			if ( ajax.readyState == 4 ) 
+			{
+				contenedor.innerHTML = ajax.responseText
+			}
+			else
+			{
+				contenedor.innerHTML = "... Cargando ...";
+			}
+		}
+		ajax.send( null); 
+	}
+ </script>   
+<table width="959" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td width="150" style="color:#E1E1E1; font-size:14px; font-weight:bold; font-family:Verdana, Arial, Helvetica, sans-serif; padding-left:10px;" bgcolor="#444444">Panel de Control</td>
+		<td bgcolor="#444444" width="600" background="{DIR}imagenes/images/dock-bg2.gif">{MENU} </td>
+		<td width="150" style="color:#E1E1E1; font-size:14px; font-weight:bold; font-family:Verdana, Arial, Helvetica, sans-serif;" bgcolor="#444444">Secci&oacute;n Clientes</td>
+	</tr>
+	<tr>
+		<td bgcolor="{LIGHTCOLOR}" height="6" colspan="3"></td>
+	</tr>
+</table>
+<!-- Aqui se termina el menu y la linea -->
+<table width="957" align="center" class="blurbackg">
+	<tr height="70"><td></td>
+	</tr>
+	<tr><td> 
+			<!-- Aqui debe ir el contenido principal -->
+			<table width="450" height="28" align="center" cellpadding="0" cellspacing="0" >
+				
+				<tr>
+					<td>
+					{CONTENT} <br /><br /><br />
+					</td>
+				</tr>
+				
+				<tr height="40"><td>&nbsp;</td>
+				</tr>
+				
+			</table><br /> 
+			<!-- Aqui se termina el contenido principal -->

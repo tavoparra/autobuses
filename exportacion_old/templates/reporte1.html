@@ -1,0 +1,100 @@
+						<table class="userinfo">	
+							<tr>
+							  <td>Relaci&oacute;n de Servicios por Cliente y N&uacute;mero Econ&oacute;mico</td>
+							</tr>
+						</table>
+						<table style="width:100%;" cellspacing="0" cellpadding="0" align="center">	
+							<tr>		
+                                <td class="smalltitle" style="width:220px;">Fecha Inicial</td>		
+                                <td style="width:1px;"></td>		
+                                <td class="smalltitle" style="width:220px;">Fecha Final</td>	
+						  </tr>
+						  <tr bgcolor="#999999">
+							  <td style="width:220px; padding-top:10px; padding-bottom:10px;">
+							    Del: 
+							    <input name="date1" id="date1" placeholder="DD-MM-AAAA" type="text" onKeyPress="checkEnter(event,'parametros')" class="validate['required']" /><a href="#" name="anchor1" title="Abrir calendario" id="anchor1" onclick="return showCalendar('date1', '%d-%m-%Y');"><img src="../imagenes/calendario.gif" width="19" height="16" border="0"/></a>
+							  </td>
+							  <td style="width:1px;"></td>
+							  <td style="width:220px;">
+							    Al: 
+							    <input name="date2" id="date2" placeholder="DD-MM-AAAA" type="text" onKeyPress="checkEnter(event,'parametros')" class="validate['required']" /><a href="#" name="anchor2" title="Abrir calendario" id="anchor2" onclick="return showCalendar('date2', '%d-%m-%Y');"><img src="../imagenes/calendario.gif" width="19" height="16" border="0"/></a>
+							  </td>
+						  <tr>		
+                                <td class="smalltitle" style="width:220px;">Cliente</td>		
+                                <td style="width:1px;"></td>		
+                                <td class="smalltitle" style="width:220px;">Talleres de servicio</td>	
+						  </tr>
+							<tr bgcolor="#999999">
+							  <td style="width:220px; padding-top:10px; padding-bottom:10px;">
+								<a href="search.php?search=cliente&instance=1" target="_blank"  onclick="window.open(this.href, this.target, 'width=600,height=400'); return false;" >
+								<input name="cliente_name1" type="text" id="cliente_name1" size="25" readonly="readonly"/><img src="../imagenes/lupa.png" />
+								</a>
+								<input name="clienteid1" type="hidden" id="clienteid1" />
+                              </td>
+							  <td style="width:1px;"></td>
+							  <td style="width:220px;"><span style="padding-top:10px; padding-bottom:10px;"><br/>
+                                <div id="lista_talleres4">
+                                	TODOS LOS TALLERES
+                                </div>                              
+                                <a href="searchtalleres.php?instance=4" style="color:#FFF;" target="_blank"  onclick="window.open(this.href + '&amp;clienteid=' + document.getElementById('clienteid1').value, this.target, 'width=600,height=400'); return false;">
+							    BUSCAR
+                                <input name="tallerid4" type="hidden" id="tallerid4" value="-1" />
+                                <img src="../imagenes/lupa.png" /></a></span><br/><br/>
+							   </td>
+						  </tr>
+                          <tr>		
+                                <td class="smalltitle" style="width:220px;">Unidad Inicial</td>		
+                                <td style="width:1px;"></td>		
+                                <td class="smalltitle" style="width:220px;">Unidad Final</td>	
+						  </tr>
+						  <tr bgcolor="#999999">
+							  <td style="width:220px; padding-top:10px; padding-bottom:10px;">
+							    <div align="center">
+									<input type="text" name="unidad_inicial" id="unidad_inicial" onKeyPress="checkEnter(event,'parametros')" />
+								</div>
+							  </td>
+							  <td style="width:1px;"><div align="center"></div></td>
+							  <td style="width:220px;"><div align="center">
+							    <input name="unidad_final" type="text" id="unidad_final" onKeyPress="checkEnter(event,'parametros')" />
+							  </div></td>
+						  </tr>
+                          <tr>		
+                                <td class="smalltitle">Para el rango considerar:</td>	
+								<td></td>
+								<td class="smalltitle">Tipo de mantenimiento:</td>	
+						  </tr>
+							<tr bgcolor="#999999">
+							  <td style="padding-top:10px; padding-bottom:10px;">
+								  <div align="center">
+									<select name="criteria" id="criteria">
+									  <option value="numEconomico">N&uacute;mero econ&oacute;mico</option>
+									  <option value="unidadID">ID de la unidad</option>
+									</select>
+								  </div>
+							  </td>
+							  <td></td>
+							  <td style="padding-top:10px; padding-bottom:10px;">
+								<select id="filtro_mantenimiento" name="filtro_mantenimiento" class="abrir_mantenimientos">
+									<option value="0">TODOS</option>
+									<option value="1">SELECCCIONAR</option>
+								</select>
+								<div id="tipo_mantenimiento2" style="display: none;">
+										{MANTENIMIENTOS}
+								</div>
+							  </td>
+						  </tr>
+                          <tr>		
+                                <td colspan="3" class="smalltitle" style="width:220px;"><div align="center">
+                                  <input type="checkbox" name="costeado" id="costeado" />
+                                  <label for="costeado">Costeado</label>
+                                </div></td>		
+                          </tr>
+						</table>
+						<table style="width:100%;" cellpadding="0" cellspacing="0" align="center">		  
+							<tr>	   		  
+								<td class="btnspacer" width="508"></td>		  
+								<td class="rightbtn">
+									<input type="submit" id="parametrosSubmit" style="display: none;"/>
+									<a href="#" onclick="document.getElementById('parametrosSubmit').click(); return false;">Generar Informe </a></td>		  
+							</tr>	
+						</table>

@@ -1,0 +1,65 @@
+<form method="post" name="Form1" action="functions/workuser.php">
+<table width="450" height="28" align="center" cellpadding="0" cellspacing="0" >
+<tr><td>
+
+<table class="toptable" ><tr><th>
+<a href="{BACKPAGE}"><img src="../imagenes/arrow_btn.png" border="0" style="margin-right:3px;" /></a></th>
+  <td>En esta seccion podr&aacute;s agregar a los clientes que se pueden administrar el panel de control.</td>
+</tr></table>
+
+</td></tr>
+<tr><td>
+
+<table class="userinfo">
+<tr><td>Agregar cliente:</td></tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" width="100%">
+<tr class="odd">
+<th>&nbsp;&nbsp;Nombre:</th>
+<td align="center" colspan="2">
+<input type="text" size="35" name="username"></td>
+</tr>
+<tr class="common">
+<th>&nbsp;&nbsp;Email:</th>
+<td align="center" colspan="2">
+<input type="text" size="35" name="email"></td>
+</tr>
+<tr class="odd">
+<th>&nbsp;&nbsp;Login:</th>
+<td align="center" colspan="2">
+<input type="text" size="35" name="login"></td>
+</tr>
+<tr class="common">
+<th>&nbsp;&nbsp;Password:</th>
+<td align="center" colspan="2">
+<input type="text" size="35" name="password"></td>
+</tr>
+<tr class="odd">
+<th>&nbsp;&nbsp;Grupo de Usuario:</th>
+<td align="center" colspan="2">
+&nbsp;&nbsp;&nbsp;&nbsp;{PROFILE}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr class="common">
+<th>&nbsp;&nbsp;Administrador Asignado:</th>
+<td align="center" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;{SUPPADMIN}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<input type="hidden" name="checking" value="1">
+<input type="hidden" name="selectedc" value="{SELECTEDC}" />
+<input type="hidden" name="redirect" />
+</table>
+
+<table class="bottmspacer">
+<tr><td></td></tr>
+</table>
+<table style="width:100%;">
+	  <tr>	  
+	  <td class="btnspacer"></td>
+	  <td class="centerbtn"><a href="javascript:sendForm(7);">Agregar otro cliente</a></td>
+	  <td class="rightbtn">	  	  
+	  <a href="javascript:sendForm(4)">Agregar </a></td>
+	  </tr>
+</table>
+
+</td></tr></table>
+</form>

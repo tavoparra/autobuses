@@ -1,0 +1,118 @@
+<script language="javascript">
+
+var clBackgNormal = 'White';
+var clForegNormal = 'Black';
+var clBackgHigh   = '#FFF1A8';
+var clForegHigh   = 'Black';
+
+function Trim( str ) 
+{
+	var resultStr = str;
+	resultStr = resultStr.replace( /^\s*|\s*$/g, "" ); 	
+	return resultStr;
+}
+
+function validate(val)
+{
+	document.forms.Form1.username.style.background = clBackgNormal;
+	document.forms.Form1.username.style.color = clForegNormal;   
+	document.forms.Form1.login.style.background = clBackgNormal;
+	document.forms.Form1.login.style.color = clForegNormal;   
+	document.forms.Form1.password.background = clBackgNormal;
+	document.forms.Form1.password.style.color = clForegNormal;   
+	   	   
+	if( Trim( document.forms.Form1.username.value ) == "" )
+	{
+		document.forms.Form1.username.style.background = clBackgHigh;
+		document.forms.Form1.username.style.color = clForegHigh;   
+		alert('Debes Agregar el Nombre del Usuario    ');
+	}
+	else if( Trim( document.forms.Form1.login.value ) == "" )
+	{
+		document.forms.Form1.login.style.background = clBackgHigh;
+		document.forms.Form1.login.style.color = clForegHigh;   
+		alert('Debes Agregar un Nombre de Usuario    ');
+	}
+	else if( Trim( document.forms.Form1.password.value ) == "" )
+	{
+	    document.forms.Form1.password.style.background = clBackgHigh;
+	    document.forms.Form1.password.style.color = clForegHigh;   
+		alert('Debes Agregar una Contraseña para el Usuario     ');
+	}	   
+	else 
+	{
+		document.forms.Form1.redirect.value = val;
+		document.forms.Form1.submit( val ); 
+	}
+}	
+
+</script>
+
+<form method="post" name="Form1" action="functions/workuser.php">
+<table width="450" height="28" align="center" cellpadding="0" cellspacing="0" >
+<tr><td>
+
+<table class="toptable" ><tr><th>
+<a href="{BACKPAGE}"><img src="../imagenes/arrow_btn.png" border="0" style="margin-right:3px;" /></a></th>
+  <td style="vertical-align:middle; text-align:center;">
+  En Esta Secci&oacute;n Podr&aacute;s Consultar a los Clientes que Pueden Acceder al Panel de Control</td>
+</tr></table>
+
+</td></tr>
+<tr><td>
+
+<table class="userinfo">
+<tr><td>Detalle de Usuario</td></tr>
+</table>
+
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr class="odd">
+<th>Nombre:</th>
+<td align="center" colspan="2">
+<input type="text" size="35" name="username" value="{USERNAME}"></td>
+</tr>
+<tr class="common">
+<th>Email:</th>
+<td align="center" colspan="2">
+<input type="text" size="35" name="email" value="{EMAIL}"></td>
+</tr>
+<tr class="odd">
+<th>Login:</th>
+<td align="center" colspan="2">
+<input type="text" size="35" name="login" value="{LOGIN}"></td>
+</tr>
+<tr class="common">
+<th>Password:</th>
+<td align="center" colspan="2">
+<input type="text" size="35" name="password" value="{PASSWORD}"></td>
+</tr>
+<tr class="odd">
+<th>Perfil de Usuario:</th>
+<td align="center" colspan="2">
+{PROFILE}</td>
+</tr>
+<tr class="common">
+<th>Administrador Asignado:</th>
+<td align="center" colspan="2">{SUPPADMIN}</td>
+</tr>
+<tr class="odd">
+<th>Tipo de Cliente:</th>
+<td align="center" colspan="2">{TYPENAME}</td>
+</tr>
+<input type="hidden" name="redirect">
+<input type="hidden" name="userid" value="{USERID}"></td>
+</table>
+
+<table class="bottmspacer">
+<tr><td></td></tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" align="center">
+	  <tr>	  
+		  <td class="btnspacer" style="width:308px;"></td>
+		  <td class="rightbtn"><a href="javascript:validate(5)">Actualizar </a></td>
+	  </tr>
+</table>
+
+</td></tr></table>
+</form>

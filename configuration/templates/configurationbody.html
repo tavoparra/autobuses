@@ -1,0 +1,84 @@
+<!-- Esta tabla contiene el menu y su linea roja inferior -->
+<table width="959" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td class="panelControl">Panel de Control</td>
+		<td class="menuTd" >{MENU} </td>
+		<td class="sectionName">Configuraci&oacute;n</td>
+	</tr>
+	<tr>
+		<td bgcolor="{LIGHTCOLOR}" height="6" colspan="3"></td>
+	</tr>
+</table>
+
+<!-- Aqui se termina el menu y la linea -->
+<table width="957" height="650px" align="center" class="blurbackg">
+	<tr><td>			
+	<table style="width:650px;" align="center">
+					<tr><td>
+	<tr height="70"><td>
+						</td></tr>
+
+                
+                			{ADD_DIS1}<table class="userinfo" style="width:350px;" align="center">
+								<tr>  <td>Valores actuales:</td>
+							  </tr>
+							</table>
+							<form action="" method="POST">
+							<table style="width:350px;" cellpadding="0" cellspacing="0" align="center">
+								
+								<tr style="background-color:#B1B1B1; margin-bottom:5px;">
+                                <td style="text-align:left; padding-left:15px;">IVA: &nbsp;&nbsp;
+                                  <label>
+                                  <input name="iva" type="text" id="iva" value="{IVA}" />
+                                  </label></td>
+									
+									<td align="left" style="width:30px;" ></td>
+								  <td>
+                                  	<input type="image" src="../imagenes/images/guardar.jpg" align="right" width="60"/>
+                                  </td>
+							  </tr>
+							</table>{ADD_DIS2}
+                            </form>
+							<p>&nbsp;</p>
+                            			{ADD_DIS3}<table width="254" align="center" cellpadding="0" cellspacing="0" >
+				<tr>
+					<td valign="top">
+						<table class="userinfo">	
+							<tr>
+							  <td>Unidades de Medida</td>
+							</tr>
+						</table>
+						
+						<table style="width:100%;" cellpadding="0" cellspacing="0" align="center">		  
+							<tr>	   		  
+								<td class="btnspacer" width="254"></td>		  
+								<td class="rightbtn">
+									<a href="unidades.php?mode=add">Agregar </a></td>		  
+						  </tr>	
+						</table>
+						
+						<table style="width:100%;" cellspacing="0" cellpadding="0" align="center">	
+							<tr>				
+                                <td class="smalltitle" style="width:220px;">Unidad</td>		
+                                <td style="width:1px;"></td>		
+                                <td class="smalltitle" style="width:34px;">&nbsp;</td>	
+							</tr>
+						</table>
+						<table width="254" align="center" cellpadding="0" cellspacing="0">{CONTENT} 		
+							<table style="width:100%;" cellpadding="0" cellspacing="0" align="center">		  
+								<tr>	   		  
+									<td class="btnspacer" width="508"></td>		  
+									<td class="rightbtn">
+										<a href="unidades.php?mode=add">Agregar </a></td>		  
+								</tr>	
+							</table>
+						</table><br /><br /><br /></td>
+				</tr>
+				<tr height="40"><td>&nbsp;</td>
+				</tr>
+			</table>{ADD_DIS4}
+                            
+                            </td>
+					</tr>
+					<tr><td>
+			<!-- Aqui se termina el contenido principal -->

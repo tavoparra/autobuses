@@ -1,0 +1,71 @@
+<script language="javascript">
+
+var clBackgNormal = 'White';
+var clForegNormal = 'Black';
+var clBackgHigh   = '#FFF1A8';
+var clForegHigh   = 'Black';
+
+function Trim( str ) 
+{
+	var resultStr = str;
+	resultStr = resultStr.replace( /^\s*|\s*$/g, "" ); 	
+	return resultStr;
+}
+
+
+function validate(val)
+{
+	document.forms.Form1.nombre.style.background = clBackgNormal;
+	document.forms.Form1.nombre.style.color = clForegNormal;   
+  
+	   	   
+	if( Trim( document.forms.Form1.nombre.value ) == "" )
+	{
+		document.forms.Form1.nombre.style.background = clBackgHigh;
+		document.forms.Form1.nombre.style.color = clForegHigh;   
+		alert('Debes Agregar el Nombre del Rol    ');
+	}
+	else 
+	{
+		document.forms.Form1.redirect.value = val;
+		document.forms.Form1.submit( val ); 
+	}
+}	
+
+</script>
+
+
+
+<form name="Form1" method="post" enctype="multipart/form-data" action="functions/workroles.php?mode={MODE}">
+<table class="toptable"><tr><th>
+<a href="rolesadmin.php"><img src="../imagenes/arrow_btn.png" border="0" style="margin-right:3px;" /></a></th>
+  <td style="vertical-align:middle; text-align:center;">En Esta Secci&oacute;n Podr&aacute;s Definir Un Nuevo Rol</td>
+</tr></table>
+
+<table class="userinfo">
+<tr>
+  <td>Agregando Nuevo Rol</td></tr>
+</table>
+
+<table width="700" align="center" cellpadding="0" cellspacing="0">
+<tr class="commonn">
+<th style="width:150px;">Nombre del rol: 
+  <input type="hidden" name="redirect" /></th>
+<td align="left" bgcolor="#bbbbbb">
+<input name="nombre" type="text" size="50" maxlength="70" id="nombre"></td>
+</tr>
+{AREAROWS}
+</table>
+
+<table class="bottmspacer">
+<tr><td></td></tr>
+</table>
+
+<table style="width:100%;" cellpadding="0" cellspacing="0" align="center">
+	  <tr>	  
+		  <td class="btnspacer" style="width:558px;"></td>
+		  <td class="rightbtn"><a href="javascript:validate(0);">Agregar </a></td>
+	  </tr>
+</table>
+
+</form>

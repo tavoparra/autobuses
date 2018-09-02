@@ -1,0 +1,98 @@
+<table class="toptable">
+	<tr>
+		<th>
+			<a href="javascript:history.back();"><img src="../imagenes/arrow_btn.png" border="0" style="margin-right:3px;" /></a>
+		</th>
+		<td style="vertical-align:middle; text-align:center;">
+			En Esta Secci&oacute;n Podr&aacute;s Editar el T&eacute;cnico Seleccionado
+		</td>
+	</tr>
+</table>
+
+<table class="userinfo">
+<tr>
+  <td>
+	Viendo Detalle del T&eacute;cnico
+	<a href="imprimir.php?tecnicoid={TECNICOID}" target="_blank"><img align="right" src="../imagenes/print.png" alt="Imprimir" class="printIcon"></a>
+  </td>
+</tr>
+</table>
+<form name="Form1" id="Form1" method="post" enctype="multipart/form-data" action="functions/worktecnicos.php?mode=edit">
+<table width="700" align="center" cellpadding="0" cellspacing="0">
+  <tr class="oddn">
+    <th style="width:150px;">N&uacute;mero de t&eacute;cnico:</th>
+    <td align="left" bgcolor="#bbbbbb"><input name="numeroshow" type="text" id="numeroshow" value="{TECNICOID}" size="10" disabled="disabled" style="text-align:right; font-weight:bolder"/>
+        <input name="tecnicoid" type="hidden" id="tecnicoid" value="{TECNICOID}" /></td>
+  </tr>
+  <tr class="commonn">
+    <th style="width:150px;">C&oacute;digo de t&eacute;cnico*:</th>
+    <td align="left" bgcolor="#bbbbbb">
+		<input name="tecnico_cod" type="text" id="tecnico_cod" value="{TECNICOCOD}" size="50" maxlength="64" onchange="toUpper(this); checar_codigo(this.value);" class="validate['required','~validCode']"/>
+		<input name="codigo_validado" id="codigo_validado" type="hidden" value="1" />
+		<input type="submit" id="submitBtn" style="display:none;" />
+		<div id="codigo_validate" style="display:inline"></div>
+	</td>
+  </tr>
+  <tr class="oddn">
+    <th style="width:150px;">Nombre*:
+      <input type="hidden" name="redirect" /></th>
+    <td align="left" bgcolor="#bbbbbb">
+		<input name="nombre" type="text" id="nombre" value="{NOMBRE}" size="50" maxlength="256" onchange="toUpper(this);" class="validate['required']"/>
+	</td>
+  </tr>
+  <tr class="commonn">
+    <th style="width:150px;">Apellido Paterno:</th>
+    <td align="left" bgcolor="#bbbbbb"><input name="apeido_pat" type="text" id="apeido_pat" value="{APEIDO_PAT}" size="50" maxlength="256" onchange="toUpper(this);" /></td>
+  </tr>
+  <tr class="oddn">
+    <th style="width:150px;">Apellido Materno: </th>
+    <td align="left" bgcolor="#bbbbbb"><input name="apeido_mat" type="text" id="apeido_mat" value="{APEIDO_MAT}" size="50" maxlength="256" onchange="toUpper(this);" /></td>
+  </tr>
+  <tr class="commonn">
+    <th style="width:150px;">Status:</th>
+    <td align="left" bgcolor="#bbbbbb"><label for="status"></label>
+        <select name="status" id="status">
+          <option value="1">Activo</option>
+          <option value="2"{BAJA}>Baja</option>
+      </select></td>
+  </tr>
+  <tr class="oddn">
+    <th style="width:150px;">Puesto:</th>
+    <td align="left" bgcolor="#bbbbbb"><input name="puesto" type="text" id="puesto" value="{PUESTO}" size="50" maxlength="128" onchange="toUpper(this);" /></td>
+  </tr>
+  <tr class="commonn">
+    <th style="width:150px;">Salario:</th>
+    <td align="left" bgcolor="#bbbbbb">$
+      <label for="salario"></label>
+        <input name="salario" type="text" id="salario" value="{SALARIO}" /></td>
+  </tr>
+  <tr class="oddn">
+    <th style="width:150px;">NSS:</th>
+    <td align="left" bgcolor="#bbbbbb"><label for="nss"></label>
+        <input name="nss" type="text" id="nss" value="{NSS}" /></td>
+  </tr>
+  <tr class="commonn">
+    <th style="width:150px;">RFC:</th>
+    <td align="left" bgcolor="#bbbbbb"><label for="rfc"></label>
+        <input name="rfc" type="text" id="rfc" value="{RFC}" onchange="toUpper(this);" class="validate['~validRFC']" /></td>
+  </tr>
+  <tr class="oddn">
+    <th style="width:150px;">CURP:</th>
+    <td align="left" bgcolor="#bbbbbb"><label for="curp" onchange="toUpper(this);"></label>
+        <input name="curp" type="text" id="curp" value="{CURP}" /></td>
+  </tr>
+  <tr class="commonn">
+    <th style="width:150px;">Log:</th>
+          <td align="left" bgcolor="#bbbbbb">{HISTORIAL}</td>
+        </tr>
+</table>
+<table style="width:100%;" cellpadding="0" cellspacing="0" align="center">
+	  <tr>
+		  <td class="leftbtn">{LINK_DELETE}</td>
+		  <td class="btnspacer" style="width:416px;"></td>
+		  <td class="rightbtn">{LINK_UPDATE}</td>
+	  </tr>
+</table>
+
+
+</form>

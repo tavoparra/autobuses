@@ -1,0 +1,91 @@
+<form name="Form1" id="Form1" method="post" enctype="multipart/form-data" action="functions/worktecnicos.php?mode={MODE}">
+<table class="toptable"><tr><th>
+<a href="javascript:history.back();"><img src="../imagenes/arrow_btn.png" border="0" style="margin-right:3px;" /></a></th>
+  <td style="vertical-align:middle; text-align:center;">En Esta Secci&oacute;n Podr&aacute;s Definir Un Nuevo T&eacute;cnico</td>
+</tr></table>
+
+<table class="userinfo">
+<tr>
+  <td>Agregando Nuevo T&eacute;cnico</td>
+</tr>
+</table>
+
+<table width="700" align="center" cellpadding="0" cellspacing="0">
+<!--<tr class="oddn">
+  <th style="width:150px;">N&uacute;mero de t&eacute;cnico:</th>
+  <td align="left" bgcolor="#bbbbbb"><input name="numeroshow" type="text" id="numeroshow" value="{NEWID}" size="10" disabled="disabled" style="text-align:right; font-weight:bolder"/>
+    <input name="numero" type="hidden" id="numero" value="{NEWID}" /></td>
+</tr>-->
+<tr class="commonn">
+  <th style="width:150px;">C&oacute;digo de t&eacute;cnico*:</th>
+  <td align="left" bgcolor="#bbbbbb"><label>
+    <input name="tecnico_cod" type="text" id="tecnico_cod" onchange="toUpper(this); checar_codigo(this.value);" value="{NEWCODE}" size="50" maxlength="64" class="validate['required','~validCode']"/>
+  </label>
+  <input name="codigo_validado" id="codigo_validado" type="hidden" value="1" />
+  <input type="submit" id="submitBtn" style="display:none;" />
+<div id="codigo_validate" style="display:inline"></div></td>
+</tr>
+<tr class="oddn">
+<th style="width:150px;">Nombre*: 
+  <input type="hidden" name="redirect" />
+  <span style="display:inline">
+  <input name="numeroshow" type="hidden" id="numeroshow" value="0" />
+  </span></th>
+<td align="left" bgcolor="#bbbbbb">
+<input name="nombre" type="text" size="50" maxlength="256" id="nombre" onchange="toUpper(this);" class="validate['required']"></td>
+</tr>
+<tr class="commonn">
+  <th style="width:150px;">Apellido Paterno:</th>
+  <td align="left" bgcolor="#bbbbbb"><input name="apeido_pat" type="text" size="50" maxlength="256" id="apeido_pat" onchange="toUpper(this);"/></td>
+</tr>
+<tr class="oddn">
+  <th style="width:150px;">Apellido Materno: </th>
+  <td align="left" bgcolor="#bbbbbb"><input name="apeido_mat" type="text" size="50" maxlength="256" id="apeido_mat" onchange="toUpper(this);"/></td>
+</tr>
+<tr class="commonn">
+  <th style="width:150px;">Status:</th>
+  <td align="left" bgcolor="#bbbbbb"><label for="status"></label>
+    <select name="status" id="status">
+      <option value="1">Activo</option>
+      <option value="2">Baja</option>
+    </select></td>
+</tr>
+<tr class="oddn">
+  <th style="width:150px;">Puesto:</th>
+  <td align="left" bgcolor="#bbbbbb"><input name="puesto" type="text" id="puesto" size="50" maxlength="128" onchange="toUpper(this);"/></td>
+</tr>
+<tr class="commonn">
+  <th style="width:150px;">Salario:</th>
+  <td align="left" bgcolor="#bbbbbb">$
+    <label for="salario"></label>
+    <input type="text" name="salario" id="salario" /></td>
+</tr>
+<tr class="oddn">
+  <th style="width:150px;">NSS:</th>
+  <td align="left" bgcolor="#bbbbbb"><label for="nss"></label>
+    <input type="text" name="nss" id="nss" /></td>
+</tr>
+<tr class="commonn">
+  <th style="width:150px;">RFC:</th>
+  <td align="left" bgcolor="#bbbbbb"><label for="rfc"></label>
+    <input type="text" name="rfc" id="rfc" onchange="toUpper(this);" class="validate['~validRFC']" /></td>
+</tr>
+<tr class="oddn">
+  <th style="width:150px;">CURP:</th>
+  <td align="left" bgcolor="#bbbbbb"><label for="curp"></label>
+    <input type="text" name="curp" id="curp" onchange="toUpper(this);" /></td>
+</tr>
+</table>
+
+<table class="bottmspacer">
+<tr><td></td></tr>
+</table>
+
+<table style="width:100%;" cellpadding="0" cellspacing="0" align="center">
+	<tr>	  
+	  <td class="btnspacer" style="width:558px;"></td>
+	  <td class="rightbtn"><a href="javascript:validate(0);">Agregar </a></td>
+	</tr>
+</table>
+
+</form>

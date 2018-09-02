@@ -1,0 +1,307 @@
+<script type="text/javascript">
+	jQuery(function(){update_total()});
+</script>
+<form name="Form1" id="Form1" method="post" enctype="multipart/form-data" action="functions/workorders.php?mode={MODE}">
+<table class="toptable"><tr><th>
+<a href="javascript:history.back();"><img src="../imagenes/arrow_btn.png" border="0" style="margin-right:3px;" /></a></th>
+  <td style="vertical-align:middle; text-align:center;">En Esta Secci&oacute;n Podr&aacute;s Editar la Orden Seleccionada</td>
+</tr></table>
+
+<table class="userinfo">
+<tr>
+  <td>Viendo Detalle de la Orden</td></tr>
+</table>
+<table width="800" align="center" cellpadding="0" cellspacing="0">
+  <tr class="commonn">
+    <th style="width:150px;"># de orden:
+      <input type="hidden" name="redirect" id="redirect" /></th>
+    <td align="left" bgcolor="#bbbbbb"><input name="numeroshow" type="text" id="numeroshow" value="{ORDENID}" size="10" disabled="disabled" style="text-align:right; font-weight:bolder"/>
+      <input name="numero" type="hidden" id="numero" value="{ORDENID}" /></td>
+  </tr>
+  <tr class="oddn">
+    <th>Folio de la orden*: </th>
+	<td>
+		<input type="text" name="folio" id="folio" value="{FOLIO}" onChange="javascript:checar_folio(this.value);" class="validate['required','~validFolio']"/>
+		<input name="folio_validado" id="folio_validado" type="hidden" value="1" />
+		<input type="submit" id="submitBtn" style="display:none;" />
+		<div id="folio_validate" style="display:inline">
+			
+		</div>
+    </td>
+  </tr>
+  <tr class="commonn">
+    <th># de factura:</th>
+    <td><input name="factura_num" type="text" id="factura_num" value="{FACTURA_NUM}" /></td>
+  </tr>
+  <tr class="oddn">
+    <th>Cliente: </th>
+    <td bgcolor="#bbbbbb"><input name="cliente_name" type="text" id="cliente_name" value="{CLIENTENOMBRE}" size="25" readonly />
+      <input name="clienteid" type="hidden" id="clienteid" value="{CLIENTEID}" />
+      <a href="search.php?search=cliente" target="_blank"  onclick="window.open(this.href, this.target, 'width=600,height=400'); return false;">Buscar cliente</a></td>
+  </tr>
+  <!--<tr class="commonn">
+    <th>Taller: </th>
+    <td class="txt"><div id="talleres_div">
+      <input name="taller_name" type="text" disabled="disabled" id="taller_name" value="{TALLERNOMBRE}" size="25"/>
+      <input name="tallerid" type="hidden" id="tallerid" value="{TALLERID}" />
+      <a href="search.php?search=taller" target="_blank"  onclick="window.open(this.href + '&amp;clienteid=' + document.getElementById('clienteid').value, this.target, 'width=600,height=400'); return false;">Buscar taller</a></div></td>
+  </tr>-->
+  <tr class="commonn">
+    <th>Unidad*:</th>
+    <td class="txt"><div id="unidades_div">
+      <input name="unidad_name" type="text" id="unidad_name" value="{UNIDADNOMBRE}" size="25" class="validate['required']" readonly />
+      <input name="unidadid" type="hidden" id="unidadid" value="{UNIDADID}" />
+      <a href="search.php?search=unidad" target="_blank"  onclick="window.open(this.href + '&amp;clienteid=' + document.getElementById('clienteid').value, this.target, 'width=600,height=400'); return false;">Buscar unidad</a></div></td>
+  </tr>
+  <tr class="oddn">
+    <th>Fecha de entrada: </th>
+    <td class="txt"><input name="date1" id="date1" type="text" value="{FECHAORDEN}" placeholder="DD-MM-AAAA" /><a href="#" name="anchor1" title="Abrir calendario" class="Estilo2" id="anchor1" onclick="return showCalendar('date1', '%d-%m-%Y');"><img src="../imagenes/calendario.gif" width="19" height="16" border="0"/></a></td>
+  </tr>
+  <tr class="commonn">
+    <th>Hora de entrada: </th>
+    <td class="txt"><label>
+      <select name="horas" id="horas">
+        {HORASORDEN}
+  
+      </select>
+    </label>
+      :
+      <label>
+        <select name="minutos" id="minutos">
+          {MINUTOSORDEN}
+
+        </select>
+      </label></td>
+  </tr>
+  <tr class="oddn">
+<th>Fecha de salida: </th>
+<td class="txt"><input name="date2" id="date2" type="text" value="{FECHAORDEN2}" placeholder="DD-MM-AAAA" /><a href="#" name="anchor2" title="Abrir calendario" class="Estilo2" id="anchor2" onclick="return showCalendar('date2', '%d-%m-%Y');"><img src="../imagenes/calendario.gif" width="19" height="16" border="0"/></a></td>
+ </tr>
+ 
+ <tr class="commonn">
+<th>Hora de salida: </th>
+<td class="txt">
+  <label>
+    <select name="horas_2" id="horas_2">
+      {HORASORDEN2}
+  </select>
+</label>
+:
+<label>
+<select name="minutos_2" id="minutos_2">{MINUTOSORDEN2}
+</select>
+</label></td>
+ </tr>
+  <tr class="oddn">
+    <th>Operador:</th>
+    <td align="left" bgcolor="#bbbbbb"><label>
+      <input type="text" name="operador" id="operador" value="{OPERADOR}"/>
+    </label></td>
+  </tr>
+   <tr class="commonn">
+   <th>Kilometraje:</th>
+   <td align="left" bgcolor="#bbbbbb"><label for="kilometraje"></label>
+     <input name="kilometraje" type="text" id="kilometraje" onkeypress="return IsNumber(event);" value="{KILOMETRAJE}"/></td>
+ </tr>
+  <tr class="oddn">
+    <th>Reporta: </th>
+    <td align="left" bgcolor="#bbbbbb"><label>
+      <textarea name="reporta" id="reporta" cols="45" rows="5">{REPORTA}</textarea>
+    </label></td>
+  </tr>
+  <tr class="commonn">
+    <th>Tiempo estimado: </th>
+    <td align="left"><input name="dias_estimado" type="text" id="dias_estimado" style="text-align:right;" onkeypress="return IsNumber(event);" value="{DIAS_ESTIMADO}" size="3" />
+d&iacute;as con
+<select name="horas2" id="horas2">
+      
+    {HORASEST}
+    
+    </select>
+      :
+      <select name="minutos2" id="minutos2">
+        
+{MINUTOSEST}
+
+      </select></td>
+  </tr>
+  <tr class="oddn">
+    <th>Tiempo real:</th>
+    <td align="left"><label>
+      <input name="dias_real" type="text" id="dias_real" style="text-align:right;" onkeypress="return IsNumber(event);" value="{DIAS_REAL}" size="3" />
+d&iacute;as con
+<select name="horas3" id="horas3">
+        
+    {HORASREAL}
+    
+      </select>
+    </label>
+      :
+      <label>
+        <select name="minutos3" id="minutos3">
+          
+{MINUTOSREAL}
+
+        </select>
+      </label></td>
+  </tr>
+  <tr class="commonn">
+    <th>T&eacute;cnicos:</th>
+    <td align="left"><select name="tecnicoid" id="tecnicoid">
+      
+      {TECNICOS}  
+  
+    </select>
+      <input type="button" name="agregar_tec" id="agregar_tec" value="Agregar" onclick="agregar_tecnico();"/>
+      <br/>
+      <div id="tecnicos_div" align="center" style="text-align:center;">{TECNICOSCODE}</div></td>
+  </tr>
+  <tr class="oddn">
+    <th>Tipo de mantenimiento:</th>
+    <td align="left"><select name="mantenimientoid" id="mantenimientoid">
+      
+      {MANTENIMIENTOS}  
+  
+    </select></td>
+  </tr>
+  <tr class="commonn">
+	<th>Fecha pr&oacute;ximo mantenimiento:</th>
+	<td class="txt"><input name="fecha_prox" id="fecha_prox" type="text" value="{FECHA_PROX}" placeholder="DD-MM-AAAA" /><a href="#" title="Abrir calendario" class="Estilo2" id="anchor3" onclick="return showCalendar('fecha_prox', '%d-%m-%Y');"><img src="../imagenes/calendario.gif" border="0"/></a></td>
+  </tr>
+  <tr class="oddn">
+	<th>Pr&oacute;ximo tipo mantenimiento:</th>
+	<td>
+		<select name="tipo_prox" id="tipo_prox">
+		  {PROX_MANTENIMIENTOS}  
+		</select>
+	</td>
+  </tr>
+  <tr class="commonn">
+    <th>Tipo de cambio:</th>
+    <td align="left"><input name="tipo_cambio" type="text" id="tipo_cambio" value="{TIPO_CAMBIO}" onkeypress="return IsNumber(event);" /></td>
+  </tr>
+  <tr class="oddn">
+    <th rowspan="2">Refacciones:</th>
+    <td align="left">
+		Cantidad:
+		  <label for="cantidad_art"></label>
+		  <input name="cantidad_art" type="text" id="cantidad_art" size="2" style="text-align:right;" onkeypress="return IsNumber(event);" class="campoProductos"/>
+		&nbsp;
+		<input name="articulo_name" type="text" id="articulo_name" placeholder="Escriba la clave..." class="campoProductos"/>    
+		$&nbsp;<input name="precio" type="text" id="precio" placeholder="0.00" size="5" style="text-align:right;" class="campoProductos"/>
+		<a href="search.php?search=article" target="_blank"  onClick="window.open(this.href, this.target, 'width=600,height=400'); return false;">Buscar producto</a>
+		<input type="button" name="agregar" id="agregar" value="Agregar" />
+		<div id="erroresDiv"></div>
+    </td>
+	</tr><tr>
+	<td id="refaccionesTd">
+		<div id="refacciones_table" style="display: {REFDISPLAY};">
+		<table id="items">
+		  <tr>
+			<th>Cantidad</th>
+			<th>Refacci&oacute;n</th>
+			<th>C&oacute;digo</th>
+			<th>Precio</th>
+			<th>Descuento<input type="hidden" value="0" id="discount" name="discount"/></th>
+			<th>Importe</th>
+		  </tr>
+		  {ARTICULOSCODE}
+		  <tr id="trMano">
+		      <td class="blank" colspan="3"> </td>
+		      <td class="total-line" colspan="2">Total mano de obra:</td>
+		      <td class="total-value"><div id="total-mano"></div></td>
+		  </tr>
+		  <tr>
+		      <td class="blank" colspan="3"> </td>
+		      <td class="total-line" colspan="2">Total refacciones:</td>
+		      <td class="total-value"><div id="total-refacciones"></div></td>
+		  </tr>
+		  <tr>
+		      <td class="blank" colspan="3"> </td>
+		      <td class="total-line" colspan="2">Tasa de impuesto:</td>
+		      <td class="total-value"><div id="tasa-impuesto">16%</div></td>
+		  </tr>
+		  <tr>
+		      <td class="blank" colspan="3"> </td>
+		      <td class="total-line" colspan="2">Subtotal:</td>
+		      <td class="total-value"><div id="subtotal"></div></td>
+		  </tr>
+		  <tr>
+		      <td class="blank" colspan="3"> </td>
+		      <td class="total-line" colspan="2">Impuesto:</td>
+		      <td class="total-value"><div id="impuesto"></div></td>
+		  </tr>
+		  <tr>
+		      <td class="blank" colspan="3"> </td>
+		      <td class="total-line balance" colspan="2">Total:</td>
+		      <td class="total-value balance"><div class="total" id="total"></div></td>
+		  </tr>
+		</table>
+	  </div>
+	  <div id="noRefaccion" style="display: {NOREFDISPLAY};">
+		No se han agregado refacciones
+	  </div>
+	</td>
+  </tr>
+  <!--<tr class="commonn">
+    <th>Observaciones:</th>
+    <td align="left"><label>
+      <textarea name="observaciones" id="observaciones" cols="45" rows="5">{OBSERVACIONES}</textarea>
+    </label></td>
+  </tr>
+  <tr class="oddn">
+    <th>Indicaciones adicionales:</th>
+    <td align="left"><textarea name="indicaciones" id="indicaciones" cols="45" rows="5">{INDICACIONES}</textarea></td>
+  </tr>-->
+  <tr class="commonn">
+    <th>Trabajos realizados y observaciones:</th>
+    <td align="left"><label>
+      <textarea name="trabajos" id="trabajos" cols="45" rows="5">{TRABAJOS}</textarea>
+    </label></td>
+  </tr>
+  <tr class="oddn">
+  <th>Horas totales:</th>
+  <td align="left"><label for="horas_equipo_motor"></label>
+    <input name="horas_equipo_motor" type="text" id="horas_equipo_motor" value="{HORAS_EQUIPO_MOTOR}" /></td>
+</tr>
+<tr class="commonn">
+  <th>Horas de equipo Diesel:</th>
+  <td align="left"><input name="horas_equipo_diesel" type="text" id="horas_equipo_diesel" value="{HORAS_EQUIPO_DIESEL}" /></td>
+</tr>
+<tr class="oddn">
+  <th>Horas stand by:</th>
+  <td align="left"><input name="horas_stand_by" type="text" id="horas_stand_by" value="{HORAS_STAND_BY}" /></td>
+</tr>
+<tr class="commonn">
+  <th>Lugar de servicio:</th>
+  <td align="left">{DROPTALLERES}</td>
+</tr>
+<tr class="oddn">
+  <th>Forma de pago:</th>
+  <td align="left"><select name="forma_pago" id="forma_pago" onchange="javascript:cambiar_pago(this.value);">
+    	{FORMAS_PAGO}
+    </select>
+    <span id="dias_credito" style="display:{DISPLAY}"> a <select name="diascredito">
+    	{DIAS}
+    </select> d&iacute;as</span>
+  </td>
+</tr>
+<tr class="commonn">
+  <th style="width:150px;">Log:</th>
+          <td align="left" bgcolor="#bbbbbb">{HISTORIAL}</td>
+        </tr>
+</table>
+<table class="bottmspacer">
+<tr><td></td></tr>
+</table>
+
+<table style="width:100%;" cellpadding="0" cellspacing="0" align="center">
+	  <tr>
+		  <td class="leftbtn">{LINK_DELETE}</td>
+		  <td class="btnspacer" style="width:516px;"></td>
+		  <td class="rightbtn">{LINK_UPDATE}</td>
+	  </tr>
+</table>
+
+
+</form>

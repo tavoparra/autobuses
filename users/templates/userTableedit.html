@@ -1,0 +1,66 @@
+<table width="450" height="28" align="center" cellpadding="0" cellspacing="0" >
+<tr><td>
+
+<table class="toptable" ><tr><th>
+<a href="{BACKPAGE}"><img src="../imagenes/arrow_btn.png" border="0" style="margin-right:3px;" /></a></th>
+  <td style="vertical-align:middle; text-align:center;">
+  En Esta Secci&oacute;n Podr&aacute;s Modificar los Datos del Usuario Seleccionado</td>
+</tr></table>
+
+</td></tr>
+<tr><td>
+
+<table class="userinfo">
+<tr><td>Editando Usuario</td></tr>
+</table>
+
+<tr><td>
+<form method="post" name="Form1" id="Form1" action="functions/workuser.php">
+<table style="width:100%;" cellspacing="0">
+<tr class="common">
+<th>Clave:</th>
+<td align="center" colspan="2">
+<input name="clave" type="text" id="clave" value="{JOB}" size="35" class="validate['alphanum']"></td>
+</tr>
+<tr class="odd">
+<th style="width:150px;">Nombre*:</th>
+<td align="center" colspan="2">
+<input name="firstname" type="text" id="firstname" value="{USERNAME}" size="35" class="validate['required']" /></td>
+</tr>
+<tr class="common">
+<th>Apellido:</th>
+<td align="center" colspan="2">
+<input type="text" size="35" name="lastname" value="{LASTNAME}"></td>
+</tr>
+<tr class="odd">
+<th>Login*:</th>
+<td align="center" colspan="2">
+<input type="text" size="35" name="login" value="{LOGIN}" class="validate['required']" /></td>
+</tr>
+<tr class="common">
+<th>Password*:</th>
+<td align="center" colspan="2">
+<input type="text" size="35" name="password" value="{PASSWORD}" class="validate['required']" />
+<input type="submit" id="submitBtn" style="display: none;">
+<input type="hidden" name="redirect" />
+<input type="hidden" name="userid" value="{USERID}" /></td>
+</tr>
+<tr class="odd">
+<th>Perfil de Usuario:</th>
+<td align="center" colspan="2">
+{PROFILE}</td>
+</tr>
+</table>
+</form>
+<table class="bottmspacer">
+<tr><td></td></tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" align="center">
+	  <tr>	  
+		<td class="btnspacer" style="width:308px;"></td>
+		<td class="rightbtn"><a href="javascript:validate(3)">Actualizar </a></td>
+	  </tr>
+</table>
+
+</td></tr></table>

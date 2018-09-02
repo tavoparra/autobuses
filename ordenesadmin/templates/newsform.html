@@ -1,0 +1,76 @@
+<script language="Javascript"> function PopupPic(sPicURL) { window.open( "popup.htm?"+sPicURL, "",   "resizable=1,HEIGHT=200,WIDTH=200"); } </script>
+<SCRIPT LANGUAGE="JavaScript" SRC="../config/calendario/CalendarPopup.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="../config/calendario/AnchorPosition.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="../config/calendario/PopupWindow.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="../config/calendario/date.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" ID="js1"> var cal1 = new CalendarPopup(); </SCRIPT>
+<form name="form1" method="post" enctype="multipart/form-data" action="functions/worknews.php?mode={MODE}">
+	<table class="toptable">
+		<tr>
+			<th>
+				<a href="newsadmin.php">
+					<img src="../imagenes/arrow_btn.png" border="0" style="margin-right:3px;" /></a>
+			</th>
+			<td style="vertical-align:middle; text-align:center;">En Esta Secci&oacute;n Podr&aacute;s Editar la Noticia Seleccionada</td>
+		</tr>
+	</table>
+	<table class="userinfo">
+		<tr><td>Viendo Detalle de la Noticia</td>
+		</tr>
+	</table>
+	<table width="700" align="center" cellpadding="0" cellspacing="0">
+		<tr class="commonn">
+			<th>Título: 
+			</th>
+			<td align="left" bgcolor="#bbbbbb">
+				<input name="title" value="{TITLE}" type="text" size="45" maxlenght="40"></td>
+		</tr>
+		<tr class="oddn">
+			<th>Resumen: 
+			</th><td>
+<textarea name="resumen" cols="65" rows="6"  maxlenght="150">{PREVIS}</textarea></td>
+		</tr>
+		<tr class="commonn">
+			<th>Noticia: 
+			</th>
+			<td bgcolor="#bbbbbb">
+<textarea name="noticia" cols="65" rows="10">{CONTENT}</textarea></td>
+		</tr>
+		<tr class="oddn">
+			<th>Imagen 1: 
+			</th>
+			<td class="txt">
+				<input name="userfile1" type="file" class="Estilo1" id="userfile1">
+				<input type="hidden" name="MAX_FILE_SIZE" value="100000">
+				<input name="imgActual1" type="hidden" id="imgActual1" value="{ACTIMG}">{IMGSTATE}<br /> Resolución Sugerida: 400 x 300 Pixeles</td>
+		</tr>
+		<tr class="commonn">
+			<th>Vigencia: 
+			</th>
+			<td align="left" bgcolor="#bbbbbb">
+				<input name="date1" value="{VIGENCIA}" type="text" size="30" maxlenght="25">
+				<input name="newsid" value="{NEWSID}" type="hidden" />
+				<input type="hidden" name="redirect" />
+				<A HREF="#" NAME="anchor1" TITLE="Abrir calendario" class="Estilo2" ID="anchor1" onClick="cal1.select(document.forms[0].date1,'anchor1','yyyy/MM/dd'); return false;">
+					<img src="../imagenes/calendario.gif" width="19" height="16" border="0"></a></td>
+		</tr>
+		<tr class="oddn">
+			<th>Fecha de Ingreso: 
+			</th><td>{SIGNDATE}
+				</div></td>
+		</tr>
+	</table>
+	<table class="bottmspacer">
+		<tr><td></td>
+		</tr>
+	</table>
+	<table style="width:100%;" cellpadding="0" cellspacing="0" align="center">
+		<tr>
+			<td class="leftbtn">
+				<a href="javascript:validate(1);">Actualizar </a></td>
+			<td class="btnspacer"></td>
+			<td class="rightbtn">
+				<a href="javascript:MsgOkCanceldrop('¿Está Seguro de que Desea Eliminar Esta Noticia?  ', 2 );">Eliminar </a></td>
+		</tr>
+	</table>
+</form>

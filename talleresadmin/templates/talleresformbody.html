@@ -1,0 +1,40 @@
+<script type="text/javascript" src="validation.js"></script>
+<script type="text/javascript">	
+//Llamamos a la libreria FormCheck para validar los campos obligatorios
+window.addEvent('domready', function(){
+	new FormCheck('Form1');
+});
+</script> 
+<table width="959" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td width="150" style="color:#E1E1E1; font-size:14px; font-weight:bold; font-family:Verdana, Arial, Helvetica, sans-serif; padding-left:10px;" bgcolor="#444444">Panel de Control</td>
+		<td bgcolor="#444444" width="600" background="{DIR}imagenes/images/dock-bg2.gif">{MENU} </td>
+		<td width="150" style="color:#E1E1E1; font-size:14px; font-weight:bold; font-family:Verdana, Arial, Helvetica, sans-serif;" bgcolor="#444444">Secci&oacute;n Talleres</td>
+	</tr>
+	<tr>
+		<td bgcolor="{LIGHTCOLOR}" height="6" colspan="3"></td>
+	</tr>
+</table>
+<!-- Aqui se termina el menu y la linea -->
+<table width="957" align="center" class="blurbackg">
+	<tr height="70"><td></td>
+	</tr>
+	<tr>
+		<td> 
+			<!-- Aqui debe ir el contenido principal -->
+			<table width="450" height="28" align="center" cellpadding="0" cellspacing="0" >
+				
+				<tr>
+					<td>
+					{CONTENT} <br /><br /><br />
+					</td>
+				</tr>
+				
+				<tr height="40"><td>&nbsp;</td>
+				</tr>
+				
+			</table><br />
+		</td>
+	</tr>
+</table>
+			<!-- Aqui se termina el contenido principal -->

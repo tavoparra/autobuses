@@ -1,0 +1,4 @@
+SELECT `code`,  `name`, `desc`, IFNULL(m.medida,"") AS medida, weight, price, price2, price3, price4, price5, costo,
+IF(dollars = 1, "DOLARES", "PESOS"), equivale
+FROM ca_articles a
+LEFT JOIN ca_medidas m ON a.medida_id = m.medida_id

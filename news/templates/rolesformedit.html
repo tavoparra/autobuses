@@ -1,0 +1,87 @@
+<script language="javascript">
+
+function MsgOkCanceldrop( msg, redirect )
+{
+	if ( confirm( msg ) )
+	{
+		document.forms.Form1.redirect.value = redirect;
+		document.forms.Form1.submit();
+	}
+}
+
+var clBackgNormal = 'White';
+var clForegNormal = 'Black';
+var clBackgHigh   = '#FFF1A8';
+var clForegHigh   = 'Black';
+
+function Trim( str ) 
+{
+	var resultStr = str;
+	resultStr = resultStr.replace( /^\s*|\s*$/g, "" ); 	
+	return resultStr;
+}
+
+function ismaxlength(obj){
+	var mlength=obj.getAttribute? parseInt(obj.getAttribute("maxlength")) : ""
+	if (obj.getAttribute && obj.value.length>mlength)
+		obj.value=obj.value.substring(0,mlength)
+}
+
+function validate(val)
+{
+	document.forms.Form1.nombre.style.background = clBackgNormal;
+	document.forms.Form1.nombre.style.color = clForegNormal;   
+	   	   
+	if( Trim( document.forms.Form1.nombre.value ) == "" )
+	{
+		document.forms.Form1.nombre.style.background = clBackgHigh;
+		document.forms.Form1.nombre.style.color = clForegHigh;   
+		alert('Debes Agregar el Nombre del Rol');
+	}
+	else 
+	{
+		document.forms.Form1.redirect.value = val;
+		document.forms.Form1.submit( val ); 
+	}
+}	
+
+</script>
+
+<form name="Form1" method="post" enctype="multipart/form-data" action="functions/workroles.php?mode=edit">
+<table class="toptable"><tr><th>
+<a href="javascript:history.back();"><img src="../imagenes/arrow_btn.png" border="0" style="margin-right:3px;" /></a></th>
+  <td style="vertical-align:middle; text-align:center;">En Esta Secci&oacute;n Podr&aacute;s Editar el Rol Seleccionado</td>
+</tr></table>
+
+<table class="userinfo">
+<tr>
+  <td>Viendo Detalle del Rol</td></tr>
+</table>
+<table width="700" align="center" cellpadding="0" cellspacing="0">
+  <tr class="commonn">
+    <th style="width:150px;"><input name="rolid" type="hidden" id="rolid" value="{ROLID}" />
+      Nombre del rol:
+      <input type="hidden" name="redirect" /></th>
+    <td align="left" bgcolor="#bbbbbb"><input name="nombre" type="text" id="nombre" value="{ROLNAME}" size="50" maxlength="70" /></td>
+  </tr>
+  {AREAROWS}
+  <!--<tr class="oddn">
+<th>Archivo: </th>
+<td bgcolor="#bbbbbb"><input name="archivopdf" type="file" class="Estilo1" id="archivopdf"><input type="hidden" name="MAX_FILE_SIZE" value="100000"><br />
+Archivos PDF menos de 4MB </td>
+</tr>-->
+</table>
+<table class="bottmspacer">
+  <tr><td></td></tr>
+</table>
+
+<table style="width:100%;" cellpadding="0" cellspacing="0" align="center">
+	  <tr>
+		  <td class="leftbtn"><a href="javascript:MsgOkCanceldrop('¿Está Seguro de que Desea Eliminar Este Rol?  ', 2 );">Eliminar </a></td>
+		  <td class="btnspacer" style="width:416px;"></td>
+		  <td class="rightbtn"><a href="javascript:validate(1);">Actualizar</a></td>
+	  </tr>
+</table>
+
+
+</form>

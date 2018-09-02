@@ -1,0 +1,227 @@
+<script language="javascript">
+
+var clBackgNormal = 'White';
+var clForegNormal = 'Black';
+var clBackgHigh   = '#FFF1A8';
+var clForegHigh   = 'Black';
+
+function Trim( str ) 
+{
+	var resultStr = str;
+	resultStr = resultStr.replace( /^\s*|\s*$/g, "" ); 	
+	return resultStr;
+}
+
+
+function validate(val)
+{
+	document.forms.Form1.nombre.style.background = clBackgNormal;
+	document.forms.Form1.nombre.style.color = clForegNormal;
+	document.forms.Form1.cliente_cod.style.background = clBackgNormal;
+	document.forms.Form1.cliente_cod.style.color = clForegNormal;   
+  
+	   	   
+	if( Trim( document.forms.Form1.cliente_cod.value ) == "" )
+	{
+		document.forms.Form1.cliente_cod.style.background = clBackgHigh;
+		document.forms.Form1.cliente_cod.style.color = clForegHigh;   
+		alert('Debes Agregar el Código del Cliente');
+	}
+	else if( Trim( document.forms.Form1.nombre.value ) == "" )
+	{
+		document.forms.Form1.nombre.style.background = clBackgHigh;
+		document.forms.Form1.nombre.style.color = clForegHigh;   
+		alert('Debes Agregar el Nombre del Cliente');
+	}else
+	{
+		document.forms.Form1.redirect.value = val;
+		document.forms.Form1.submit( val ); 
+	}
+}	
+
+function Mostrar()
+   {	   	
+		var nombre;
+		nombre = document.getElementById("nombre_contacto").value;
+		var email;
+		email = document.getElementById("contacto_email").value;
+		var telefono;
+		telefono = document.getElementById("contacto_tel").value;
+		var extension;
+		extension = document.getElementById("extension").value;
+		var contenedor;
+		contenedor = document.getElementById('contactos_table');
+		ajax = nuevoAjax();
+		ajax.open( "GET", "mostrartabla.php?nombre=" + nombre + "&email=" + email + "&telefono=" + telefono + "&extension=" + extension, true );
+		ajax.onreadystatechange = function() 
+		{	
+			if ( ajax.readyState == 4 ) 
+			{
+				contenedor.innerHTML = ajax.responseText
+			}
+			else
+			{
+				contenedor.innerHTML = "Cargando ...";			
+			}
+		}
+		ajax.send( null); 
+	}
+</script>
+
+
+
+<form name="Form1" method="post" enctype="multipart/form-data" action="functions/workclientes.php?mode={MODE}">
+<table class="toptable"><tr><th>
+<a href="rolesadmin.php"><img src="../imagenes/arrow_btn.png" border="0" style="margin-right:3px;" /></a></th>
+  <td style="vertical-align:middle; text-align:center;">En Esta Secci&oacute;n Podr&aacute;s Definir Un Nuevo Cliente</td>
+</tr></table>
+
+<table class="userinfo">
+<tr>
+  <td>Agregando Nuevo Cliente</td>
+</tr>
+</table>
+
+<table width="700" align="center" cellpadding="0" cellspacing="0">
+<tr class="oddn">
+  <th style="width:150px;">N&uacute;mero de cliente:</th>
+  <td align="left" bgcolor="#bbbbbb"><input name="numeroshow" type="text" id="numeroshow" value="{NEWID}" size="10" disabled="disabled" style="text-align:right; font-weight:bolder"/>
+    <input name="numero" type="hidden" id="numero" value="{NEWID}" /></td>
+</tr>
+<tr class="commonn">
+  <th style="width:150px;">C&oacute;digo de cliente:</th>
+  <td align="left" bgcolor="#bbbbbb"><label>
+    <input name="cliente_cod" type="text" size="50" maxlength="64" id="cliente_cod" />
+  </label></td>
+</tr>
+<tr class="oddn">
+<th style="width:150px;">Nombre: 
+  <input type="hidden" name="redirect" /></th>
+<td align="left" bgcolor="#bbbbbb">
+<input name="nombre" type="text" size="50" maxlength="256" id="nombre"></td>
+</tr>
+<tr class="commonn">
+  <th style="width:150px;">Direcci&oacute;n:</th>
+  <td align="left" bgcolor="#bbbbbb">
+    <table width="100%" border="0">
+      <tr>
+        <td colspan="2"><div align="center">Calle principal:
+          <input name="calle" type="text" size="50" maxlength="70" id="calle" />
+          <br/>
+        </div></td>
+      </tr>
+      <tr>
+        <td colspan="2"><div align="center">N&uacute;m. Ext.:
+          <input name="num_ext" type="text" id="num_ext" size="10" maxlength="8" />
+          N&uacute;m. Int.:
+          <input name="num_int" type="text" id="num_int" size="10" maxlength="8" />
+Colonia: 
+<label>
+<input name="colonia" type="text" id="colonia" maxlength="54" />
+</label>
+        </div>          </td>
+      </tr>
+      <tr>
+        <td colspan="2"><div align="center">C.P.
+            <input name="cod_postal" type="text" id="cod_postal" size="10" maxlength="5" />
+Delegaci&oacute;n o municipio: 
+          <input name="municipio" type="text" id="municipio" />
+        </div></td>
+      </tr>
+      <tr>
+        <td><div align="center">Estado: 
+          <label>
+          <select name="estadoid" id="estadoid" onChange='javascript:cargarciudades(this.value);'>
+            	{ESTADOS}
+          </select>
+          </label>
+        </div></td>
+        <td><div id="ciudad_combo" align="center">Ciudad: 
+          <select name="ciudadid" id="ciudadid">
+          	{CIUDADES}
+          </select>
+        </div></td>
+      </tr>
+    </table>    </td>
+</tr>
+<tr class="oddn">
+  <th style="width:150px;">RFC: </th>
+  <td align="left" bgcolor="#bbbbbb"><label>
+    <input name="rfc" type="text" id="rfc" maxlength="13" />
+  </label></td>
+</tr>
+<tr class="commonn">
+  <th style="width:150px;">Tel&eacute;fono:</th>
+  <td align="left" bgcolor="#bbbbbb"><input name="telefono" type="text" id="telefono" size="50" maxlength="64" /></td>
+</tr>
+<tr class="oddn">
+  <th style="width:150px;">Sitio web:</th>
+  <td align="left" bgcolor="#bbbbbb"><input name="url" type="text" id="url" size="50" maxlength="128" /></td>
+</tr>
+<tr class="commonn">
+  <th style="width:150px;">N&uacute;mero de contrato:</th>
+  <td align="left" bgcolor="#bbbbbb"><input name="contrato" type="text" id="contrato" size="50" maxlength="54" /></td>
+</tr>
+<tr class="oddn">
+  <th style="width:150px;">Logotipo:</th>
+  <td align="left" bgcolor="#bbbbbb"><label>
+    <input type="file" name="logotipo" id="logotipo" />
+  </label></td>
+</tr>
+<tr class="commonn">
+  <th style="width:150px;">Contactos:</th>
+  <td align="left" bgcolor="#bbbbbb"><table width="100%" border="0">
+    <tr>
+      <td colspan="2">Nombre: 
+        <label>
+        <input name="nombre_contacto" type="text" id="nombre_contacto" size="35" />
+        </label></td>
+      <td>E-mail:
+        <label>
+        <input type="text" name="contacto_email" id="contacto_email" />
+        </label></td>
+    </tr>
+    <tr>
+      <td>Tel&eacute;fono: 
+        <label>
+        <input type="text" name="contacto_tel" id="contacto_tel" />
+        </label></td>
+      <td>Ext: 
+        <label>
+        <input name="extension" type="text" id="extension" size="5" maxlength="5" />
+        </label></td>
+      <td><div align="center">
+        <label>
+        <input type="button" onclick="Mostrar();" name="addcontact" id="addcontact" value="A&ntilde;adir contacto" />
+        </label>
+      </div></td>
+    </tr>
+  </table>
+  <div id="contactos_table">
+    <table width="100%" border="1">
+      <tr>
+        <td><div align="center"><strong>Nombre</strong></div></td>
+        <td><div align="center"><strong>Tel&eacute;fono</strong></div></td>
+        <td><div align="center"><strong>E-mail</strong></div></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="4"><div align="center">No existen contactos actualmente</div></td>
+      </tr>
+    </table>
+  </div>  </td>
+</tr>
+</table>
+
+<table class="bottmspacer">
+<tr><td></td></tr>
+</table>
+
+<table style="width:100%;" cellpadding="0" cellspacing="0" align="center">
+	  <tr>	  
+		  <td class="btnspacer" style="width:558px;"></td>
+		  <td class="rightbtn"><a href="javascript:validate(0);">Agregar </a></td>
+	  </tr>
+</table>
+
+</form>

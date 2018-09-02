@@ -1,0 +1,254 @@
+<form name="Form1" id="Form1" method="post" enctype="multipart/form-data" action="functions/workorders.php?mode={MODE}">
+<table class="toptable"><tr><th>
+<a href="javascript:history.back();"><img src="../imagenes/arrow_btn.png" border="0" style="margin-right:3px;" /></a></th>
+  <td style="vertical-align:middle; text-align:center;">En Esta Secci&oacute;n Podr&aacute;s Registrar Una Nueva Orden de Reparaci&oacute;n</td>
+</tr></table>
+
+<table class="userinfo">
+<tr>
+  <td>Agregando Nueva Orden</td>
+</tr>
+</table>
+
+<table width="700" align="center" cellpadding="0" cellspacing="0">
+<!--<tr class="oddn">
+<th style="width:150px;"># de orden:  </th>
+<td align="left" bgcolor="#bbbbbb"><input name="numeroshow" type="text" id="numeroshow" value="{NEWID}" size="10" disabled="disabled" style="text-align:right; font-weight:bolder"/>
+  <input name="numero" type="hidden" id="numero" value="{NEWID}" /></td>
+</tr>-->
+<tr class="commonn">
+<th>Folio de la orden*:</th>
+<td><label>
+  <input type="text" name="folio" id="folio" onChange="javascript:checar_folio(this.value);" class="validate['required','~validFolio']"/>
+</label>
+  <input name="numeroshow" type="hidden" id="numeroshow" value="0" />
+  <input name="folio_validado" id="folio_validado" type="hidden" value="0" />
+  <input type="submit" id="submitBtn" style="display:none;" />
+<div id="folio_validate" style="display:inline">
+	
+</div>
+</td>
+</tr>
+<tr class="oddn">
+  <th># de factura:<span style="width:150px;">
+    <input type="hidden" name="redirect" id="redirect" />
+  </span></th>
+  <td><input type="text" name="factura_num" id="factura_num" /></td>
+</tr>
+<tr class="commonn">
+<th>Cliente: </th>
+<td bgcolor="#bbbbbb"><input name="cliente_name" type="text" id="cliente_name" size="25" readonly />
+  <input type="hidden" name="clienteid" id="clienteid" />
+  <a href="search.php?search=cliente" target="_blank"  onclick="window.open(this.href, this.target, 'width=600,height=400'); return false;">Buscar cliente</a></td>
+</tr>
+<!--<tr class="commonn">
+<th>Taller: </th>
+<td class="txt">
+  <div id="talleres_div">
+    <input name="taller_name" type="text" id="taller_name" size="25" disabled="disabled"/>
+    <input type="hidden" name="tallerid" id="tallerid" />
+    <a href="search.php?search=taller" target="_blank"  onclick="window.open(this.href + '&amp;clienteid=' + document.getElementById('clienteid').value, this.target, 'width=600,height=400'); return false;">Buscar taller</a></div>
+</td></tr>-->
+<tr class="oddn">
+  <th>Unidad*:</th>
+  <td class="txt"><div id="unidades_div">
+    <input name="unidad_name" type="text" id="unidad_name" size="25" class="validate['required']" readonly />
+    <input type="hidden" name="unidadid" id="unidadid" />
+    <a href="search.php?search=unidad" target="_blank"  onclick="window.open(this.href + '&amp;clienteid=' + document.getElementById('clienteid').value, this.target, 'width=600,height=400'); return false;">Buscar unidad</a></div>
+  </td>
+</tr>
+
+<tr class="commonn">
+<th>Fecha de entrada: </th>
+<td class="txt"><input name="date1" id="date1" type="text" value="{FECHARESERVA}" /><a href="#" name="anchor1" title="Abrir calendario" class="Estilo2" id="anchor1" onclick="return showCalendar('date1', '%d-%m-%Y');"><img src="../imagenes/calendario.gif" width="19" height="16" border="0"/></a></td>
+ </tr>
+ 
+ <tr class="oddn">
+<th>Hora de entrada: </th>
+<td class="txt"><label>
+  <select name="horas" id="horas">{HORAS}
+  </select>
+</label>
+:
+<label>
+<select name="minutos" id="minutos">{MINUTOS}
+</select>
+</label></td>
+ </tr>
+ <tr class="commonn">
+<th>Fecha de salida: </th>
+<td class="txt"><input name="date2" id="date2" type="text" value="{FECHARESERVA2}" /><a href="#" name="anchor2" title="Abrir calendario" class="Estilo2" id="anchor2" onclick="return showCalendar('date2', '%d-%m-%Y');"><img src="../imagenes/calendario.gif" width="19" height="16" border="0"/></a></td>
+ </tr>
+ 
+ <tr class="oddn">
+<th>Hora de salida: </th>
+<td class="txt">
+  <label>
+    <select name="horas_2" id="horas_2">
+      {HORAS}
+  </select>
+</label>
+:
+<label>
+<select name="minutos_2" id="minutos_2">{MINUTOS}
+</select>
+</label></td>
+ </tr>
+
+ <tr class="commonn">
+   <th>Operador:</th>
+   <td align="left" bgcolor="#bbbbbb"><label>
+     <input type="text" name="operador" id="operador" />
+   </label></td>
+ </tr>
+ <tr class="oddn">
+   <th>Kilometraje:</th>
+   <td align="left" bgcolor="#bbbbbb"><label for="kilometraje"></label>
+     <input type="text" name="kilometraje" id="kilometraje" onkeypress="return IsNumber(event);"/></td>
+ </tr>
+ <tr class="commonn">
+<th>Reporta: </th>
+<td align="left" bgcolor="#bbbbbb"><label>
+<textarea name="reporta" id="reporta" cols="45" rows="5"></textarea>
+</label></td>
+</tr>
+<tr class="oddn">
+  <th>Tiempo estimado: </th>
+  <td align="left">
+    <label for="dias_estimado"></label>
+  <input name="dias_estimado" type="text" id="dias_estimado" style="text-align:right;" onkeypress="return IsNumber(event);" value="0" size="3" /> 
+  d&iacute;as con
+  <select name="horas2" id="horas2">
+    {HORAS}
+    </select>
+:
+<select name="minutos2" id="minutos2">
+{MINUTOS}
+</select>
+</td>
+</tr>
+<tr class="commonn">
+  <th>Tiempo real:</th>
+  <td align="left">
+  <label for="dias_real"></label>
+  <input name="dias_real" type="text" id="dias_real" style="text-align:right;" onkeypress="return IsNumber(event);" value="0" size="3" /> 
+  d&iacute;as con
+    <label>
+    <select name="horas3" id="horas3">
+    {HORAS}
+    </select>
+    </label>
+:
+<label>
+<select name="minutos3" id="minutos3">
+{MINUTOS}
+</select>
+</label>
+  </td>
+</tr>
+<tr class="oddn">
+  <th>T&eacute;cnicos:</th>
+  <td align="left">
+  <select name="tecnicoid" id="tecnicoid">
+      {TECNICOS}  
+  </select>
+  <input type="button" name="agregar_tec" id="agregar_tec" value="Agregar" onclick="agregar_tecnico();"/><br/>
+  <div id="tecnicos_div" align="center" style="text-align:center;"></div></td>
+</tr>
+<tr class="commonn">
+  <th>Tipo de mantenimiento:</th>
+  <td align="left">
+  <select name="mantenimientoid" id="mantenimientoid">
+      {MANTENIMIENTOS}  
+  </select>
+  </td>
+</tr>
+<tr class="oddn">
+  <th>Tipo de cambio:</th>
+  <td align="left"><input type="text" name="tipo_cambio" id="tipo_cambio" onkeypress="return IsNumber(event);"/></td>
+</tr>
+<tr class="commonn">
+  <th>Refacciones:</th>
+  <td align="left">
+    Cantidad:
+      <label for="cantidad_art"></label>
+      <input name="cantidad_art" type="text" id="cantidad_art" size="2" style="text-align:right;" onkeypress="return IsNumber(event);"/>
+<b id="producto_label">  </b> &nbsp;
+    <input name="articulo_name" type="text" id="articulo_name" value="Escriba la clave..."/>    
+    $<input name="precio" type="text" id="precio" value="0.00" size="5" style="text-align:right;"/>
+    <a href="search.php?search=article" target="_blank"  onClick="window.open(this.href, this.target, 'width=600,height=400'); return false;">Buscar producto</a>
+<input type="button" name="agregar" id="agregar" value="Agregar" onclick="agregar_articulo();"/><br/>
+  <div id="refacciones_table">
+    <table width="100%" border="1">
+      <tr>
+        <td><div align="center"><strong>Cantidad</strong></div></td>
+        <td><div align="center"><strong>Refacci&oacute;n</strong></div></td>
+        <td><div align="center"><strong>Precio</strong></div></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="4"><div align="center">No existen refacciones actualmente</div></td>
+      </tr>
+    </table>
+  </div></td>
+</tr>
+<!--<tr class="commonn">
+  <th>Observaciones:</th>
+  <td align="left"><label>
+    <textarea name="observaciones" id="observaciones" cols="45" rows="5"></textarea>
+  </label></td>
+</tr>
+<tr class="oddn">
+  <th>Indicaciones adicionales:</th>
+  <td align="left"><textarea name="indicaciones" id="indicaciones" cols="45" rows="5"></textarea></td>
+</tr>-->
+<tr class="oddn">
+  <th>Trabajos realizados y observaciones:</th>
+  <td align="left"><label>
+    <textarea name="trabajos" id="trabajos" cols="45" rows="5"></textarea>
+  </label></td>
+</tr>
+<tr class="commonn">
+  <th>Horas totales:</th>
+  <td align="left"><label for="horas_equipo_motor"></label>
+    <input type="text" name="horas_equipo_motor" id="horas_equipo_motor" /></td>
+</tr>
+<tr class="oddn">
+  <th>Horas de equipo Diesel:</th>
+  <td align="left"><input type="text" name="horas_equipo_diesel" id="horas_equipo_diesel" /></td>
+</tr>
+<tr class="commonn">
+  <th>Horas stand by:</th>
+  <td align="left"><input name="horas_stand_by" type="text" id="horas_stand_by" value="{HORAS_STANDBY}" /></td>
+</tr>
+<tr class="oddn">
+  <th>Lugar de servicio:</th>
+  <td align="left">
+  {DROPTALLERES}
+    </td>
+</tr>
+<tr class="commonn">
+  <th>Forma de pago:</th>
+  <td align="left"><label for="forma_pago"></label>
+    <select name="forma_pago" id="forma_pago" onchange="javascript:cambiar_pago(this.value);">
+    	{FORMAS_PAGO}
+    </select>
+    <div id="dias_credito" style="display:none"> a <select name="diascredito">
+    	{DIAS}
+    </select> d&iacute;as</div>
+    </td>
+</tr>
+</table>
+
+<table class="bottmspacer">
+<tr><td></td></tr>
+</table>
+
+<table style="width:100%;" cellpadding="0" cellspacing="0" align="center">
+	  <tr>	  
+		  <td class="btnspacer" style="width:558px;"></td>
+		  <td class="rightbtn"><a href="javascript:validate(0);">Agregar </a></td>
+	  </tr>
+</table>
+
+</form>
