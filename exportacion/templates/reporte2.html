@@ -1,90 +1,100 @@
 		<table width="600" align="center" cellpadding="0" cellspacing="0" >
-			  <tr>
-			    <td valign="top">
-			      <table class="userinfo">
-			        <tr>
-			          <td>Reporte de Acumulado de Mantenimientos</td>
-		            </tr>
-		          </table>
-			      <table style="width:100%;" cellspacing="0" cellpadding="0" align="center">
-					<tr>
-			          <td class="smalltitle" style="width:220px;">Cliente</td>
-			          <td style="width:1px;"></td>
-			          <td class="smalltitle" style="width:220px;">Taller de servicio</td>
-		            </tr>
-			        <tr bgcolor="#999999">
-			          <td style="width:220px; padding-top:10px; padding-bottom:10px;">
-						<a href="search.php?search=cliente&instance=2" target="_blank" onclick="window.open(this.href, this.target, 'width=600,height=400'); return false;">
-							<input name="cliente_name2" type="text" id="cliente_name2" size="25" readonly="readonly"/><input name="clienteid2" type="hidden" id="clienteid2" /><img src="../imagenes/lupa.png" />
-						</a>
-					</td>
-			          <td style="width:1px;"></td>
-			          <td style="width:220px;"><a href="search.php?search=taller&instance=2" target="_blank"  onclick="window.open(this.href + '&amp;clienteid=' + document.getElementById('clienteid2').value, this.target, 'width=600,height=400'); return false;">
-						<input name="taller_name2" type="text" id="taller_name2" size="25" readonly="readonly"/><input name="tallerid2" type="hidden" id="tallerid2" value="-1" /><img src="../imagenes/lupa.png" /></a></td>
-		            </tr>
-                    <tr>
-			          <td class="smalltitle">Tipo de mantenimiento</td>
-                      <td></td>
-                      <td class="smalltitle">Fecha inicial:</td>
-		            </tr>
-			        <tr bgcolor="#999999">
-					<td rowspan="3">
-					  <select id="filtro_mantenimiento2" name="filtro_mantenimiento2" class="abrir_mantenimientos">
-						<option value="0">TODOS</option>
-						<option value="1">SELECCCIONAR</option>
-					  </select>
-					  <div id="tipo_mantenimiento2" style="display: none;">
-                          	{MANTENIMIENTOS2}
-                      </div>
-					  </td>
-					  <td></td>
+			<tr>
+			  <td valign="top">
+			    <table class="userinfo">
+			      <tr>
+			        <td>Reporte de Acumulado de Mantenimientos</td>
+		        </tr>
+		      </table>
+			    <table style="width:100%;" cellspacing="0" cellpadding="0" align="center">
+						<tr>
+							<td class="smalltitle" style="width:220px;">Cliente</td>
+							<td style="width:1px;"></td>
+							<td class="smalltitle" style="width:220px;">Taller de servicio</td>
+		        </tr>
+			      <tr bgcolor="#999999">
+			        <td style="width:220px; padding-top:10px; padding-bottom:10px;">
+								<a href="search.php?search=cliente&instance=2" target="_blank" onclick="window.open(this.href, this.target, 'width=600,height=400'); return false;">
+									<input name="cliente_name2" type="text" id="cliente_name2" size="25" readonly="readonly"/><input name="clienteid2" type="hidden" id="clienteid2" /><img src="../imagenes/lupa.png" />
+								</a>
+							</td>
+			        <td style="width:1px;"></td>
+			        <td style="width:220px;">
+								<a href="search.php?search=taller&instance=2" target="_blank"  onclick="window.open(this.href + '&amp;clienteid=' + document.getElementById('clienteid2').value, this.target, 'width=600,height=400'); return false;">
+									<input name="taller_name2" type="text" id="taller_name2" size="25" readonly="readonly"/><input name="tallerid2" type="hidden" id="tallerid2" value="-1" /><img src="../imagenes/lupa.png" />
+								</a>
+							</td>
+		        </tr>
+            <tr>
+			        <td class="smalltitle">Unidad</td>
+              <td></td>
+              <td class="smalltitle">Fecha inicial:</td>
+		        </tr>
+			      <tr bgcolor="#999999">
+								<td>
+									<input name="unidad_name" type="text" id="unidad_name2" size="25" onclick="document.getElementById('searchUnitBtn').click();"/>
+									<input type="hidden" name="unidadid2" id="unidadid2" />
+									<a href="search.php?search=unidad&instance=2" target="_blank"  onclick="window.open(this.href + '&amp;clienteid=' + document.getElementById('clienteid2').value, this.target, 'width=600,height=400'); return false;">
+										<img src="../imagenes/lupa.png" id="searchUnitBtn"/>
+									</a>
+								</td>
+					  		<td></td>
 			          <td style="padding-top:10px; padding-bottom:10px;">
-						Del: 
-						<input name="start_date_report2" placeholder="DD-MM-AAAA" id="start_date_report2" onkeypress="checkEnter(event,'parametros')" type="text" class="validate['required']" /><a href="#" title="Abrir calendario" id="anchor2" onclick="return showCalendar('start_date_report2', '%d-%m-%Y');"><img src="../imagenes/calendario.gif" border="0" height="16" width="19"></a>
-					  </td>
-		            </tr>
-                    <tr>
-						<td></td>
-						<td class="smalltitle">
-						Fecha final: 
-						</td>
-                    </tr>
-                    <tr bgcolor="#999999">
-					<td></td>
-                    <td style="padding-top:10px; padding-bottom:10px;">
-                        Al:
-						<input name="end_date_report2" placeholder="DD-MM-AAAA" id="end_date_report2" onkeypress="checkEnter(event,'parametros')" type="text" class="validate['required']" /><a href="#" title="Abrir calendario" id="anchor2" onclick="return showCalendar('end_date_report2', '%d-%m-%Y');"><img src="../imagenes/calendario.gif" border="0" height="16" width="19"></a>
-					</td>
-                    </tr>
-                    <tr>
-					    <td style="width:220px;" class="smalltitle" colspan="3">
-                            <div align="center">Opciones adicionales:</div>
-                        </td>
-                    </tr>
-                      <tr bgcolor="#999">
-                        <td>
-                              <input type="checkbox" id="separarEquipos" name="separarEquipos">
-                              <label for="costeado">Ordenar por tipo de equipo</label>
-                        </td>
-                        <td></td>
-                        <td style="padding-bottom: 10px;">
-                              <input type="checkbox" name="externo" id="externo" />
-                              Reporte externo a nombre de:
-                              <input type="text" name="nombre_externo" id="nombre_externo" />
-                              <br/>
-                        </td>
-                      </tr>
-		          </table>
+									Del: 
+									<input name="start_date_report2" placeholder="DD-MM-AAAA" id="start_date_report2" onkeypress="checkEnter(event,'parametros')" type="text" class="validate['required']" /><a href="#" title="Abrir calendario" id="anchor2" onclick="return showCalendar('start_date_report2', '%d-%m-%Y');"><img src="../imagenes/calendario.gif" border="0" height="16" width="19"></a>
+					 			</td>
+		          </tr>
+              <tr>
+								<td class="smalltitle">Tipo de mantenimiento</td>
+								<td></td>
+								<td class="smalltitle">
+									Fecha final: 
+								</td>
+              </tr>
+              <tr bgcolor="#999999">
+								<td>
+									<select id="filtro_mantenimiento2" name="filtro_mantenimiento2" class="abrir_mantenimientos">
+										<option value="0">TODOS</option>
+										<option value="1">SELECCCIONAR</option>
+									</select>
+									<div id="tipo_mantenimiento2" style="display: none;">{MANTENIMIENTOS2}</div>
+								</td>
+								<td></td>
+                <td style="padding-top:10px; padding-bottom:10px;">
+                  Al:
+									<input name="end_date_report2" placeholder="DD-MM-AAAA" id="end_date_report2" onkeypress="checkEnter(event,'parametros')" type="text" class="validate['required']" /><a href="#" title="Abrir calendario" id="anchor2" onclick="return showCalendar('end_date_report2', '%d-%m-%Y');"><img src="../imagenes/calendario.gif" border="0" height="16" width="19"></a>
+								</td>
+							</tr>
+							<tr>
+					    	<td style="width:220px;" class="smalltitle" colspan="3">
+									<div align="center">Opciones adicionales:</div>
+								</td>
+							</tr>
+							<tr bgcolor="#999">
+								<td>
+										<input type="checkbox" id="separarEquipos" name="separarEquipos">
+										<label for="costeado">Ordenar por tipo de equipo</label>
+								</td>
+								<td></td>
+								<td style="padding-bottom: 10px;">
+									<input type="checkbox" name="externo" id="externo" />
+									Reporte externo a nombre de:
+									<input type="text" name="nombre_externo" id="nombre_externo" />
+									<br/>
+								</td>
+							</tr>
+						</table>
 			      <table style="width:100%;" cellpadding="0" cellspacing="0" align="center">
 			        <tr>
 			          <td class="btnspacer" width="508"></td>
 			          <td class="rightbtn">
-						<input type="submit" id="parametros2Submit" style="display:none;" />
-						<a href="#" onclick="document.getElementById('parametros2Submit').click()">Generar Informe </a>
-					  </td>
-		            </tr>
-		          </table></td>
-		      </tr>
-	    </table>
+									<input type="submit" id="parametros2Submit" style="display:none;" />
+									<a href="#" onclick="document.getElementById('parametros2Submit').click()">Generar Informe </a>
+					  		</td>
+							</tr>
+						</table>
+				</td>
+			</tr>
+		</table>
 		<br />
-        <p>&nbsp;</p>
+		<p>&nbsp;</p>

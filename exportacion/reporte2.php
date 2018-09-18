@@ -26,6 +26,7 @@ $ano2 = substr($fecha2, -4);
 // fechal final realizada el cambio de formato a las fechas europeas
 $fecha2 = $ano2 . '-' . $mes2 . '-' . $dia2;
 $clienteid = $_POST['clienteid2'];
+$unidadid = $_POST['unidadid2'];
 $tallerid = $_POST['tallerid2'];
 $tipo_mantenimiento = implode(",",$_POST['tipo_mantenimiento2']);
 $separarEquipos = (isset($_POST['separarEquipos']) && $_POST['separarEquipos'] == true) ? true : false; 
@@ -70,6 +71,8 @@ if($clienteid > 0)
 	$filtro .= ' AND c.clienteid = '.$clienteid;
 if($tallerid > 0)
 	$filtro .= ' AND o.taller_servicio = '.$tallerid;
+if($unidadid > 0)
+	$filtro .= ' AND o.unidadid = '.$unidadid;
 
 $totales = $ESObject->total_mantenimientos($filtro);
 $mantenimientos_info = $ESObject->mantenimientos_info($filtro, $separarEquipos);
