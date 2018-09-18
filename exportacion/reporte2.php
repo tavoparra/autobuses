@@ -79,7 +79,7 @@ $mantenimientos_info = $ESObject->mantenimientos_info($filtro, $separarEquipos);
 $meses = array( "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" );
 
 $osito = !$_POST['externo'] ? '<img src="../imagenes/osito.jpg" width="65" height="92" />' : '&nbsp;';
-$nombre_empresa = !$_POST['externo'] ? 'REFRISERVICIO Y AIRE ACONDICIONADO PARA EL TRANSPORTE , S.A. DE C.V.' : $_POST['nombre_externo'];
+$nombre_empresa = !$_POST['externo'] ? 'REFRISERVICIO Y AIRE ACONDICIONADO PARA TRANSPORTE , S.A. DE C.V.' : $_POST['nombre_externo'];
 
 // create some HTML content
 	$html = '<div align="center" style="text-align: center;"><br/><br/><br/><br/><br/><br/>

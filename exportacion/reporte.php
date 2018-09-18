@@ -99,7 +99,7 @@ if($filtro_mantenimiento > 0)
 
 $resultados_row = $ESObject->getordenesinfo($filtro);
 $osito = !$_POST['externo'] ? '<img src="../imagenes/osito.jpg" width="47" height="84" />' : '';
-$nombre_empresa = !$_POST['externo'] ? 'REFRISERVICIO Y AIRE ACONDICIONADO PARA EL TRANSPORTE , S.A. DE C.V.' : $_POST['nombre_externo'];
+$nombre_empresa = !$_POST['externo'] ? 'REFRISERVICIO Y AIRE ACONDICIONADO PARA TRANSPORTE , S.A. DE C.V.' : $_POST['nombre_externo'];
 
 // create some HTML content
 	$html = '<table border="0" width="90%">
