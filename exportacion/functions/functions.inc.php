@@ -57,7 +57,7 @@ class exportacion
 	
 	function getrefaccionesinfo($filtro = ''){
 		
-        $strSQL = 'SELECT c.nombre AS cliente, ts.nombre AS taller, a.id, a.code, a.name as \'desc\', SUM(oi.cantidad) AS cantidad, m.medida
+        $strSQL = 'SELECT c.nombre AS cliente, ts.nombre AS taller, a.id, a.code, a.name as \'desc\', SUM(oi.cantidad) AS cantidad, m.medida, u.numEconomico
 					FROM '.DBPREFIX.'ordenes o
 					INNER JOIN '.DBPREFIX.'orden_item oi ON o.ordenid = oi.ordenid
 					INNER JOIN '.DBPREFIX.'articles a ON oi.articuloid = a.id AND a.mano_obra != 1

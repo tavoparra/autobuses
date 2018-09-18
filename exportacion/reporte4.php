@@ -69,14 +69,17 @@ $fecha2 = $ano2 . '-' . $mes2 . '-' . $dia2;
 
 $clienteid = $_POST['clienteid3'];
 $tallerid = $_POST['tallerid3'];
+$unidadid = $_POST['unidadid3'];
 
 $filtro = '1';
 if($clienteid > 0)
 	$filtro .= ' AND c.clienteid = '.$clienteid;
 if($tallerid > 0)
 	$filtro .= ' AND o.taller_servicio = '.$tallerid;
+if($unidadid > 0)
+	$filtro .= ' AND o.unidadid = '.$unidadid;
 
-	$filtro .= ' AND o.fecha_orden >= "'.$fecha1.'" AND o.fecha_orden <= "'.$fecha2.' 23:59:59"';
+$filtro .= ' AND o.fecha_orden >= "'.$fecha1.'" AND o.fecha_orden <= "'.$fecha2.' 23:59:59"';
 
 $refacciones_info = $ESObject->getrefaccionesinfo($filtro);
 $meses = array(1=>"Enero", 2=>"Febrero", 3=>"Marzo", 4=>"Abril", 5=>"Mayo", 6=>"Junio", 
@@ -92,6 +95,7 @@ $meses = array(1=>"Enero", 2=>"Febrero", 3=>"Marzo", 4=>"Abril", 5=>"Mayo", 6=>"
 			<br/>';
 		
 			if($clienteid > 0) $html .= "<u><i>".htmlspecialchars($refacciones_info->fields['cliente'])."</i></u>";
+			if($unidadid > 0) $html .= "<br/>Unidad: ".htmlspecialchars($refacciones_info->fields['numEconomico']);
 	
 	$html .='<br/>';
 	

@@ -8,23 +8,39 @@
 		          </table>
 			      <table style="width:100%;" cellspacing="0" cellpadding="0" align="center">
 					<tr>
-			          <td class="smalltitle" style="width:220px;">Cliente</td>
-			          <td style="width:1px;"></td>
-			          <td class="smalltitle" style="width:220px;">Taller de servicio</td>
-		            </tr>
-			        <tr bgcolor="#999999">
-			          <td style="width:220px; padding-top:10px; padding-bottom:10px;">
-						<a href="search.php?search=cliente&instance=3" target="_blank"  onclick="window.open(this.href, this.target, 'width=600,height=400'); return false;">
-							<input name="cliente_name3" type="text" id="cliente_name3" size="25" readonly="readonly"/><input name="clienteid3" type="hidden" id="clienteid3" /><img src="../imagenes/lupa.png" />
-						</a>
-					  </td>
-			          <td style="width:1px;"></td>
-			          <td style="width:220px;">
-						<a href="search.php?search=taller&instance=3" target="_blank"  onclick="window.open(this.href + '&amp;clienteid=' + document.getElementById('clienteid3').value, this.target, 'width=600,height=400'); return false;">
-							<input name="taller_name3" type="text" id="taller_name3" size="25" readonly="readonly"/><input name="tallerid3" type="hidden" id="tallerid3" value="-1" /><img src="../imagenes/lupa.png" />
-						</a>
-					  </td>
-		            </tr>
+						<td class="smalltitle" style="width:220px;">Cliente</td>
+						<td style="width:1px;"></td>
+						<td class="smalltitle" style="width:220px;">Taller de servicio</td>
+					</tr>
+			    <tr bgcolor="#999999">
+			      <td style="width:220px; padding-top:10px; padding-bottom:10px;">
+							<a href="search.php?search=cliente&instance=3" target="_blank"  onclick="window.open(this.href, this.target, 'width=600,height=400'); return false;">
+								<input name="cliente_name3" type="text" id="cliente_name3" size="25" readonly="readonly"/><input name="clienteid3" type="hidden" id="clienteid3" /><img src="../imagenes/lupa.png" />
+							</a>
+						</td>
+						<td style="width:1px;"></td>
+						<td style="width:220px;">
+							<a href="search.php?search=taller&instance=3" target="_blank"  onclick="window.open(this.href + '&amp;clienteid=' + document.getElementById('clienteid3').value, this.target, 'width=600,height=400'); return false;">
+								<input name="taller_name3" type="text" id="taller_name3" size="25" readonly="readonly"/><input name="tallerid3" type="hidden" id="tallerid3" value="-1" /><img src="../imagenes/lupa.png" />
+							</a>
+						</td>
+					</tr>
+					<tr>
+						<td class="smalltitle">Unidad</td>
+						<td></td>
+						<td class="smalltitle"></td>
+					</tr>
+					<tr bgcolor="#999999">
+						<td style="padding-top:10px; padding-bottom:10px;">
+							<input name="unidad_name3" type="text" id="unidad_name3" size="25" onclick="document.getElementById('searchUnitBtn').click();"/>
+							<input type="hidden" name="unidadid3" id="unidadid3" />
+							<a href="search.php?search=unidad&instance=3" target="_blank"  onclick="window.open(this.href + '&amp;clienteid=' + document.getElementById('clienteid3').value, this.target, 'width=600,height=400'); return false;">
+								<img src="../imagenes/lupa.png" id="searchUnitBtn"/>
+							</a>
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
                     <tr>
 			          <td class="smalltitle">Fecha inicial:</td>
                       <td></td>

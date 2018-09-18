@@ -90,7 +90,7 @@ $nombre_empresa = !$_POST['externo'] ? 'REFRISERVICIO Y AIRE ACONDICIONADO PARA 
 		$html .= '<br/>('.$ESObject->mantenimiento_name($tipo_mantenimiento).')';
   
   $html .='</p></h1>
-  <br/><br/><br/><br/>
+  <br/><br/><br/>
   <p><h2>Del '; 
 	$html .= (int)$dia." de ".$meses[(int)$mes - 1]." de ".$ano;
 	$html .= " al ".(int)$dia2." de ".$meses[(int)$mes2 - 1]." de ".$ano2;
@@ -103,6 +103,7 @@ $nombre_empresa = !$_POST['externo'] ? 'REFRISERVICIO Y AIRE ACONDICIONADO PARA 
       	  '.$mantenimientos_info->fields['cliente'].'<br/>';
 		  
 		  if($tallerid > 0) $html .= $mantenimientos_info->fields['taller'];
+		  if($unidadid > 0) $html .= "Unidad: ".$mantenimientos_info->fields['numEconomico'];
 			
 		  
 	$html .= '
@@ -159,6 +160,9 @@ if ( !$mantenimientos_info->EOF )
 			
 			if($tallerid > 0)
 				$html .= "Taller: ".$mantenimientos_info->fields['taller'];
+
+			if($unidadid > 0)
+				$html .= "<br/>Unidad: ".$mantenimientos_info->fields['numEconomico'];
 				
 			$html .= '</span>
 						</div>
