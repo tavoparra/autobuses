@@ -176,7 +176,19 @@ class exportacion
 		if($clienteid != '') $strSQL .= " AND clienteid = ".$clienteid;
         $rs = $this->dbc->Execute( $strSQL );
         return $rs;
-    }
+	}
+	
+	function searchunidades( $valor, $campo, $clienteid = ''){
+        $strSQL = "Select u.unidadid, u.numEconomico, u.placas, u.marca, u.tipo, u.modelo, u.numSerie
+					FROM ".DBPREFIX."units u
+					LEFT JOIN ".DBPREFIX."talleres t ON u.tallerID = t.tallerid
+					LEFT JOIN ".DBPREFIX."clientes c ON c.clienteid = IF(t.clienteid = -1, u.clienteID, t.clienteid)
+					where u.".$campo." like '%".$valor."%'";
+		if($clienteid != '') $strSQL .= " AND c.clienteid = ".$clienteid;
+
+        $rs = $this->dbc->Execute( $strSQL );
+        return $rs;
+	}
 	
 	function cargaranhios()
 	{
@@ -264,8 +276,7 @@ class exportacion
 					LEFT JOIN ".DBPREFIX."talleres ts ON o.taller_servicio = ts.tallerid
 					INNER JOIN ".DBPREFIX."clientes c ON c.clienteid = IF(t.clienteid = -1, u.clienteID, t.clienteid)
 					WHERE ".$filtro."
-					GROUP BY u.unidadID ORDER BY $separarEquipo u.ordenamiento, LPAD(u.numEconomico, 50, '0');";
-					
+					GROUP BY u.unidadID ORDER BY $groupByEquipo u.ordenamiento, LPAD(u.numEconomico, 50, '0');";
         $rs = $this->dbc->Execute( $strSQL ); 
 				
 		return $rs;
