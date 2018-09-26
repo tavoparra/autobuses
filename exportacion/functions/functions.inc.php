@@ -368,7 +368,26 @@ class exportacion
 		// fechal final realizada el cambio de formato a las fechas europeas
 		return $ano . '-' . $mes . '-' . $dia;
 	}
+
+	public function getExternalLogo(){
+		$archivo = $_FILES["logo"]['name'];
+
+		$prefijo = substr(md5(uniqid(rand())),0,6);
 	
+		if ($archivo != "") {
+			$destino =  "../imagenes/tmp/".$prefijo."_".$archivo;
+			if (copy($_FILES['logo']['tmp_name'],$destino)) 
+				$logo = $prefijo."_".$archivo;
+			else
+			{
+				$logo = "";
+			}
+		} else {
+			$logo = "";
+		}
+
+		return ($logo == '') ? '&nbsp;' : '<img src="../imagenes/tmp/'.$logo.'" height="92" />';
+	}
 	
 	function buildmenu($dir)
     {

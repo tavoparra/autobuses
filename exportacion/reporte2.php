@@ -78,13 +78,13 @@ $totales = $ESObject->total_mantenimientos($filtro);
 $mantenimientos_info = $ESObject->mantenimientos_info($filtro, $separarEquipos);
 $meses = array( "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" );
 
-$osito = !$_POST['externo'] ? '<img src="../imagenes/osito.jpg" width="65" height="92" />' : '&nbsp;';
+$osito = !$_POST['externo'] ? '<img src="../imagenes/osito.jpg" width="65" height="92" />' : $ESObject->getExternalLogo();
 $nombre_empresa = !$_POST['externo'] ? 'REFRISERVICIO Y AIRE ACONDICIONADO PARA TRANSPORTE , S.A. DE C.V.' : $_POST['nombre_externo'];
 
 // create some HTML content
 	$html = '<div align="center" style="text-align: center;"><br/><br/><br/><br/><br/><br/>
   <p>'.$osito.'</p><br/><br/>
-  <h1>'.$nombre_empresa.'<br/><br/><br/><br/>
+  <h1>'.$nombre_empresa.'<br/><br/><br/>
   <p>REPORTE DE ACUMULADO DE MANTENIMIENTOS';
 	if(count($_POST['tipo_mantenimiento2']) == 1 && $_POST['filtro_mantenimiento2'] > 0)
 		$html .= '<br/>('.$ESObject->mantenimiento_name($tipo_mantenimiento).')';
@@ -141,8 +141,7 @@ $nombre_empresa = !$_POST['externo'] ? 'REFRISERVICIO Y AIRE ACONDICIONADO PARA 
 	<br pagebreak="true"/>
  ';
 
-if ( !$mantenimientos_info->EOF )
-{
+if ( !$mantenimientos_info->EOF ) {
 	$equipoActual = $mantenimientos_info->fields["modeloEquipo"];
 	$total_ene = $total_feb = $total_mar = $total_abr = $total_may = $total_jun = $total_jul = $total_ago = $total_sep = $total_oct = $total_nov = $total_dic = $total_serv = 0;
 	$html .= '<table border="0" width="90%">
