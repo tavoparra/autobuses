@@ -85,6 +85,11 @@ $refacciones_info = $ESObject->getrefaccionesinfo($filtro);
 $meses = array(1=>"Enero", 2=>"Febrero", 3=>"Marzo", 4=>"Abril", 5=>"Mayo", 6=>"Junio", 
 			7=>"Julio", 8=>"Agosto", 9=>"Septiembre", 10=>"Octubre", 11=>"Noviembre", 12=>"Diciembre" );
 
+if ($_POST['excel'] === 'true') {
+	require_once('./reporte4_excel.php');
+	die;
+}
+
 // create some HTML content
 	$html = '<table border="0" width="90%">
 	  <tr>
