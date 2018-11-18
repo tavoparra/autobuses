@@ -251,11 +251,10 @@ class exportacion
     }
 	
 	
-	function mantenimientos_info($filtro, $separarEquipo = false)
-	{
+	function mantenimientos_info($filtro, $separarEquipo = false) {
 		//Si se eligió separar por equipos, ordenamos por el modelo sin espacios para que no haya problemas por ellos
 		$groupByEquipo = ($separarEquipo == true) ? 'REPLACE(u.modeloEquipo, " ", ""),' : '';
-		$strSQL = "SELECT t.tallerid, c.nombre as cliente, ts.nombre as taller, u.numEconomico, 
+		$strSQL = "SELECT YEAR(o.fecha_orden) as anhio, t.tallerid, c.nombre as cliente, ts.nombre as taller, u.numEconomico, 
 					SUM(IF(MONTH(o.fecha_orden) = 1, 1, 0)) AS ene,
 					SUM(IF(MONTH(o.fecha_orden) = 2, 1, 0)) AS feb,
 					SUM(IF(MONTH(o.fecha_orden) = 3, 1, 0)) AS mar,
@@ -276,7 +275,7 @@ class exportacion
 					LEFT JOIN ".DBPREFIX."talleres ts ON o.taller_servicio = ts.tallerid
 					INNER JOIN ".DBPREFIX."clientes c ON c.clienteid = IF(t.clienteid = -1, u.clienteID, t.clienteid)
 					WHERE ".$filtro."
-					GROUP BY u.unidadID ORDER BY $groupByEquipo u.ordenamiento, LPAD(u.numEconomico, 50, '0');";
+					GROUP BY YEAR(o.fecha_orden) ASC, u.unidadID ORDER BY anhio ASC, $groupByEquipo u.ordenamiento, LPAD(u.numEconomico, 50, '0');";
         $rs = $this->dbc->Execute( $strSQL ); 
 				
 		return $rs;

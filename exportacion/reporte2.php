@@ -194,10 +194,19 @@ if ( !$mantenimientos_info->EOF ) {
 						  </tr>';
 
 			$contador = 1;
+			$anhio_actual = "0";
 			$rowcount = ($separarEquipos) ? 10 : 7;
 	
 	
     do{
+		$anhio 	= $mantenimientos_info->fields["anhio"];
+        if(($anhio != $anhio_actual) && $ano !== $ano2){
+			$anhio_actual = $anhio;
+        	$html .= '<tr>
+					  <td colspan="16"><h2 align="center"><strong>'.$anhio.'</strong></h2></td>
+					  </tr>';
+        	$rowcount += 1.5;
+        }
         $tallerid 	= $mantenimientos_info->fields["tallerid"];
         if($equipoActual != $mantenimientos_info->fields["modeloEquipo"] && $separarEquipos == true){
         	$equipoActual = $mantenimientos_info->fields["modeloEquipo"];
