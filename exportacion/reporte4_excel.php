@@ -38,7 +38,7 @@ $prueba->getActiveSheet()->getStyle('A3:E3')->getFill()->applyFromArray(array(
 
 if ( !$refacciones_info->EOF ) {	
     header('Content-type: application/vnd.ms-excel');
-    header('Content-Disposition: attachment; filename="Reporte Consumo de Refacciones '.$refacciones_info->fields['cliente'].'.xls"');
+    header('Content-Disposition: attachment; filename="Reporte Consumo de Refacciones '.$refacciones_info->fields['cliente'].'.xlsx"');
 	$line = 4;
     do{
         $prueba->setActiveSheetIndex(0)->setCellValue("A".$line, $line); 
@@ -60,6 +60,7 @@ foreach(range('A','F') as $columnID) {
 
 $objWriter = PHPExcel_IOFactory::createWriter($prueba, 'Excel2007'); 
 
+ob_end_clean();
 $objWriter->save('php://output'); 
-
+exit;
 ?> 
