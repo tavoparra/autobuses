@@ -145,7 +145,7 @@ if ( !$refacciones_info->EOF )
 			<td align="right">'.$line.'</td>
 			<td>'.htmlspecialchars($refacciones_info->fields['code']).'</td>
 			<td>'.htmlspecialchars($refacciones_info->fields['desc']).'</td>
-			<td align="center">'.(float)number_format($refacciones_info->fields['cantidad'],3).'</td>
+			<td align="center">'.(str_replace(",","",number_format($refacciones_info->fields['cantidad'],3)) + 0).'</td>
 			<td align="center">'.htmlspecialchars($refacciones_info->fields['medida']).'</td>
 		</tr>';
 		$refacciones_info->MoveNext();

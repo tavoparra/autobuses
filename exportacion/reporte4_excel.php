@@ -44,7 +44,7 @@ if ( !$refacciones_info->EOF ) {
         $prueba->setActiveSheetIndex(0)->setCellValue("A".$line, $line); 
         $prueba->setActiveSheetIndex(0)->setCellValue("B".$line, $refacciones_info->fields['code']); 
         $prueba->setActiveSheetIndex(0)->setCellValue("C".$line, $refacciones_info->fields['desc']); 
-        $prueba->setActiveSheetIndex(0)->setCellValue("D".$line, (float)number_format($refacciones_info->fields['cantidad'],3)); 
+        $prueba->setActiveSheetIndex(0)->setCellValue("D".$line, str_replace(",","",number_format($refacciones_info->fields['cantidad'],3)) + 0); 
         $prueba->setActiveSheetIndex(0)->setCellValue("E".$line, $refacciones_info->fields['medida']); 
 		$refacciones_info->MoveNext();
 		$line++;
