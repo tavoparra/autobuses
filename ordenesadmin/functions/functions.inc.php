@@ -473,7 +473,8 @@ class Ordenes{
 
         $rs = $this->dbc->Execute( $strSQL );
         return $rs;
-    }
+	}
+	
 	function getclientenombre($clienteid){
         $strSQL = "Select nombre FROM ".DBPREFIX."clientes where clienteid = ".$clienteid;
         $rs = $this->dbc->Execute( $strSQL );

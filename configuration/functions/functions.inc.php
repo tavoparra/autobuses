@@ -1,12 +1,7 @@
 <?php
 
-//Esta libreria es la mas importante, ya que contiene todas las funciones de la base de datos
-
-class configuration
-{
-
+class configuration {
     //Funcion utilizada para conectar la base de datos
-
     function configuration( $dist )
     {
         include( $dist.'config/adodb/adodb.inc.php' );
@@ -29,61 +24,24 @@ class configuration
         $this->dbc = $db;
     }
 
-    function selectqry( $str, $campos = '*', $where = '1', $mode = 0, $tamano = 0, $pag = 0 )
-    {
-        $str1   = str_replace( " ", "", $str );
-        $str2   = DBPREFIX.$str1;
-        $tabla  = str_replace( ",", ",".DBPREFIX, $str2 );
-        $strSQL = "Select ".$campos." from ".$tabla." where ".$where;
-        if ( $tamano != 0 && $pag != 0 )
-        {
-            $reg1 = ( $pag - 1 ) * $tamano;
-            $rs = $this->dbc->SelectLimit( $strSQL, $tamano, $reg1 );
-        }
-        else
-        {
-            $rs = $this->dbc->Execute( $strSQL );
-        }
-        if ( $mode == 0 )
-        {
-            return $rs;
-        }
-        else
-        {
-            $fld = $rs->Fetchfield( 0 );
-            return $rs->fields[$fld->name];
-        }
-    }
-
-    // Aqui estan las funciones de las noticias
-    /*************************************/
-    /*************************************/
-    /*************************************/
-
-    function gettasa()
-    {
+    function gettasa() {
 		$strSQL  = "SELECT iva FROM ".DBPREFIX."iva order by fecha_inicio DESC LIMIT 1";
 		$rs     = $this->dbc->Execute($strSQL);
         return $rs->fields['iva'];
     }
 	
-	function addmedida($nombre)
-    {
-        $strSQL  = "INSERT INTO `".DBPREFIX."medidas` (`medida`)
-				VALUES('".$nombre."')";
+	function addmedida($nombre) {
+        $strSQL  = "INSERT INTO `".DBPREFIX."medidas` (`medida`) VALUES('".$nombre."')";
         $rs      = $this->dbc->Execute( $strSQL );
-
     }
 	
-	function verMedidas($clienteid)
-    {
+	function verMedidas($clienteid) {
 		$strSQL  = "SELECT * FROM ".DBPREFIX."medidas";
 		$rs     = $this->dbc->Execute( $strSQL);
         return $rs;
     }
 
-    function renombrarArchivo( $nombre )
-    {
+    function renombrarArchivo( $nombre ) {
         $largo    = strlen( $nombre );
         $posPunto = strrpos( $nombre, "." );
         $ext      = substr( $nombre, $posPunto, $largo );
@@ -92,55 +50,30 @@ class configuration
         return $completo;
     }
 
-    function savetasa($iva)
-    {
+    function restore_database() {
+        if ($_FILES['backup_file']) {
+            $nombre = $_FILES['backup_file']['name'];
+            $largo    = strlen( $nombre );
+            $posPunto = strrpos( $nombre, "." );
+            $ext      = substr( $nombre, $posPunto, $largo );
+
+            if ($ext !== '.sql') return "<h2>Archivo no válido</h2>";
+
+            if (copy($_FILES['backup_file']['tmp_name'], 'backups/actual.sql')) {
+                exec('mysql -h '.SERVERNAME.' -u '.USERNAME.' -p'.PASSWORD.' '.DBNAME.' < backups/actual.sql', $output);
+
+                if(sizeof($output) == 0) { return '<h2>La base de datos ha sido restaurada</h2>'; }
+            }
+            return "<h2>Error al procesar el respaldo</h2>";
+        }
+    }
+
+    function savetasa($iva) {
         $strSQL  = "INSERT INTO `".DBPREFIX."iva` (`iva`,`fecha_inicio`) VALUES('".$iva."',NOW())";		
         $rs      = $this->dbc->Execute( $strSQL );
 
     }
 	
-	function crearpermiso($idrol, $idsubarea)
-    {
-        $strSQL  = "INSERT INTO `".DBPREFIX."permisos` (`idrol`, `idsubarea`) VALUES(".$idrol.", ".$idsubarea.")";		
-        $rs      = $this->dbc->Execute( $strSQL );
-    }
-
-	function borrarpermisos( $rolid )
-    {
-        $strSQL = "DELETE FROM ".DBPREFIX."permisos where idrol=".$rolid." ";
-        $rs = $this->dbc->Execute( $strSQL );
-    }
-	
-    function dropcliente( $clienteid )
-    {
-			$strSQL = "DELETE FROM ".DBPREFIX."clientes where clienteid=".$clienteid;
-			$rs = $this->dbc->Execute( $strSQL );
-    }
-	
-	function dropcontactos( $clienteid )
-    {
-			$strSQL = "DELETE FROM ".DBPREFIX."clientes_contactos where clienteid=".$clienteid;
-			$rs = $this->dbc->Execute( $strSQL );
-    }
-
-    function allNewsdata( )
-    {
-        $strSQL = "Select * FROM ".DBPREFIX."noticias order by noticia desc limit 0,2";
-        $rs = $this->dbc->Execute( $strSQL );
-        return $rs;
-    }
-
-    function getNews( )
-    {
-        $strSQL = "Select * FROM ".DBPREFIX."noticias order by noticia desc limit 0,3";
-        $rs = $this->dbc->Execute( $strSQL );
-        return $rs;
-    }
-
-    /***************************************/
-    /***************************************/
-    //Aqui estan las funciones de las noticias
-
     function cuentareg( $table, $where = 1 )
     {
         $strSQL = "Select COUNT(*) as numreg from ".DBPREFIX.$table." where ".$where;
@@ -148,44 +81,32 @@ class configuration
         return $rs->fields["numreg"];
     }
 
-    function paginar( $actual, $total, $por_pagina, $enlace )
-    {
+    function paginar( $actual, $total, $por_pagina, $enlace ) {
         $texto         = "";
         $total_paginas = ceil( $total / $por_pagina );
         $anterior      = $actual - 1;
         $posterior     = $actual + 1;
-        if ( $total_paginas > 1 )
-        {
+        if ( $total_paginas > 1 ) {
             $texto .= '<table cellpadding="0" cellspacing="0" align="center"><tr>';
-            if ( $actual > 1 )
-            {
+            if ( $actual > 1 ) {
                 $texto .= "<td><a href=\"$enlace"."1"."\"><img src='../imagenes/flechabegin.png' height='20' width='33' border='0'></a>&nbsp;";
                 $texto .= "<a href=\"$enlace$anterior\"><img src='../imagenes/flechaback.png' height='20' width='25' border='0'></a></td>";
-            }
-            else
-            {
+            } else {
                 $texto .= "<td><img src='../imagenes/flechanobegin.png' height='20' width='33' border='0'>&nbsp;";
                 $texto .= "<img src='../imagenes/flechanoback.png' height='20' width='25' border='0'></td>";
             }
             $texto .= "<td style='width:70px;'>$actual / $total_paginas</td>";
-            if ( $actual < $total_paginas )
-            {
+            if ( $actual < $total_paginas ) {
                 $texto .= "<td><a href=\"$enlace$posterior\"><img src='../imagenes/flechanext.png' height='20' width='25' border='0'></a>&nbsp;";
                 $texto .= "<a href=\"$enlace$total_paginas\"><img src='../imagenes/flechaend.png' height='20' width='33' border='0'></a></td>";
-            }
-            else
-            {
+            } else {
                 $texto .= "<td><img src='../imagenes/flechanonext.png' height='20' width='25' border='0'>&nbsp;";
                 $texto .= "<img src='../imagenes/flechanoend.png' height='20' width='33' border='0'></td>";
             }
             $texto .= "</td></tr></table>";
-        }
-        elseif ( $total_paginas == 1 )
-        {
+        } elseif ( $total_paginas == 1 ) {
             $texto = "1";
-        }
-        else
-        {
+        } else {
             $texto = "";
         }
         
